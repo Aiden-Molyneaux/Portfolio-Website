@@ -5,9 +5,9 @@ import { useEffect } from 'react';
 import Header from './Header';
 import Home from './Home';
 import About from './About';
-import Work from './Work';
-import Contact from './Contact';
 import Experience from './Experience';
+import Projects from './Projects';
+import Contact from './Contact';
 
 function App() {
   const navigate = useNavigate();
@@ -15,24 +15,9 @@ function App() {
   useEffect(() => {
     const location = JSON.parse(window.localStorage.getItem('location'));
     if (location) {
-      switch(location.route) {
-        case '/about':
-          navigate('/about');
-          break;
-        case '/work':
-          navigate('/work');
-          break;
-        case '/experience':
-          navigate('/experience');
-          break;
-        case '/contact':
-          navigate('/contact');
-          break;
-      default:
-        navigate('/home');
-      }
+      navigate(location.path);
     } else {
-      window.localStorage.setItem('location', JSON.stringify({ route: '/home' }));
+      window.localStorage.setItem('location', JSON.stringify({ path: '/home' }));
       navigate('/home');
     }
   }, []);
@@ -41,10 +26,13 @@ function App() {
     <>
       <Header/>
       <Routes>
+        <Route path="/" element={<Home/>}></Route>
         <Route path="/home" element={<Home/>}></Route>
         <Route path="/about" element={<About/>}></Route>
-        <Route path="/work" element={<Work/>}></Route>
         <Route path="/experience" element={<Experience/>}></Route>
+        <Route path="/experience/1" element={<Experience/>}></Route>
+        <Route path="/experience/2" element={<Experience/>}></Route>
+        <Route path="/projects" element={<Projects/>}></Route>
         <Route path="/contact" element={<Contact/>}></Route>
       </Routes>
     </> 

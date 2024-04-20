@@ -1,8 +1,6 @@
-import profilePicture from './assets/pfp.jpg';
+import headshotImage from './assets/headshotImage.jpg';
 
 export default function About() {
-  window.localStorage.setItem('location', JSON.stringify({ route: '/about' }));
-  
   return (
     <div className='content'>
       <p className='sectionHeader'>About Me</p>
@@ -15,11 +13,11 @@ export default function About() {
         Proin sit amet ipsum varius, viverra neque in, consectetur ipsum. 
         Sed fermentum feugiat lacus in egestas.
         </p>
-        <img src={profilePicture} alt='pfp' className='pfp'/>
+        <img src={headshotImage} alt='headshotImage' className='headshotImage'/>
 
         <div className='moreAboutContent'>
           <div className='hobbySection'>
-            <h3>Hobbies</h3>
+            <h3>Skills and Expertise</h3>
             <p className='moreSectionText'>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
             Nulla arcu est, lacinia vitae ex nec, auctor maximus nisl. 

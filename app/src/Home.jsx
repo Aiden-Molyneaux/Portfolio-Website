@@ -1,13 +1,12 @@
-import heart from './assets/heart.svg';
+import heartSVG from './assets/heart.svg';
 
 export default function Home() {
-  window.localStorage.setItem('location', JSON.stringify({ route: '/home' }));
-  
   return (
-    <div className='homeContent letterSpacing'>
+    <div className='homeContent'>
       <h1>AIDEN MOLYNEAUX</h1>
-      <h2>SOFTWARE PROGRAMMER, FULL-STACK DEVELOPER</h2>
-      <img src={heart} alt='heart' className='backgroundIcon'/>
+      <h2>PASSIONATE PROGRAMMER & FULL-STACK DEVELOPER</h2>
+      <p className='topMargin'>MY HEART BEATS TO PROGRAM</p>
+      <img src={heartSVG} alt='A red geometric heart drawing, animated to be beating' className='heartSVG'/>
     </div>
   );
 }

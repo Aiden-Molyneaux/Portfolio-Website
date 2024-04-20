@@ -1,90 +1,94 @@
 /* GENERAL TAG STYLES */
 :root {
   --black: #111111;
-  --white-font: #fffbf7;
-  --red-font: #ff4122;
-  --yellow-font: #ffd741;
-  --font-family: 'Geist Mono', monospace;
-  font-family: var(--font-family);
+  --grey: #48494b;
+  --white: #fffbf7;
+  --red: #ff4122;
+  --yellow: #ffd741;
+  --code-font: 'Geist Mono', monospace;
+  --content-font: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  text-align: center;
+  color: var(--white);
   line-height: 1.5;
-  font-weight: 400;
-  color: var(--black);
+  font-family: var(--content-font);
 }
 
 #root {
   display: flex;
   flex-direction: column;
+  align-items: center;
   height: 100vh;
   width: 100%;
 }
 
 body {
-  margin: 0px;
-  background: linear-gradient(180deg, #111111 0%, #48494b 100%);
+  background: linear-gradient(180deg, var(--black) 0%, var(--grey) 100%);
 }
 
 h1 {
-  font-size: 100px;
-  margin: 0px;
+  font-size: 5.5em;
+  color: var(--yellow);
 }
 
 h2 {
-  font-size: 28px;
-  margin: 0px;
+  color: var(--yellow)
 }
 
 h3 {
-  font-size: 24px;
-  margin: 0px;
+  font-size: 1.33em;
+  font-weight: 500;
+  color: var(--yellow);
 }
 
 h6 {
-  margin: 0px;
-  font-size: 12px;
-  color: var(--white-font);
+  font-size: 0.66em;
 }
 
-p {
+body, h1, h2, h3, h6, p {
   margin: 0px;
 }
+
+.topMargin {
+  margin-top: 15px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.sectionHeader {
+  margin: 50px;
+  margin-bottom: 20px;
+  padding: 0px;
+  font-size: 40px;
+  font-weight: 500;
+  color: var(--yellow);
+}
+
+.sectionText {
+  width: 50%;
+}
+
+/* ACTION BUTTONS */
 
 a {
-  padding-left: 10px;
-  font-size: 18px;
-  color: var(--white-font);
+  color: var(--white);
   text-decoration: none;
   text-wrap: none;
 }
 
-header {
+.actionButton {
   display: flex;
-  align-items: center;
-  width: 100%;
-}
-
-header > * {
-  padding: 25px;
-}
-
-.headerButtons {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
-  white-space: nowrap;
-  transition: all 0.5s ease;
-}
-
-.headerButtons > div {
-  background-color: transparent;
-  color: #fffbf7;
-  border: none;
-  font-size: 1em;
-  transition: 0.3s;
+  flex-direction: column;
+  align-items: flex-end;
   padding: 0px;
+  border: none;
+  background-color: transparent;
+  transition: 0.3s;
 }
 
 .buttonText {
@@ -94,50 +98,59 @@ header > * {
 
 .buttonClicked {
   padding-left: 2px;
-  color: var(--red-font);
-  transition: all 0.3s ease;
+  color: var(--red);
 }
 
-@media (max-width: 1350px) {
-  header {
-    flex-direction: column;
-    align-items: center;
-  }
-  .headerButtons {
-    position: relative;
-    left: 0px;
-    transform: none;
-  }
-}
+/* HEADER */
 
-.headerButtons > div {
+header {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
+  width: 100%;
+  font-family: var(--code-font);
+  transition: all 0.5s ease;
 }
 
 .headerName {
-  transition: all 0.5s ease;
-  color: var(--yellow-font);
+  padding: 25px;
   letter-spacing: 0.05em;
 }
+
+.headerButtons {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  white-space: nowrap;
+}
+
+.whiteFont {
+  color: var(--white);
+}
+
+.redFont {
+  color: var(--red);
+}
+
+/* HOME PAGE */
 
 .homeContent {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 100%;
   margin-bottom: 50px;
-  text-align: center;
-  color: var(--yellow-font);
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  letter-spacing: 0.05em;
 }
 
-.backgroundIcon {
+.heartSVG {
   position: absolute;
-  width: 75%;
-  height: 75%;
+  width: 30%;
+  height: 30%;
   z-index: -1;
   animation: pulse 1.5s infinite;
 }
@@ -160,13 +173,7 @@ header > * {
   }
 }
 
-/* ABOUT SECTION */
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+/* ABOUT PAGE */
 
 .aboutContent {
   display: flex;
@@ -174,29 +181,9 @@ header > * {
   align-items: center;
   justify-content: center;
   margin-bottom: 50px;
-  text-align: center;
-  color: var(--yellow-font);
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
-.sectionHeader {
-  margin: 50px;
-  margin-bottom: 20px;
-  padding: 0px;
-  font-size: 40px;
-  font-weight: 500;
-  text-align: center;
-  color: var(--yellow-font);
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-}
-
-.sectionText {
-  width: 50%;
-  font-size: 16px;
-  color: var(--white-font);
-}
-
-.pfp {
+.headshotImage {
   width: 200px;
   height: auto;
   border-radius: 50%;
@@ -219,26 +206,62 @@ header > * {
 .moreSectionText {
   width: 75%;
   text-align: start;
-  font-size: 16px;
-  color: var(--white-font);
 }
 
-.workOptions {
+/* EXPERIENCE PAGE */
+.experienceContent {
+  display: flex;
+  width: 90%;
+}
+
+.educationSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.workSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.experienceOptions {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 40px;
+  gap: 50px;
   white-space: nowrap;
   transition: all 0.5s ease;
+  font-family: var(--code-font);
 }
 
-.workSectionText {
+.experienceSectionText {
   width: 40%;
   margin-top: 30px;
-  text-align: center;
-  font-size: 16px;
-  color: var(--white-font);
 }
+
+.carletonUniversityImg {
+  width: 50%;
+  height: auto;
+  margin: 20px;
+  border-radius: 1vh;
+}
+
+/* PROJECTS PAGE */
+
+.projectsContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+/* CONTACT PAGE */
 
 .contactContent {
   display: flex;
@@ -246,27 +269,43 @@ header > * {
   align-items: center;
   justify-content: center;
   margin-bottom: 50px;
-  text-align: center;
-  color: var(--yellow-font);
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 .contactSectionText {
   width: 100%;
   margin-top: 30px;
-  text-align: center;
   font-size: 16px;
-  color: var(--white-font);
 }
 
-.whiteFont {
-  color: #fffbf7;
-}
-
-.redFont {
-  color: var(--red-font);
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 50%;
 }
 
 .letterSpacing {
-  letter-spacing: 0.05em;
+  
+}
+
+
+@media (max-width: 1350px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+  }
+  .headerButtons {
+    position: relative;
+    left: 0px;
+    transform: none;
+  }
+  .experienceContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+  }
 }

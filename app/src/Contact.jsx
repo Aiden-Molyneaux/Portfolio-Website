@@ -1,24 +1,26 @@
 
 export default function Contact() {
-  window.localStorage.setItem('location', JSON.stringify({ route: '/contact' }));
-  
   return (
-    <div className='content'>
-      <p className='sectionHeader'>Contact Me</p>
-      <div className='contactContent'>
-        <p className='contactSectionText'>
-        email: aidenmolyneaux@hotmail.com<br/>
-        GitHub: aidenmolyneaux<br/>
-        LinkedIn: aidenmolyneaux
-        </p>
-      </div>
-      
-      <p className='workSectionText'>
-        Aliquam id augue ac ex rhoncus faucibus. 
-        Nunc id enim id quam eleifend vestibulum vitae ut urna. 
-        Curabitur facilisis odio sit amet egestas efficitur. 
-        Aliquam erat volutpat. 
-      </p>
-    </div>
+    <>
+      <form className='contactForm content'>
+        <h3>CONTACT ME</h3>
+        <p>aidenmolyneaux@hotmail.com</p>
+
+        <label htmlFor='name'>Name:</label>
+        <input type='text' id='name' name='name' required></input>
+        <label htmlFor='email'>Email:</label>
+        <input type='email' id='email' name='email' required></input>
+        <label htmlFor='message'>Message:</label>
+        <textarea id='message' name='message' required></textarea>
+        <button type='submit'>Submit</button>
+
+        <div>
+        </div>
+
+        <div>
+          <p></p>
+        </div>
+      </form>
+    </>    
   );
 }
