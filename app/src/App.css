@@ -83,11 +83,12 @@ body, h1, h2, h3, h6, p {
 }
 
 .sectionText {
-  width: 80%;
+  width: 70%;
 }
 
 .mainSectionText > * {
   margin: 20px 0px;
+  text-align: justify;
 }
 
 /* ACTION BUTTONS */

@@ -1,23 +1,25 @@
-import ActionButton from './ActionButton';
+import PropTypes from 'prop-types';
 
 export default function EducationDetails({ details }) {
+  EducationDetails.propTypes = {
+    details: PropTypes.object.isRequired
+  };
+
+  const { degree, university, location, graduationDate, description, imgSrc, imgAlt } = details;
+
   return (
-    <div className='educationSection'>
-      <h3>Education</h3>
-      <div className='experienceOptions'>
-        <ActionButton id={details.id} name={`${details.buttonName}`}/>
-      </div>
-      <img src={details.imgSrc} alt={details.imgAlt} className='carletonUniversityImg'/>
+    <>
+      <img src={imgSrc} alt={imgAlt} className='carletonUniversityImg'/>
       <div className='sectionText'>
         <div>
-          <p><span className='underline'>{details.degree}</span></p>
-          <p>{details.university} // {details.location}</p>
-          <p>Graduation Date: {details.graduationDate}</p>
+          <p><span className='underline'>{degree}</span></p>
+          <p>{university} // {location}</p>
+          <p>Graduation Date: {graduationDate}</p>
         </div>
         <div className='mainSectionText'>
-          {details.description.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+          {description.map((paragraph, index) => <p key={index}>&emsp;&emsp;{paragraph}</p>)}
         </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -1,7 +1,15 @@
-/* eslint-disable react/jsx-no-comment-textnodes */
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 
 export default function TextField({ id, name, type, value, handleChange }) {
+  TextField.propTypes = {
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
+    handleChange: PropTypes.func.isRequired
+  };
+  
   const [isHovered, setIsHovered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
 

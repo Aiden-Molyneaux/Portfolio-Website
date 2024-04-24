@@ -7,21 +7,21 @@ import WorkDetails from './WorkDetails';
 export default function Experience() {
   const location = JSON.parse(window.localStorage.getItem('location'));
 
-  const educationDetails = {
-    id: '01',
-    buttonName: 'bachelor of computer science, carleton university',
-    degree: 'Bachelor of Computer Science',
-    university: 'Carleton University',
-    location: 'Ottawa, Ontario',
-    graduationDate: 'June 2024',
-    description: [
-      'I began studying the world of Computer Science at Carleton University in 2019. On my journey I became passionate for the field, and developed a keen interest in software development.',
-      'My educational experience was enriched by co-operative education opportunities, where I worked tirelessly to mesh my classroom learning with hands-on industry exposure. Through my placements, I had the privilege of connecting with professionals in the field, gaining invaluable insights and forging meaningful relationships within the workplace.',
-      'My studies culminated in the completion of my degree in April 2024, with a spring graduation slated for June. Alongside academic excellence, my journey was defined by the cultivation of lasting connections and a passion for what I now call my career.'
-    ],
-    imgSrc: carletonUniversityImg,
-    imgAlt: 'Scenic image of Carleton University in Ottawa, Ontario.'
-  };
+  const educationDetails = [
+    {
+      degree: 'Bachelor of Computer Science',
+      university: 'Carleton University',
+      location: 'Ottawa, Ontario',
+      graduationDate: 'June 2024',
+      description: [
+        'I began studying the world of Computer Science at Carleton University in 2019. On my journey I became passionate for the field, and developed a keen interest in software development.',
+        'My educational experience was enriched by co-operative education opportunities, where I worked tirelessly to mesh my classroom learning with hands-on industry exposure. Through my placements, I had the privilege of connecting with professionals in the field, gaining invaluable insights and forging meaningful relationships within the workplace.',
+        'My studies culminated in the completion of my degree in April 2024, with a spring graduation slated for June. Alongside academic excellence, my journey was defined by the cultivation of lasting connections and a passion for what I now call my career.'
+      ],
+      imgSrc: carletonUniversityImg,
+      imgAlt: 'Scenic image of Carleton University in Ottawa, Ontario.'
+    }
+  ];
 
   const workDetails = [
     {
@@ -68,17 +68,24 @@ export default function Experience() {
     <div className='content'>
       <p className='sectionHeader'>My Experience</p>
       <div className='experienceContent'>
-        <EducationDetails details={educationDetails}/>
+        <div className='educationSection'>
+          <h3>Education</h3>
+          <div className='experienceOptions'>
+            <ActionButton id='01' name='bachelor of computer science, carleton university'/>
+          </div>
+          
+          <EducationDetails details={educationDetails[0]}/>
+        </div>
+        
         <div className='workSection'>
           <h3>Work</h3>
           <div className='experienceOptions'>
-            <ActionButton id='01' path='/experience/1' name='crew member, wendys'/>
-            <ActionButton id='02' path='/experience/2' name='junior software developer, wicket'/>
+            <ActionButton id='01' path='/experience/1' name='junior software developer, wicket'/>
           </div>
 
           { location.path === '/experience/1'
-            ? <WorkDetails details={workDetails[1]}/> 
-            : <WorkDetails details={workDetails[0]}/> 
+            ? <WorkDetails details={workDetails[0]}/> 
+            : <></>
           }
         </div>
       </div>
