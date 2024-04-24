@@ -2,6 +2,8 @@
 :root {
   --black: #111111;
   --grey: #48494b;
+  --faded-black: rgba(0, 0, 0, 0.7); /* Adjust opacity as needed */
+  --faded-grey: rgba(128, 128, 128, 0.7); /* Adjust opacity as needed */
   --white: #fffbf7;
   --red: #ff4122;
   --yellow: #ffd741;
@@ -24,25 +26,29 @@
 
 body {
   background: linear-gradient(180deg, var(--black) 0%, var(--grey) 100%);
+  background-attachment: fixed;
+  cursor: url('./assets/cursor.png') 16 16, auto;
 }
 
 h1 {
   font-size: 5.5em;
-  color: var(--yellow);
-}
-
-h2 {
-  color: var(--yellow)
 }
 
 h3 {
   font-size: 1.33em;
   font-weight: 500;
-  color: var(--yellow);
+}
+
+h4 {
+  font-size: 1.1em;
 }
 
 h6 {
   font-size: 0.66em;
+}
+
+h1, h2, h3, h4 {
+  color: var(--yellow);
 }
 
 body, h1, h2, h3, h6, p {
@@ -53,11 +59,17 @@ body, h1, h2, h3, h6, p {
   margin-top: 15px;
 }
 
+.bottomMargin {
+  margin-bottom: 15px;
+}
+
 .content {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-top: 90px;
+  padding-bottom: 20px;
 }
 
 .sectionHeader {
@@ -67,10 +79,15 @@ body, h1, h2, h3, h6, p {
   font-size: 40px;
   font-weight: 500;
   color: var(--yellow);
+  white-space: nowrap;
 }
 
 .sectionText {
-  width: 50%;
+  width: 80%;
+}
+
+.mainSectionText > * {
+  margin: 20px 0px;
 }
 
 /* ACTION BUTTONS */
@@ -79,6 +96,11 @@ a {
   color: var(--white);
   text-decoration: none;
   text-wrap: none;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  cursor: url('./assets/cursorHover.png') 16 16, auto;
 }
 
 .actionButton {
@@ -88,7 +110,6 @@ a {
   padding: 0px;
   border: none;
   background-color: transparent;
-  transition: 0.3s;
 }
 
 .buttonText {
@@ -104,6 +125,7 @@ a {
 /* HEADER */
 
 header {
+  position: fixed;
   display: flex;
   align-items: center;
   width: 100%;
@@ -239,16 +261,24 @@ header {
   font-family: var(--code-font);
 }
 
-.experienceSectionText {
-  width: 40%;
-  margin-top: 30px;
-}
-
 .carletonUniversityImg {
-  width: 50%;
+  width: 350px;
   height: auto;
   margin: 20px;
   border-radius: 1vh;
+}
+
+.contributionTitle {
+  font-weight: 700;
+  text-align: start;
+}
+
+.contributionText {
+  text-align: start;
+}
+
+.textAlignLeft {
+  text-align: start;
 }
 
 /* PROJECTS PAGE */
@@ -259,6 +289,17 @@ header {
   align-items: center;
   justify-content: center;
   margin-bottom: 50px;
+}
+
+.projectOptions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  white-space: nowrap;
+  transition: all 0.5s ease;
+  font-family: var(--code-font);
 }
 
 /* CONTACT PAGE */
@@ -282,14 +323,98 @@ header {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
-  width: 50%;
+  width: max(20%, 245px);
 }
 
-.letterSpacing {
-  
+.contactForm > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
 }
 
+.textField {
+  font-family: var(--code-font);
+  margin: 3px 0px;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+label > h6 {
+  padding-top: 4px;
+  margin-left: auto;
+}
+
+.labelText {
+  padding-left: 10px;
+  transition: all 0.3s ease;
+}
+
+.inputFocused {
+  padding-left: 2px;
+  color: var(--red);
+}
+
+input, textarea {
+  box-sizing: border-box;
+  padding: 8px;
+  margin: 5px 0px;
+  font-family: var(--content-font);
+  font-size: 1em;
+  color: var(--white);
+  background-color: var(--black);
+  border: 1px solid var(--yellow);
+  border-radius: 3px;
+  width: 100%;
+  cursor: url('./assets/cursorHover.png') 16 16, auto;
+}
+
+input:focus, input:hover, textarea:focus, textarea:hover {
+  border-color: var(--red);
+  outline: none;
+}
+
+.contactSubmit {
+  margin-top: 10px;
+  padding: 8px;
+  font-family: var(--code-font);
+  font-size: 1em;
+  color: var(--white);
+  background-color: var(--black);
+  border: 1px solid var(--yellow);
+  border-radius: 3px;
+  cursor: url('./assets/cursorHover.png') 16 16, auto;
+}
+
+.contactSubmit:hover {
+  border-color: var(--red);
+}
+
+.contactLinks {
+  display: flex;
+  gap: 18px;
+  margin: 25px;
+  margin-bottom: 12px;
+}
+
+.contactLinks > a:hover {
+  color: var(--red);
+}
+
+.emailLink:hover {
+  color: var(--red);
+  font-size: 1.05em;
+}
+
+.underline {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
 
 @media (max-width: 1350px) {
   header {

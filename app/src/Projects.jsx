@@ -1,4 +1,4 @@
-import HeaderButton from './ActionButton';
+import ActionButton from './ActionButton';
 
 export default function Projects() {
   return (
@@ -13,19 +13,12 @@ export default function Projects() {
         </p>
       </div>
 
-      <div className='experienceOptions'>
-        <HeaderButton id='01' path='/' name='prototype CES software'/>
-        <HeaderButton id='02' path='/' name='a.i. text-accessibility assessor'/>
-        <HeaderButton id='03' path='/' name='web crawler & search engine'/>
-        <HeaderButton id='04' path='/' name='health & fitness club web app.'/>
+      <div className='projectOptions'>
+        <ActionButton id='01' path='/projects/1' name='prototype CES software'/>
+        <ActionButton id='02' path='/projects/2' name='a.i. text-accessibility assessor'/>
+        <ActionButton id='03' path='/projects/3' name='web crawler & search engine'/>
+        <ActionButton id='04' path='/projects/4' name='health & fitness club web application'/>
       </div>
-      
-      <p className='experienceSectionText'>
-        Aliquam id augue ac ex rhoncus faucibus. 
-        Nunc id enim id quam eleifend vestibulum vitae ut urna. 
-        Curabitur facilisis odio sit amet egestas efficitur. 
-        Aliquam erat volutpat. 
-      </p>
     </div>
   );
 }
