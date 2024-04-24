@@ -1,25 +1,44 @@
+import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
+import TextField from './TextField';
 
 export default function Contact() {
+  const platformLinks = ['https://www.linkedin.com/in/aiden-molyneaux/', 'https://github.com/Aiden-Molyneaux'];
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbzmwTJMvARa_hrJuQsoc7WxGwYr4nrw91USX8fxlT4s_5MRSu5y5UnwHa8ZRjTg70xIIw/exec';
+  
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+
+  function handleChange(event) {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
+  }
+
   return (
     <>
-      <form className='contactForm content'>
-        <h3>CONTACT ME</h3>
-        <p>aidenmolyneaux@hotmail.com</p>
+      <form action="https://formsubmit.co/9dd068642eb64094e99fc86586fb1715" method="POST" className='contactForm content'>
+        <h3 className='sectionHeader'>Contact Me</h3>
 
-        <label htmlFor='name'>Name:</label>
-        <input type='text' id='name' name='name' required></input>
-        <label htmlFor='email'>Email:</label>
-        <input type='email' id='email' name='email' required></input>
-        <label htmlFor='message'>Message:</label>
-        <textarea id='message' name='message' required></textarea>
-        <button type='submit'>Submit</button>
+        <p>Aiden Molyneaux</p>
+        <a href='mailto:aidenmolyneaux@hotmail.com' className='emailLink underline bottomMargin'>aidenmolyneaux@hotmail.com</a>
 
-        <div>
-        </div>
+        <TextField id='01' name='name' type='input' value={formData.name} handleChange={handleChange}/>
+        <TextField id='02' name='email' type='input' value={formData.email} handleChange={handleChange}/>
+        <TextField id='03' name='message' type='textarea' value={formData.message} handleChange={handleChange}/>
 
-        <div>
-          <p></p>
-        </div>
+        <button type='submit' className="contactSubmit topMargin">Submit</button>
+        
+        <span className='contactLinks'>
+          <a href={platformLinks[0]} target="_blank"><FontAwesomeIcon icon={faLinkedin} className='fa-2x'/></a>
+          <a href={platformLinks[1]} target="_blank"><FontAwesomeIcon icon={faGithub} className='fa-2x'/></a>
+        </span>
+        
+        <p>Ottawa, ON.</p>
+
+        <input type="hidden" name="_captcha" value="false"/>
       </form>
     </>    
   );
