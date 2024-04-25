@@ -23,7 +23,7 @@ export default function Contact() {
         <h3 className='sectionHeader'>Contact Me</h3>
 
         <p>Aiden Molyneaux</p>
-        <a href='mailto:aidenmolyneaux@hotmail.com' className='emailLink underline bottomMargin'>aidenmolyneaux@hotmail.com</a>
+        <a href='mailto:aidenmolyneaux@hotmail.com' className='emailLink experienceName bottomMargin'>aidenmolyneaux@hotmail.com</a>
 
         <TextField id='01' name='name' type='input' value={formData.name} handleChange={handleChange}/>
         <TextField id='02' name='email' type='input' value={formData.email} handleChange={handleChange}/>

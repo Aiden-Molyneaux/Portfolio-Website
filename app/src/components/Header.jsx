@@ -22,6 +22,7 @@ export default function Header() {
       <div className='headerButtons'>
         {routes.map(route => (
           <ActionButton
+            key={route.id}
             id={route.id} 
             path={route.path} 
             name={route.name}

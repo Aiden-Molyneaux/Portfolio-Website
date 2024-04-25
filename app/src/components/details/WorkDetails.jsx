@@ -10,12 +10,14 @@ export default function WorkDetails({ details }) {
   return (
     <>
       <img src={imgSrc} alt={imgAlt} className='carletonUniversityImg'/>
-      <p><span className='underline'>{role}</span></p>
+      <p><span className='experienceName underline'>{role}</span></p>
       <p>{company} // {location}</p>
       <p>{duration}</p>
 
       <div className='mainSectionText'>
+        <h4>Experience</h4>
         <p>{description[0]}</p>
+        <p>{description[1]}</p>
       
         <h4 className='bottomMargin textAlignLeft'>Key Contributions</h4>
         { keyContributions.map((contribution, index) => (
@@ -24,8 +26,6 @@ export default function WorkDetails({ details }) {
             <p className='textAlignLeft'>{contribution.description}</p>
           </div>))
         }
-
-        <p>&emsp;&emsp;{description[1]}</p>
       </div>
     </>
   );

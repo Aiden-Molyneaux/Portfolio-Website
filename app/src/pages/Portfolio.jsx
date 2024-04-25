@@ -20,12 +20,11 @@ export default function Portfolio() {
             <h3 className='bottomMargin'>Projects</h3>
             <div className='projectOptions'>
               <ActionButton id='01' path='/portfolio/1' name='prototype CES software'/>
-              <ActionButton id='02' path='/portfolio/2' name='a.i. text-accessibility assessor'/>
-              <ActionButton id='03' path='/portfolio/3' name='web crawler & search engine'/>
+              <ActionButton id='02' path='/portfolio/2' name='web crawler & search engine'/>
+              <ActionButton id='03' path='/portfolio/3' name='a.i. text-accessibility assessor'/>
               <ActionButton id='04' path='/portfolio/4' name='health & fitness club web application'/>
             </div>
           </div>
-
 
           <div className='projectDetails'>
             <h3 className='bottomMargin'>Project Details</h3>
@@ -36,8 +35,6 @@ export default function Portfolio() {
           </div>
         </div>
       </div>
-
-
     </div>
   );
 }

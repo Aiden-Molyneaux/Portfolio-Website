@@ -2,13 +2,16 @@
 :root {
   --black: #111111;
   --grey: #48494b;
-  --faded-black: rgb(17, 17, 17, 0.9); /* Adjust opacity as needed */
-  --faded-grey: rgb(23, 23, 23, 0.4); /* Adjust opacity as needed */
+  --faded-black: rgb(17, 17, 17, 0.9);
+  --faded-grey: rgb(23, 23, 23, 0.4);
+  --faded-faded-black: rgb(23, 23, 23, 0.2);
   --white: #fffbf7;
   --red: #ff4122;
   --yellow: #ffd741;
   --code-font: 'Geist Mono', monospace;
   --content-font: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --cursor: url('../assets/cursor.png') 16 16, auto;
+  --cursor-hover: url('../assets/cursorHover.png') 16 16, auto;
   font-size: 18px;
   text-align: center;
   color: var(--white);
@@ -26,9 +29,8 @@
 
 body {
   background: linear-gradient(180deg, var(--black) 0%, var(--grey) 100%);
-  /* background-color: var(--grey); */
   background-attachment: fixed;
-  cursor: url('./assets/cursor.png') 16 16, auto;
+  cursor: var(--cursor);
 }
 
 h1 {
@@ -42,6 +44,7 @@ h3 {
 
 h4 {
   font-size: 1.1em;
+  font-weight: 500;
 }
 
 h6 {
@@ -91,27 +94,65 @@ body, h1, h2, h3, h6, p {
   width: 75%;
 }
 
+.experienceName {
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
 .mainSectionText > * {
   margin: 20px 0px;
   text-align: justify;
 }
 
-/* This will affect the entire page */
+.mainSectionText > *:not(h4) {
+  padding: 10px;;
+  border-left: 7px solid var(--faded-faded-black);
+}
+
+.test > *{
+  margin: 20px 0px;
+}
+
 ::-webkit-scrollbar {
-  width: 15px; /* Adjust scrollbar width */
+  width: 15px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--grey); /* Change to match your color scheme */
+  background: var(--grey);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--black); /* Change to match your color scheme */
-  border-radius: 5px; /* Adjust to change the roundness of the scrollbar */
+  background: var(--black);
+  border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--red); /* Change to match your color scheme */
+  background: var(--red);
+}
+
+.modalContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.imgModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 2;
+}
+
+.modalImg {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 1vh;
 }
 
 /* ACTION BUTTONS */
@@ -124,7 +165,7 @@ a {
 }
 
 a:hover {
-  cursor: url('./assets/cursorHover.png') 16 16, auto;
+  cursor: var(--cursor-hover);
 }
 
 .actionButton {
@@ -276,7 +317,7 @@ header {
 }
 
 .educationSection > *, .workSection > * {
-  width: 75%;
+  width: 80%;
 }
 
 .experienceOptions {
@@ -358,8 +399,22 @@ header {
   width: 90%;
 }
 
+.projectLanguages {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.projectImgs {
+  display: flex;
+  gap: 20px;
+  height: auto;
+  width: auto;
+}
+
 .projectImg {
-  width: 1000px;
+  flex: 1;
+  width: 100%;
   height: auto;
   border-radius: 1vh;
   margin: 0px;
@@ -434,7 +489,7 @@ input, textarea {
   border: 1px solid var(--yellow);
   border-radius: 3px;
   width: 100%;
-  cursor: url('./assets/cursorHover.png') 16 16, auto;
+  cursor: var(--cursor-hover);
 }
 
 input:focus, input:hover, textarea:focus, textarea:hover {
@@ -451,7 +506,7 @@ input:focus, input:hover, textarea:focus, textarea:hover {
   background-color: var(--black);
   border: 1px solid var(--yellow);
   border-radius: 3px;
-  cursor: url('./assets/cursorHover.png') 16 16, auto;
+  cursor: var(--cursor-hover);
 }
 
 .contactSubmit:hover {
@@ -472,11 +527,6 @@ input:focus, input:hover, textarea:focus, textarea:hover {
 .emailLink:hover {
   color: var(--red);
   font-size: 1.05em;
-}
-
-.underline {
-  text-decoration: underline;
-  text-underline-offset: 2px;
 }
 
 @media (max-width: 1350px) {
