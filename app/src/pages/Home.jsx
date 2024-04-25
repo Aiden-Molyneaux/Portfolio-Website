@@ -1,4 +1,4 @@
-import heartSVG from './assets/heart.svg';
+import heartSVG from '../assets/heart.svg';
 
 export default function Home() {
   return (

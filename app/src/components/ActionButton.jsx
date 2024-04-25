@@ -15,10 +15,10 @@ export default function ActionButton({ id, path, name }) {
   const [isClicked, setIsClicked] = useState(false);
 
   const isExperiencePage = path === '/experience' && location.path === '/experience/1';
-  const isProjectsPage = path === '/projects' && ['/projects/1', '/projects/2', '/projects/3', '/projects/4'].includes(location.path);
+  const isPortfolioPage = path === '/portfolio' && ['/portfolio/1', '/portfolio/2', '/portfolio/3', '/portfolio/4'].includes(location.path);
 
   useEffect(() => {
-    if (isExperiencePage || isProjectsPage) {
+    if (isExperiencePage || isPortfolioPage) {
       setIsClicked(true);
     } else {
       setIsClicked(location.path === path);
@@ -26,9 +26,9 @@ export default function ActionButton({ id, path, name }) {
   }, [location]);
 
   function setLocation() {
-    // allow the Experience and Projects pages to open on the most recent experience and projects
+    // allow the Experience and Portfolio pages to open on the most recent experience and projects
     if (path === '/experience') { path = '/experience/1'; }
-    if (path === '/projects') { path = '/projects/4'; }
+    if (path === '/portfolio') { path = '/portfolio/4'; }
     window.localStorage.setItem('location', JSON.stringify({ path: path }));
   }
 
@@ -39,7 +39,7 @@ export default function ActionButton({ id, path, name }) {
 
   function generatePath() {
     if (path === '/experience') return '/experience/1';
-    if (path === '/projects') return '/projects/4';
+    if (path === '/portfolio') return '/portfolio/4';
     return path;
   } 
 

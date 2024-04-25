@@ -7,7 +7,7 @@ export default function Header() {
     { id: '01', path: '/home', name: 'home' },
     { id: '02', path: '/about', name: 'about' },
     { id: '03', path: '/experience', name: 'experience' },
-    { id: '04', path: '/projects', name: 'projects' },
+    { id: '04', path: '/portfolio', name: 'portfolio' },
     { id: '05', path: '/contact', name: 'contact' },
   ];
   

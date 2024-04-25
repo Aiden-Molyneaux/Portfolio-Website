@@ -1,11 +1,11 @@
-import headshotImage from './assets/headshotImage.jpg';
+import headshotImage from '../assets/headshotImage.jpg';
 
 export default function About() {
   return (
     <div className='content'>
       <p className='sectionHeader'>About Me</p>
       <div className='aboutContent'>
-        <p className='sectionText'>
+        <p className='sectionDescription'>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
         Nulla arcu est, lacinia vitae ex nec, auctor maximus nisl. 
         Vestibulum cursus nisl et odio convallis, vel scelerisque tortor suscipit. 

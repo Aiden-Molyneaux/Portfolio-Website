@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
-import TextField from './TextField';
+import TextField from '../components/TextField';
 
 export default function Contact() {
   const platformLinks = ['https://www.linkedin.com/in/aiden-molyneaux/', 'https://github.com/Aiden-Molyneaux'];
@@ -32,8 +32,8 @@ export default function Contact() {
         <button type='submit' className="contactSubmit topMargin">Submit</button>
         
         <span className='contactLinks'>
-          <a href={platformLinks[0]} target="_blank"><FontAwesomeIcon icon={faLinkedin} className='fa-2x'/></a>
-          <a href={platformLinks[1]} target="_blank"><FontAwesomeIcon icon={faGithub} className='fa-2x'/></a>
+          <a href={platformLinks[0]} target="_blank" className='brandLink'><FontAwesomeIcon icon={faLinkedin} className='fa-2x'/></a>
+          <a href={platformLinks[1]} target="_blank" className='brandLink'><FontAwesomeIcon icon={faGithub} className='fa-2x'/></a>
         </span>
         
         <p>Ottawa, ON.</p>

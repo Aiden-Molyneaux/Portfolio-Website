@@ -1,13 +1,13 @@
 /* eslint-disable indent */
-import './App.css';
+import './styles/App.css';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import Header from './Header';
-import Home from './Home';
-import About from './About';
-import Experience from './Experience';
-import Projects from './Projects';
-import Contact from './Contact';
+import Header from './components/Header';
+import Home from './pages/Home';
+import About from './pages/About';
+import Experience from './pages/Experience';
+import Portfolio from './pages/Portfolio';
+import Contact from './pages/Contact';
 
 function App() {
   const navigate = useNavigate();
@@ -31,11 +31,11 @@ function App() {
         <Route path="/about" element={<About/>}></Route>
         <Route path="/experience" element={<Experience/>}></Route>
         <Route path="/experience/1" element={<Experience/>}></Route>
-        <Route path="/projects" element={<Projects/>}></Route>
-        <Route path="/projects/1" element={<Projects/>}></Route>
-        <Route path="/projects/2" element={<Projects/>}></Route>
-        <Route path="/projects/3" element={<Projects/>}></Route>
-        <Route path="/projects/4" element={<Projects/>}></Route>
+        <Route path="/portfolio" element={<Portfolio/>}></Route>
+        <Route path="/portfolio/1" element={<Portfolio/>}></Route>
+        <Route path="/portfolio/2" element={<Portfolio/>}></Route>
+        <Route path="/portfolio/3" element={<Portfolio/>}></Route>
+        <Route path="/portfolio/4" element={<Portfolio/>}></Route>
         <Route path="/contact" element={<Contact/>}></Route>
       </Routes>
     </> 
