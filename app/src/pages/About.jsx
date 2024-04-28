@@ -1,57 +1,96 @@
 import headshotImage from '../assets/headshotImage.jpg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faHeadset, faCube, faCat, faFilm, faBookOpen } from '@fortawesome/free-solid-svg-icons';
+import catImage1 from '../assets/tubbin.png';
+import catImage2 from '../assets/timber.png';
+import catImage3 from '../assets/tulip.png';
 
 export default function About() {
-  const aboutDetails = {
-    sectionDescription: 'Welcome to my corner of the web! Here, you\'ll find a glimpse into my journey as a junior software developer and enthusiast of all things digital. But before we dive into the intricacies of code and creativity, let me introduce myself.',
-    skillsAndExpertise: 'As a recent graduate with a Bachelor of Computer Science from Carleton University, I\'ve honed my skills in various domains of software development. With a primary focus on web development, I\'ve delved deep into crafting dynamic and user-centric applications. But beyond technical prowess, I bring an inclusive mindset and a deep respect for diversity to every project I undertake. My soft skills, including technical writing, continuous learning, analytical thinking, and a positive attitude, complement my technical abilities, ensuring well-rounded solutions that exceed expectations.',
-    funFacts: [
-      {
-        title: 'Gaming Enthusiast',
-        description: 'From the pixelated worlds of retro classics to the immersive landscapes of modern titles, I\'ve always had a deep love for video games and the culture surrounding them. In fact, I\'ve been journeying through the universe of \'Destiny\' for over a decade, forging friendships and memories along the way.'
-      },
-      {
-        title: 'Rubik\'s Cube Wizard',
-        description: 'Beyond the screen, I enjoy the challenge of solving Rubik\'s Cubes of varying sizes, showcasing my knack for problem-solving and perseverance.'
-      },
-      {
-        title: 'Cat Person',
-        description: 'In addition to my passion for technology, I share a home with my partner of nearly five years and our three adorable feline companions. They bring endless joy and companionship to our lives, and I may just share a picture or two of their antics.'
-      },
-      {
-        title: 'Movie Referencer',
-        description: 'When I\'m not coding or immersed in virtual realms, you\'ll likely find me indulging in my love for cinema, with \'Mad Max: Fury Road\' holding a special place in my heart among my favorite films.'
-      },
-      {
-        title: 'Reader and Listener',
-        description: 'Whether through the pages of a book or the voice of an audiobook, I find solace and inspiration in the world of literature, continually expanding my horizons with each new story.'
-      }
-    ]
+  const sectionDescription = 'Welcome to my corner of the web! Here, you\'ll find a glimpse into my journey as a student, junior software developer, and enthusiast of all things digital. But before we dive into the intricacies of code and creativity, let me introduce myself.';
+  const skillsAndExpertise = 'As a recent graduate from Carleton University with a Bachelor of Computer Science, I\'ve tested my skills in various domains of software development. With a primary focus on web development, I\'ve crafted dynamic and user-centric applications. Beyond technical prowess, I bring an inclusive mindset and a deep respect for people and their unique needs to every project I undertake. My technical abilities are complimented by my soft skills, which include my positive attitude and aptitude for continuous learning, analytical thinking, and technical writing, ensuring well-rounded solutions that exceed expectations.';
+  const funFacts = [
+    {
+      title: 'Gaming Enthusiast',
+      description: 'From the pixelated worlds of retro classics to the immersive landscapes of modern titles, I\'ve always loved video games and the culture that surrounds them. My favourite games are from the \'Destiny\' universe, which I have been exploring for over a decade, forging friendships and memories along the way.',
+      icon: faHeadset
+    },
+    {
+      title: 'Rubik\'s Cube Wizard',
+      description: 'Beyond the screen, I enjoy the challenge of learning new tricks such as juggling and solving Rubik\'s Cubes, showcasing my knack for problem-solving and perseverance.',
+      icon: faCube
+    },
+    {
+      title: 'Movie Referencer',
+      description: 'When I\'m not coding or immersed in virtual realms, you might find me indulging in my love for cinema, with \'Mad Max: Fury Road\' holding a special place in my heart among my favorite films.',
+      icon: faFilm
+    },
+    {
+      title: 'Reader and Listener',
+      description: 'Whether through the pages of a book or the voice of an audiobook, I find solace and inspiration in the world of literature, continually expanding my horizons with each new story.',
+      icon: faBookOpen
+    },
+    {
+      title: 'Cat Person',
+      description: 'In addition to my passion for technology, I share a home with my partner of nearly five years and our three adorable felines. They bring endless joy and companionship to our lives, and I may just share a picture or two of their antics.',
+      icon: faCat
+    }
+  ]
+
+  const splitFactsIntoSets = (funFacts) => {
+    const half = Math.ceil(funFacts.length / 2);
+    const firstHalf = funFacts.slice(0, half);
+    const secondHalf = funFacts.slice(half, funFacts.length);
+  
+    const generateSet = (facts) => (
+      <div className={facts.length === 2 ? 'mainSectionText second': 'mainSectionText'}>
+        { facts.map((funFact, index) => (
+          <div key={index}>
+            <p className='contributionTitle'>{funFact.title} <FontAwesomeIcon icon={funFact.icon}/></p>
+            <p className='textAlignLeft'>{funFact.description}</p>
+            { funFact.title === 'Cat Person' &&
+            <>
+              <div className='catImages'>
+                <img src={catImage1} alt='catImage1' className='catImage'/>
+                <img src={catImage2} alt='catImage2' className='catImage'/>
+                <img src={catImage3} alt='catImage3' className='catImage'/>
+              </div>
+              <p className='topMargin'>Meet Tubbin, Timber, and Tulip!</p>
+            </> 
+            }
+          </div>))
+        }
+      </div>
+    );
+  
+    const firstSet = generateSet(firstHalf);
+    const secondSet = generateSet(secondHalf);
+  
+    return { firstSet, secondSet };
   }
+  
+  const { firstSet, secondSet } = splitFactsIntoSets(funFacts);
 
   return (
     <div className='content'>
       <div className='aboutContent'>
         <p className='sectionHeader'>About Me</p>
-        <p className='sectionDescription'>{aboutDetails.sectionDescription}</p>
+        <p className='sectionDescription'>{sectionDescription}</p>
         <img src={headshotImage} alt='headshotImage' className='headshotImage'/>
 
         <div className='moreAboutContent'>
-          <div className='hobbySection'>
+          <div className='skillsSection'>
             <h3>Skills and Expertise</h3>
             <div className='mainSectionText'>
-              <p>{aboutDetails.skillsAndExpertise}</p>
+              <p>{skillsAndExpertise}</p>
             </div>
           </div>
 
           <div className='funFactsSection'>
             <h3>Fun Facts</h3>
-            <div className='mainSectionText'>
-              { aboutDetails.funFacts.map((funFact, index) => (
-              <div key={index}>
-                <p className='contributionTitle'>{funFact.title}</p>
-                <p className='textAlignLeft'>{funFact.description}</p>
-              </div>))
-              }
+            <div>
+              {firstSet}
+              {secondSet}
             </div>
           </div>
         </div>

@@ -71,7 +71,7 @@ export default function Experience() {
         <div className='educationSection'>
           <h3>Education</h3>
           <div className='experienceOptions'>
-            <ActionButton id='01' name='bachelor of computer science, carleton university'/>
+            <ActionButton id='01' name={window.innerWidth > 500 ? 'bachelor of computer science, carleton university' : 'bachelor of computer science, \n carleton University'}/>
           </div>
           
           <EducationDetails details={educationDetails[0]}/>

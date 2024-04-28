@@ -52,24 +52,24 @@ const projectData = [
     objective: 'As a culminating project in a 4000-level course, a peer and I were tasked with programming a fundamental search engine indexing on web-crawled data, employing essential concepts and tools covered in the course. Our aim was to implement a web crawler, a RESTful server, and a browser-based client to facilitate user searches.',
     keyContributions: [
       {
-        title: 'Web Crawling Expertise:',
-        description: 'Leveraging JavaScript and the Cheerio library, we meticulously developed a web crawler program capable of gathering page information from 1000 unique sites, commencing from a designated starting point. Each page\'s information was stored as individual records in a MongoDB collection, ensuring persistence and efficient data retrieval.'
+        title: 'Web Crawling Expertise',
+        description: 'Leveraging the Cheerio library and MongoDB, we developed a web crawler program that gathers page information from 1000 unique pages. Each page\'s data is stored as an individual document in a MongoDB collection, ensuring persistence and efficient data retrieval.'
       },
       {
-        title: 'RESTful Server Implementation:',
+        title: 'RESTful Server Implementation',
         description: 'Using Node.js and Express, we constructed a robust back-end to interact seamlessly with the MongoDB database. Our server was designed to read data from the database, perform necessary indexing, and deliver relevant, ranked search results for user queries.'
       },
       {
-        title: 'User-Friendly Front-End UI:',
-        description: 'In tandem with the server development, we crafted a user-friendly front-end interface to allow users to input search keywords and receive relevant site suggestions. This interface facilitated smooth interaction and enhanced the overall user experience.'
+        title: 'User-Friendly Front-End UI',
+        description: 'In tandem with the server development, we built a user-friendly interface to allow users to input search keywords and receive relevant site suggestions. This interface facilitated smooth interaction and enhanced the overall user experience.'
       },
       {
-        title: 'Integration and Deployment:',
-        description: 'Following rigorous testing and validation, we successfully deployed our server to OpenStack, ensuring accessibility for the TA to execute search requests. Additionally, we seamlessly integrated our server with a distributed search service, enhancing the scalability and effectiveness of our search engine.'
+        title: 'Integration and Deployment',
+        description: 'Following rigorous testing and validation, we successfully deployed our server to OpenStack, ensuring accessibility for the TA to execute search requests. The course culminated with the integration of our server with our professor\'s distributed search service.'
       }
     ],
     outcomes: [
-      'Our efforts culminated in the creation of a fully functional search engine, showcasing our proficiency in web development, server-side scripting, and deployment methodologies. With our project meeting all submission requirements and achieving high performance in functionality and scalability, it stands as a testament to our capabilities as software developers poised to tackle complex challenges in the field. The course culminated with the deployment of our server to OpenStack and its integration with our professor\'s distributed search service.'
+      'Our efforts culminated in the creation of a foundational search engine, showcasing our proficiency in web development, server-side scripting, and deployment methodologies. With our project meeting all submission requirements and achieving high performance in functionality and scalability, it stands as a testament to our capabilities as software developers poised to tackle complex challenges in the field.'
     ],
     imgData: [{ 
       imgSrc: cesImg, 

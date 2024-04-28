@@ -10,7 +10,6 @@ import Portfolio from './pages/Portfolio';
 import Contact from './pages/Contact';
 import backgroundSVG from './assets/backgroundSVG.svg';
 
-
 function App() {
   const navigate = useNavigate();
 
@@ -26,7 +25,6 @@ function App() {
 
   return (
     <>
-      
       <Header/>
       <Routes>
         <Route path="/" element={<Home/>}></Route>

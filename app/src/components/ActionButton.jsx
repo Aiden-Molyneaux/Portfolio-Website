@@ -61,7 +61,9 @@ export default function ActionButton({ id, path, name }) {
         <h6>{id}</h6>
         <Link>
           <span>//</span>
-          <span className={'buttonClicked buttonText'}>{name}</span>
+          { window.innerWidth > 500 
+            ? <span className={'buttonClicked buttonText'}>{name}</span> 
+            : <span className={'buttonClicked buttonText'}>bachelor of computer science, <br/> carleton university</span> }
         </Link>
       </div>
   );

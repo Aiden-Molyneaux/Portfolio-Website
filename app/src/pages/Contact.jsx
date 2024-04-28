@@ -5,8 +5,7 @@ import TextField from '../components/TextField';
 
 export default function Contact() {
   const platformLinks = ['https://www.linkedin.com/in/aiden-molyneaux/', 'https://github.com/Aiden-Molyneaux'];
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbzmwTJMvARa_hrJuQsoc7WxGwYr4nrw91USX8fxlT4s_5MRSu5y5UnwHa8ZRjTg70xIIw/exec';
-  
+   
   const [formData, setFormData] = useState({
     name: '',
     email: '',
