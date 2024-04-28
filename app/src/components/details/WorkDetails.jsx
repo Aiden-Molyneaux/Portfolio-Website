@@ -10,8 +10,8 @@ export default function WorkDetails({ details }) {
   return (
     <>
       <img src={imgSrc} alt={imgAlt} className='carletonUniversityImg'/>
-      <p><span className='experienceName underline'>{role}</span></p>
-      <p>{company} // {location}</p>
+      <p><span className='experienceName'>{role}</span></p>
+      <p>{company} | {location}</p>
       <p>{duration}</p>
 
       <div className='mainSectionText'>

@@ -8,6 +8,8 @@ import About from './pages/About';
 import Experience from './pages/Experience';
 import Portfolio from './pages/Portfolio';
 import Contact from './pages/Contact';
+import backgroundSVG from './assets/backgroundSVG.svg';
+
 
 function App() {
   const navigate = useNavigate();
@@ -24,6 +26,7 @@ function App() {
 
   return (
     <>
+      
       <Header/>
       <Routes>
         <Route path="/" element={<Home/>}></Route>
@@ -38,6 +41,7 @@ function App() {
         <Route path="/portfolio/4" element={<Portfolio/>}></Route>
         <Route path="/contact" element={<Contact/>}></Route>
       </Routes>
+      <img src={backgroundSVG} alt='A black and grey geometric pattern.' className='backgroundSVG'/>
     </> 
   );
 }

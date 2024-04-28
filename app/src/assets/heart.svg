@@ -15,7 +15,7 @@ viewBox="6000 10000 9000 9000"
       stroke-miterlimit:22.9256
     }
     .fil0 {
-      fill:#e20000
+      fill:#e20000;
     }
    ]]>
   </style>

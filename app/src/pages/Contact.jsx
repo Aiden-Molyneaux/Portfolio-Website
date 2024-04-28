@@ -18,8 +18,8 @@ export default function Contact() {
   }
 
   return (
-    <>
-      <form action="https://formsubmit.co/9dd068642eb64094e99fc86586fb1715" method="POST" className='contactForm content'>
+    <div className='content'>
+      <form action="https://formsubmit.co/9dd068642eb64094e99fc86586fb1715" method="POST" className='contactForm'>
         <h3 className='sectionHeader'>Contact Me</h3>
 
         <p>Aiden Molyneaux</p>
@@ -36,10 +36,10 @@ export default function Contact() {
           <a href={platformLinks[1]} target="_blank" className='brandLink'><FontAwesomeIcon icon={faGithub} className='fa-2x'/></a>
         </span>
         
-        <p>Ottawa, ON.</p>
+        <p>Located in Ottawa, Ontario.</p>
 
         <input type="hidden" name="_captcha" value="false"/>
       </form>
-    </>    
+    </div>    
   );
 }

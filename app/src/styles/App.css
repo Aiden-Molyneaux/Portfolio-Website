@@ -4,7 +4,8 @@
   --grey: #48494b;
   --faded-black: rgb(17, 17, 17, 0.9);
   --faded-grey: rgb(23, 23, 23, 0.4);
-  --faded-faded-black: rgb(23, 23, 23, 0.2);
+  --faded-faded-grey: rgb(23, 23, 23, 0.2);
+  --faded-faded-white: rgb(255, 251, 247, 0.1);
   --white: #fffbf7;
   --red: #ff4122;
   --yellow: #ffd741;
@@ -72,14 +73,27 @@ body, h1, h2, h3, h6, p {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 90px;
+  margin-top: 130px;
   padding-bottom: 20px;
+  animation: fadeIn .5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.content > * {
+  background-color: var(--faded-grey);
 }
 
 .sectionHeader {
-  margin: 50px;
-  margin-bottom: 20px;
-  padding: 0px;
+  width: 90%;
+  padding: 20px 0px;
   font-size: 40px;
   font-weight: 500;
   color: var(--yellow);
@@ -87,7 +101,7 @@ body, h1, h2, h3, h6, p {
 }
 
 .sectionDescription {
-  width: 50%;
+  width: max(50%, 700px);
 }
 
 .sectionText {
@@ -99,6 +113,10 @@ body, h1, h2, h3, h6, p {
   font-weight: 600;
 }
 
+.mainSectionText {
+  padding-bottom: 20px;
+}
+
 .mainSectionText > * {
   margin: 20px 0px;
   text-align: justify;
@@ -106,7 +124,7 @@ body, h1, h2, h3, h6, p {
 
 .mainSectionText > *:not(h4) {
   padding: 10px;;
-  border-left: 7px solid var(--faded-faded-black);
+  border-left: 7px solid var(--faded-faded-white);
 }
 
 .test > *{
@@ -243,6 +261,15 @@ header {
   animation: pulse 1.5s infinite;
 }
 
+.backgroundSVG {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  height: auto;
+  z-index: -2;
+  /* animation: pulse 1.5s infinite; */
+}
+
 @keyframes pulse {
   0% {
     transform: scale(1);
@@ -268,6 +295,8 @@ header {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 80%;
+  padding: 0px 20px;
 }
 
 .headshotImage {
@@ -280,19 +309,15 @@ header {
 
 .moreAboutContent {
   display: flex;
-  width: 60%;
   gap: 25px;
+  padding-bottom: 40px;
 }
 
 .hobbySection, .funFactsSection {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.moreSectionText {
-  width: 75%;
-  text-align: start;
 }
 
 /* EXPERIENCE PAGE */
@@ -316,7 +341,7 @@ header {
   justify-content: flex-start;
 }
 
-.educationSection > *, .workSection > * {
+.educationSection > *, .workSection > *, .hobbySection > *, .funFactsSection > *{
   width: 80%;
 }
 
@@ -361,7 +386,6 @@ header {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 50px;
 }
 
 .projectSection {
@@ -395,7 +419,7 @@ header {
   align-items: center;
 }
 
-.projectDetails > * {
+.projectDetails > .mainSectionText {
   width: 90%;
 }
 
@@ -427,7 +451,6 @@ header {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 50px;
 }
 
 .contactSectionText {
@@ -442,6 +465,9 @@ header {
   align-items: center;
   justify-content: center;
   width: max(20%, 245px);
+  padding: 30px 80px;
+  padding-top: 0px;
+  background-color: var(--faded-grey);
 }
 
 .contactForm > div {

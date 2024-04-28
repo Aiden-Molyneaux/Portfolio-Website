@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import projectDetails from './projectDetails';
+import projectData from './projectData';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import ImageModal from '../ImageModal';
@@ -14,14 +14,14 @@ export default function ProjectDetails({ id }) {
 
     return (
       <>
-        <p><span className='experienceName underline'>{title}</span></p>
+        <p><span className='experienceName'>{title}</span></p>
 
         <div className='projectLanguages'>
           { languages.map((language, index) => (
             <p key={index}>
               { language.name }
               { language.icon && <>&nbsp;<FontAwesomeIcon icon={language.icon}/></>}
-              { languages.length - 1 !== index && <>&nbsp;//&nbsp;</> }
+              { languages.length - 1 !== index && <>&nbsp;|&nbsp;</> }
             </p>)
           )}
         </div>
@@ -30,7 +30,7 @@ export default function ProjectDetails({ id }) {
           Available on Github&nbsp;
           <FontAwesomeIcon icon={faGithub}/>
         </a>
-        
+
         <div className='mainSectionText'>
           <h4 className='bottomMargin textAlignLeft'>Objective</h4>
           <p>{objective}</p>
@@ -67,8 +67,10 @@ export default function ProjectDetails({ id }) {
 
   return (
     <>
-      { id === '01' && Details(projectDetails[0]) }
-      { id === '04' && Details(projectDetails[3]) }
+      { id === '01' && Details(projectData[0]) }
+      { id === '02' && Details(projectData[1]) }
+      { id === '03' && Details(projectData[2]) }
+      { id === '04' && Details(projectData[3]) }
     </>
   );
 }

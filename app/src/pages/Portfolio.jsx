@@ -9,10 +9,10 @@ export default function Portfolio() {
       <p className='sectionHeader'>My Portfolio</p>
       <div className='portfolioContent'>
         <p className='sectionDescription'>
-        Welcome to my portfolio of projects, where I bring ideas to life through code. 
+        Welcome to my portfolio of projects, where I showcase ideas I have brought to life through code. 
         From collaborative university endeavors to solo experiments, each project 
-        is a testament to my commitment to excellence and continuous learning. 
-        Join me on this journey of exploration and innovation in software development.
+        is a testament to my commitment to continuous breadthful learning. 
+        Join me on this exploration of software development.
         </p>
 
         <div className='projectSection'>

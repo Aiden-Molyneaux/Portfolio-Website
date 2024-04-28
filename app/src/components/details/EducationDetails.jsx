@@ -11,8 +11,8 @@ export default function EducationDetails({ details }) {
     <>
       <img src={imgSrc} alt={imgAlt} className='carletonUniversityImg'/>
       <div>
-        <p><span className='experienceName underline'>{degree}</span></p>
-        <p>{university} // {location}</p>
+        <p><span className='experienceName'>{degree}</span></p>
+        <p>{university} | {location}</p>
         <p>Graduation Date: {graduationDate}</p>
       </div>
       <div className='mainSectionText'>
