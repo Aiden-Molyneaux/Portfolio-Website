@@ -1,8 +1,8 @@
 import carletonUniversityImg from '../assets/carletonUniversity.jpg';
 import reactAndRubyImg from '../assets/reactAndRuby.png';
-import ActionButton from '../components/ActionButton';
-import EducationDetails from '../components/details/EducationDetails';
-import WorkDetails from '../components/details/WorkDetails';
+import ActionButton from '../components/ActionButton.jsx';
+import EducationDetails from '../components/details/EducationDetails.jsx';
+import WorkDetails from '../components/details/WorkDetails.jsx';
 
 export default function Experience() {
   const location = JSON.parse(window.localStorage.getItem('location'));

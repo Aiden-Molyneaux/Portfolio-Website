@@ -1,6 +1,4 @@
-/* eslint-disable react/jsx-key */
-/* eslint-disable react/jsx-no-comment-textnodes */
-import ActionButton from './ActionButton';
+import ActionButton from './ActionButton.jsx';
 
 export default function Header() {
   const routes = [

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import projectData from './projectData';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import ImageModal from '../ImageModal';
+import ImageModal from '../ImageModal.jsx';
 
 export default function ProjectDetails({ id }) {
   ProjectDetails.propTypes = {

@@ -1,5 +1,5 @@
-import ActionButton from '../components/ActionButton';
-import ProjectDetails from '../components/details/ProjectDetails';
+import ActionButton from '../components/ActionButton.jsx';
+import ProjectDetails from '../components/details/ProjectDetails.jsx';
 
 export default function Portfolio() {
   const location = JSON.parse(window.localStorage.getItem('location'));

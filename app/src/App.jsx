@@ -2,12 +2,12 @@
 import './styles/App.css';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import Header from './components/Header';
-import Home from './pages/Home';
-import About from './pages/About';
-import Experience from './pages/Experience';
-import Portfolio from './pages/Portfolio';
-import Contact from './pages/Contact';
+import Header from './components/Header.jsx';
+import Home from './pages/Home.jsx';
+import About from './pages/About.jsx';
+import Experience from './pages/Experience.jsx';
+import Portfolio from './pages/Portfolio.jsx';
+import Contact from './pages/Contact.jsx';
 import backgroundSVG from './assets/backgroundSVG.svg';
 
 function App() {
