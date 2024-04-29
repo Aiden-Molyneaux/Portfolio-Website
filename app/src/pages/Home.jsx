@@ -1,3 +1,4 @@
+import React from 'react';
 import heartSVG from '../assets/heart.svg';
 
 export default function Home() {

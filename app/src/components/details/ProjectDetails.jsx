@@ -1,3 +1,4 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import projectData from './projectData';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

@@ -1,3 +1,4 @@
+import React from 'react';
 import ActionButton from '../components/ActionButton.jsx';
 import ProjectDetails from '../components/details/ProjectDetails.jsx';
 

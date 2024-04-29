@@ -1,3 +1,4 @@
+import React from 'react';
 import carletonUniversityImg from '../assets/carletonUniversity.jpg';
 import reactAndRubyImg from '../assets/reactAndRuby.png';
 import ActionButton from '../components/ActionButton.jsx';

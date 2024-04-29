@@ -1,6 +1,6 @@
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 
 export default function ActionButton({ id, path, name }) {
   ActionButton.propTypes = {
