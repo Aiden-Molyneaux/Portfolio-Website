@@ -14,8 +14,8 @@ export default function ActionButton({ id, path, name }) {
   const [isHovered, setIsHovered] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
 
-  const isExperiencePage = path === '/experience' && location.path === '/experience/1';
-  const isPortfolioPage = path === '/portfolio' && ['/portfolio/1', '/portfolio/2', '/portfolio/3', '/portfolio/4'].includes(location.path);
+  const isExperiencePage = location && path === '/experience' && location.path === '/experience/1';
+  const isPortfolioPage = location && path === '/portfolio' && ['/portfolio/1', '/portfolio/2', '/portfolio/3', '/portfolio/4'].includes(location.path);
 
   useEffect(() => {
     if (isExperiencePage || isPortfolioPage) {
