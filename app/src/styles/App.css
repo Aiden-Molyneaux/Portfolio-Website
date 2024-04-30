@@ -681,25 +681,23 @@ input:focus, input:hover, textarea:focus, textarea:hover {
     text-align: left;
   }
   .homeContent {
-    height: 65%;
+    height: 63%;
     justify-content: flex-end;
-    align-items: flex-start;
-    text-align: left;
-  }
-  .heartContainer {
-    height: 95%;
-  }
-  .heartSVG {
-    width: 100%;
-    height: 18%;
-  }
-  h1 {
-    font-size: 3.2em;
-    line-height: 100%;
   }
   .homeContent > p {
     margin-top: 0px;
     font-size: 0.6em;
+  }
+  .heartContainer {
+    height: 85%;
+  }
+  .heartSVG {
+    width: 100%;
+    height: 20%;
+  }
+  h1 {
+    font-size: 3.2em;
+    line-height: 100%;
   }
   .catImage {
     width: auto;
