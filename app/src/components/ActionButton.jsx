@@ -19,10 +19,12 @@ export default function ActionButton({ id, path, name, supportMobile}) {
   const isPortfolioPage = location && path === '/portfolio' && ['/portfolio/1', '/portfolio/2', '/portfolio/3', '/portfolio/4'].includes(location.path);
 
   useEffect(() => {
+    const location = JSON.parse(window.localStorage.getItem('location'));
+
     if (isExperiencePage || isPortfolioPage) {
       setIsClicked(true);
     } else {
-      setIsClicked(location.path === path);
+      setIsClicked(location && location.path === path);
     }
   }, [location]);
 
