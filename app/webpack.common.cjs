@@ -9,7 +9,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './index.html',
       filename: 'index.html',
-      inject: 'body'
+      inject: 'body',
+      favicon: './src/assets/headshot.png'
     })
   ],
   module: {
@@ -40,7 +41,7 @@ module.exports = {
   },
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, '..', 'dist'),
     clean: true,
   },
 };
