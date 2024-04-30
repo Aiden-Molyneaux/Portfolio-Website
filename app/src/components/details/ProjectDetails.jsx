@@ -27,10 +27,7 @@ export default function ProjectDetails({ id }) {
           )}
         </div>
         <p>{duration}</p>
-        <a href={githubLink} target="_blank" className='brandLink'>
-          Available on Github&nbsp;
-          <FontAwesomeIcon icon={faGithub}/>
-        </a>
+        <a href={githubLink} target="_blank" className='brandLink underline'>Available on Github <FontAwesomeIcon icon={faGithub}/></a>
 
         <div className='mainSectionText'>
           <h4 className='bottomMargin textAlignLeft'>Objective</h4>

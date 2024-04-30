@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { educationData } from './experienceData.js'
 
-export default function EducationDetails({ details }) {
+export default function EducationDetails({ id }) {
   EducationDetails.propTypes = {
-    details: PropTypes.object.isRequired
+    id: PropTypes.string.isRequired
   };
 
-  const { degree, university, location, graduationDate, description, imgSrc, imgAlt } = details;
+  const { degree, university, location, graduationDate, description, imgSrc, imgAlt } = educationData[0];
 
   return (
     <>

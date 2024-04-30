@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { workData } from './experienceData.js'
 
-export default function WorkDetails({ details }) {
+export default function WorkDetails({ id }) {
   WorkDetails.propTypes = {
     details: PropTypes.object.isRequired
   };
 
-  const { role, company, location, duration, description, keyContributions, imgSrc, imgAlt } = details;
+  const { role, company, location, duration, description, keyContributions, imgSrc, imgAlt } = workData[0];
 
   return (
     <>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import TextField from '../components/TextField.jsx';
 
 export default function Contact() {
@@ -22,7 +23,7 @@ export default function Contact() {
         <h3 className='sectionHeader'>Contact Me</h3>
 
         <p>Aiden Molyneaux</p>
-        <a href='mailto:aidenmolyneaux@hotmail.com' className='emailLink experienceName bottomMargin'>aidenmolyneaux@hotmail.com</a>
+        <a href='mailto:aidenmolyneaux@hotmail.com' className='emailLink experienceName bottomMargin'>aidenmolyneaux@hotmail.com <FontAwesomeIcon icon={faPaperPlane}/></a>
 
         <TextField id='01' name='name' type='input' value={formData.name} handleChange={handleChange}/>
         <TextField id='02' name='email' type='input' value={formData.email} handleChange={handleChange}/>

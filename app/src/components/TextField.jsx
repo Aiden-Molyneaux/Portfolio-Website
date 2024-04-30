@@ -24,7 +24,8 @@ export default function TextField({ id, name, type, value, handleChange }) {
     onBlur: () => setIsFocused(false),
     onMouseEnter: () => setIsHovered(true),
     onMouseLeave: () => setIsHovered(false),
-    onChange: handleChange
+    onChange: handleChange,
+    required: true,
   };
 
   return (
@@ -36,7 +37,7 @@ export default function TextField({ id, name, type, value, handleChange }) {
       </label>
       
       { type === 'input'
-        ? <input {...commonProps} ></input>
+        ? <input {...commonProps}></input>
         : <textarea {...commonProps}></textarea>
       }
     </div>

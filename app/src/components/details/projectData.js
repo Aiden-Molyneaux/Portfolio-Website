@@ -1,11 +1,12 @@
 import { faPython, faReact, faNodeJs, faJs } from '@fortawesome/free-brands-svg-icons';
 import { faDatabase, faObjectUngroup } from '@fortawesome/free-solid-svg-icons';
 import cesImg from '../../assets/CES.png';
+import searchEngine from '../../assets/searchEngine.png';
+import aiAssessorImg1 from '../../assets/aiAssessor1.png';
+import aiAssessorImg2 from '../../assets/aiAssessor2.png';
 import dontSnoozeImg1 from '../../assets/dontSnoozeImg1.png';
 import dontSnoozeImg2 from '../../assets/dontSnoozeImg2.png';
 import dontSnoozeImg3 from '../../assets/dontSnoozeImg3.png';
-import aiAssessor1 from '../../assets/aiAssessor1.png';
-import aiAssessor2 from '../../assets/aiAssessor2.png';
 
 const projectData = [
   {
@@ -16,7 +17,7 @@ const projectData = [
     ],
     duration: 'November 2022 - December 2022',
     githubLink: 'https://github.com/Aiden-Molyneaux/CESdevice-software',
-    objective: 'Term project for my \'Object-Oriented Software Engineering\' course at Carleton University, this objective of this project was to develop a software prototype for the \'Oasis Pro\' Cranial Electrotherapy Stimulation (CES) medical device. Led by myself, the team embarked on a six-week journey to create a functionally safe software emulation, utilizing C++ for programming the back-end and the QT framework to build the GUI.',
+    objective: 'Term project for my \'Object-Oriented Software Engineering\' course at Carleton University, the objective of this project was to develop a software prototype for the \'Oasis Pro\' Cranial Electrotherapy Stimulation (CES) medical device. Led by myself, the team embarked on a six-week journey to create a functionally safe software emulation, utilizing C++ for programming the back-end and the QT framework to build the GUI.',
     keyContributions: [
       {
         title: 'Team Leadership',
@@ -49,7 +50,7 @@ const projectData = [
     ],
     duration: 'November 2022 - December 2022',
     githubLink: 'https://github.com/Aiden-Molyneaux/WebCrawler-SearchEngine',
-    objective: 'As a culminating project in a 4000-level course, a peer and I were tasked with programming a fundamental search engine indexing on web-crawled data, employing essential concepts and tools covered in the course. Our aim was to implement a web crawler, a RESTful server, and a browser-based client to facilitate user searches.',
+    objective: 'As a culminating project in a 4000-level course, a peer and I were tasked with programming a fundamental search engine that indexes on web-crawled data, requiring us to employ essential concepts and tools covered in the course. Our aim was to implement a web crawler, a RESTful server, and a browser-based client to facilitate user searches.',
     keyContributions: [
       {
         title: 'Web Crawling Expertise',
@@ -69,10 +70,10 @@ const projectData = [
       }
     ],
     outcomes: [
-      'Our efforts culminated in the creation of a foundational search engine, showcasing our proficiency in web development, server-side scripting, and deployment methodologies. With our project meeting all submission requirements and achieving high performance in functionality and scalability, it stands as a testament to our capabilities as software developers poised to tackle complex challenges in the field.'
+      'Our efforts lead to the creation of a fundamental search engine, showcasing our proficiency in web development, server-side scripting, and deployment methodologies. With our project meeting all submission requirements and achieving high performance in functionality and scalability, it stands as a testament to our capabilities as software developers poised to tackle complex challenges in the field.'
     ],
     imgData: [{ 
-      imgSrc: cesImg, 
+      imgSrc: searchEngine, 
       imgAlt: 'Screenshot of my group\'s CES device application interface.' 
     }],
   },
@@ -83,7 +84,7 @@ const projectData = [
     ],
     duration: 'November 2023 - December 2023',
     githubLink: 'https://github.com/Aiden-Molyneaux/AI-TextAccessibility-Assessor',
-    objective: 'In collaboration with a good friend and peer of mine, I undertook a learning opportunity to develop a novelty AI-driven image-text accessibility assessment tool. Over a rigorous three-week period, we invested passion and time to develop a solution poised to help users meet accessibility standards with their images.',
+    objective: 'In collaboration with a good friend and peer of mine, I undertook a learning opportunity to develop a novelty AI-driven image-text accessibility assessment tool. Over a rigorous three-week period, we invested much time and energy to develop a solution poised to help users meet accessibility standards with their images.',
     keyContributions: [
       {
         title: 'Collaborative Learning',
@@ -91,7 +92,7 @@ const projectData = [
       },
       {
         title: 'Dataset Diversity',
-        description: 'We compiled three distinct datasets, a set of real-world photographs, a set of procedurally generated images, and a last set consisting of an equal amount of the other sets. Implementing dataset diversity was essential for training and validating a suite of AI models.'
+        description: 'We compiled three distinct datasets, a set of real-world photographs, a set of procedurally generated images, and a set consisting of an equal number of images of the other sets. Implementing dataset diversity was essential for training and validating a suite of AI models.'
       },
       {
         title: 'Experimentation and Iteration',
@@ -105,11 +106,11 @@ const projectData = [
     outcomes: ['To us, the AI Image-Text Accessibility Assessor represented an opportunity to build something with practical societal value. Beyond its role as a software project, it stands as an experiment in leveraging AI to empower individuals with diverse visual abilities. With its successful completion and commendable performance, this project showcases my dedication to innovation and my ability to navigate complex challenges in software development.'],
     imgData: [      
       { 
-        imgSrc: aiAssessor1,
+        imgSrc: aiAssessorImg1,
         imgAlt: 'Screenshot of my team\'s AI Image-Text Accessibility Assessor GUI.'
       },
       { 
-        imgSrc: aiAssessor2,
+        imgSrc: aiAssessorImg2,
         imgAlt: 'Screenshot of the Assessor\'s rendering of the user\'s image in normal and all colorblind visions.'
       }
     ],
@@ -127,7 +128,7 @@ const projectData = [
     keyContributions: [
       {
         title: 'User-Centric Design',
-        description: 'Starting with an in-depth analysis of user requirements, I then went about conceptualizing and developing an intuitive application architecture to cater to the distinct needs of Members, Trainers, and Admins. From user authentication to booking and managing training sessions, every feature was designed with user convenience and efficiency in mind.'
+        description: 'Starting with an in-depth analysis of user requirements, I then went about conceptualizing and developing an intuitive application architecture to cater to the distinct needs of Members, Trainers, and Admins. From user authentication to booking and managing training sessions, every feature was designed with efficiency and user convenience in mind.'
       },
       {
         title: 'Database Design and Implementation',

@@ -1,7 +1,6 @@
 import React from 'react';
-import headshotImage from '../assets/headshotImage.jpg';
+import headshotImage from '../assets/headshot.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faHeadset, faCube, faCat, faFilm, faBookOpen } from '@fortawesome/free-solid-svg-icons';
 import catImage1 from '../assets/tubbin.png';
 import catImage2 from '../assets/timber.png';
@@ -13,7 +12,7 @@ export default function About() {
   const funFacts = [
     {
       title: 'Gaming Enthusiast',
-      description: 'From the pixelated worlds of retro classics to the immersive landscapes of modern titles, I\'ve always loved video games and the culture that surrounds them. My favourite games are from the \'Destiny\' universe, which I have been exploring for over a decade, forging friendships and memories along the way.',
+      description: 'From the pixelated worlds of retro classics to the immersive landscapes of modern titles, I\'ve always loved video games and the culture surrounding them. My favourite games are from the \'Destiny\' universe, which I have been exploring for over a decade, forging friendships and memories along the way.',
       icon: faHeadset
     },
     {
@@ -23,17 +22,17 @@ export default function About() {
     },
     {
       title: 'Movie Referencer',
-      description: 'When I\'m not coding or immersed in virtual realms, you might find me indulging in my love for cinema, with \'Mad Max: Fury Road\' holding a special place in my heart among my favorite films.',
+      description: 'When I\'m not coding or immersed in virtual realms, you might find me indulging in my love for cinema, with \'Mad Max: Fury Road\' holding a special place in my heart among my favorite titles.',
       icon: faFilm
     },
     {
       title: 'Reader and Listener',
-      description: 'Whether through the pages of a book or the voice of an audiobook, I find solace and inspiration in the world of literature, continually expanding my horizons with each new story.',
+      description: 'Through the pages of a good book or the voice of an audiobook, I find solace and inspiration in the world of literature, continually expanding my horizons with each new story.',
       icon: faBookOpen
     },
     {
       title: 'Cat Person',
-      description: 'In addition to my passion for technology, I share a home with my partner of nearly five years and our three adorable felines. They bring endless joy and companionship to our lives, and I may just share a picture or two of their antics.',
+      description: 'In addition to my passion for technology, I share a passion for family with my partner of nearly five years. Together we care for three adorable felines, who bring endless joy and companionship to our lives, and I may just share a picture or two of their antics.',
       icon: faCat
     }
   ]
@@ -52,9 +51,9 @@ export default function About() {
             { funFact.title === 'Cat Person' &&
             <>
               <div className='catImages'>
-                <img src={catImage1} alt='catImage1' className='catImage'/>
-                <img src={catImage2} alt='catImage2' className='catImage'/>
-                <img src={catImage3} alt='catImage3' className='catImage'/>
+                <img src={catImage1} alt='A picture of my cat, Tubbin' className='catImage'/>
+                <img src={catImage2} alt='A picture of my cat, Timber' className='catImage'/>
+                <img src={catImage3} alt='A picture of my cat, Tulip' className='catImage'/>
               </div>
               <p className='topMargin'>Meet Tubbin, Timber, and Tulip!</p>
             </> 
