@@ -39,7 +39,7 @@ function App() {
         <Route path="/portfolio/4" element={<Portfolio/>}></Route>
         <Route path="/contact" element={<Contact/>}></Route>
       </Routes>
-      <img src={backgroundSVG} alt='A black and grey geometric pattern.' className='backgroundSVG'/>
+      {/* <img src={backgroundSVG} alt='A black and grey geometric pattern.' className='backgroundSVG'/> */}
     </> 
   );
 }
