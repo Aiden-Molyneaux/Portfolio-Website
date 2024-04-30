@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-export default function ActionButton({ id, path, name }) {
+export default function ActionButton({ id, path, name, supportMobile}) {
   ActionButton.propTypes = {
     id: PropTypes.string.isRequired,
     path: PropTypes.string,
-    name: PropTypes.string.isRequired
+    name: PropTypes.string.isRequired,
+    supportMobile: PropTypes.object
   };
 
   const location = JSON.parse(window.localStorage.getItem('location'));
@@ -54,16 +55,20 @@ export default function ActionButton({ id, path, name }) {
           onMouseLeave={() => setIsHovered(false)}
         >
           <span>//</span>
-          <span className={getClassName()}>{name}</span>
+          { supportMobile && window.innerWidth <= 450 
+            ? <span className={getClassName()}>{supportMobile.name1} <br/> {supportMobile.name2}</span>
+            : <span className={getClassName()}>{name}</span> 
+          }
         </Link>
       </div>
       : <div key={id} className='actionButton'>
         <h6>{id}</h6>
         <Link>
           <span>//</span>
-          { window.innerWidth > 500 
-            ? <span className={'buttonClicked buttonText'}>{name}</span> 
-            : <span className={'buttonClicked buttonText'}>bachelor of computer science, <br/> carleton university</span> }
+          { supportMobile && window.innerWidth <= 450 
+            ? <span className={'buttonClicked buttonText'}>{supportMobile.name1} <br/> {supportMobile.name2}</span>
+            : <span className={'buttonClicked buttonText'}>{name}</span> 
+          }
         </Link>
       </div>
   );

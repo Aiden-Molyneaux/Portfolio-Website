@@ -72,7 +72,7 @@ export default function Experience() {
         <div className='educationSection'>
           <h3>Education</h3>
           <div className='experienceOptions'>
-            <ActionButton id='01' name={window.innerWidth > 500 ? 'bachelor of computer science, carleton university' : 'bachelor of computer science, \n carleton University'}/>
+            <ActionButton id='01' name='bachelor of computer science, carleton university' supportMobile={{name1: 'bachelor of computer science,', name2: 'carleton university'}}/>
           </div>
           
           <EducationDetails details={educationDetails[0]}/>
@@ -81,7 +81,7 @@ export default function Experience() {
         <div className='workSection'>
           <h3>Work</h3>
           <div className='experienceOptions'>
-            <ActionButton id='01' path='/experience/1' name='junior software developer, wicket'/>
+            <ActionButton id='01' path='/experience/1' name='junior software developer, wicket' supportMobile={{name1: 'junior software developer,', name2: 'wicket'}}/>
           </div>
 
           { location.path === '/experience/1'

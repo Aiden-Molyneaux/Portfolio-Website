@@ -22,7 +22,7 @@ export default function Portfolio() {
             <div className='projectOptions'>
               <ActionButton id='01' path='/portfolio/1' name='prototype CES software'/>
               <ActionButton id='02' path='/portfolio/2' name='web crawler & search engine'/>
-              <ActionButton id='03' path='/portfolio/3' name='a.i. text-accessibility assessor'/>
+              <ActionButton id='03' path='/portfolio/3' name='a.i. image-text assessor'/>
               <ActionButton id='04' path='/portfolio/4' name='health & fitness club web app'/>
             </div>
           </div>

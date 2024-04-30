@@ -115,7 +115,7 @@ const projectData = [
     ],
   },
   {
-    title: 'Health & Fitness Club Web Application',
+    title: 'Health & Fitness Club Web App',
     languages: [
       { name: 'React', icon: faReact },
       { name: 'Node', icon: faNodeJs },

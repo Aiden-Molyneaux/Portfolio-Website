@@ -222,8 +222,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 50px;
-  
+  gap: 50px; 
 }
 
 .whiteFont {
@@ -676,18 +675,21 @@ input:focus, input:hover, textarea:focus, textarea:hover {
   .headerButtons {
     width: 414px;
   }
+  .mainSectionText > * {
+    text-align: left;
+  }
   .homeContent {
     height: 65%;
     justify-content: flex-end;
     align-items: flex-start;
-    text-align: start;
+    text-align: left;
   }
   .heartContainer {
-    height: 85%;
+    height: 95%;
   }
   .heartSVG {
     width: 100%;
-    height: 20%;
+    height: 18%;
   }
   h1 {
     font-size: 3.2em;
