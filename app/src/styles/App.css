@@ -244,6 +244,7 @@ header {
   height: 100%;
   margin-bottom: 50px;
   letter-spacing: 0.05em;
+  animation: fadeIn .5s ease-in-out;
 }
 
 .heartContainer {
@@ -254,6 +255,7 @@ header {
   width: 95%;
   height: 95%;
   z-index: -1;
+  animation: fadeIn .5s ease-in-out;
 }
 
 .heartSVG {
