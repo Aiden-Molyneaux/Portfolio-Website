@@ -254,8 +254,18 @@ header {
   z-index: 3;
 }
 
+.hamburgerContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
 .hamburgerButton {
   cursor: var(--cursor-hover);
+  width: 40px;
   background-color: var(--black);
   border: 1px solid var(--yellow);
   border-radius: 3px;
@@ -275,7 +285,7 @@ header {
   justify-content: center;
   align-items: center;
   align-self: flex-end;
-  height: 90%;
+  height: 100%;
   background-color: transparent;
   opacity: 0;
   z-index: 2;
@@ -287,15 +297,6 @@ header {
   background-color: var(--faded-dark-black);
   opacity: 1;
   z-index: 2;
-}
-
-.hamburgerContainer {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
 }
 
 .exitButton {
@@ -789,7 +790,7 @@ input:focus, input:hover, textarea:focus, textarea:hover {
 @media (max-width: 750px) and (orientation: portrait) {
   .homeContent {
     justify-content: flex-end;
-    height: 90%;
+    height: 86%;
   } 
   .heartContainer {
     height: 90%;
