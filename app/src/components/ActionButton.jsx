@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-export default function ActionButton({ id, path, name, supportMobile}) {
+export default function ActionButton({ id, path, name, toggleMenu, supportMobile}) {
   ActionButton.propTypes = {
     id: PropTypes.string.isRequired,
     path: PropTypes.string,
     name: PropTypes.string.isRequired,
+    toggleMenu: PropTypes.func,
     supportMobile: PropTypes.object
   };
 
@@ -28,6 +29,11 @@ export default function ActionButton({ id, path, name, supportMobile}) {
     }
   }, [location]);
 
+  function handleClick() {
+    setLocation();
+    toggleMenu && toggleMenu();
+  }
+
   function setLocation() {
     // allow the Experience and Portfolio pages to open on the most recent experience and projects
     if (path === '/experience') { path = '/experience/1'; }
@@ -35,7 +41,12 @@ export default function ActionButton({ id, path, name, supportMobile}) {
     window.localStorage.setItem('location', JSON.stringify({ path: path }));
   }
 
-  function getClassName() {
+  function getClassName(element) {
+    if (element === 'h6') {
+      if (isHovered || isClicked) return 'addPadding';
+      return 'removePadding';
+    }
+
     if (isHovered || isClicked) return 'buttonClicked buttonText';
     return 'buttonText';
   }
@@ -49,10 +60,10 @@ export default function ActionButton({ id, path, name, supportMobile}) {
   return (
     path
       ? <div key={id} className='actionButton'>  
-        <h6>{id}</h6>
+        <h6 className={getClassName('h6')}>{id}</h6>
         <Link 
           to={generatePath()} 
-          onClick={() => setLocation()}
+          onClick={() => handleClick()}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >

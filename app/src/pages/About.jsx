@@ -43,7 +43,7 @@ export default function About() {
     const secondHalf = funFacts.slice(half, funFacts.length);
   
     const generateSet = (facts) => (
-      <div className={facts.length === 2 ? 'mainSectionText second': 'mainSectionText'}>
+      <div className={facts.length === 2 ? 'mainSectionText secondFactsSet': 'mainSectionText'}>
         { facts.map((funFact, index) => (
           <div key={index}>
             <p className='contributionTitle'>{funFact.title} <FontAwesomeIcon icon={funFact.icon}/></p>
@@ -88,7 +88,7 @@ export default function About() {
 
           <div className='funFactsSection'>
             <h3>Fun Facts</h3>
-            <div>
+            <div className='funFactsText'>
               {firstSet}
               {secondSet}
             </div>
