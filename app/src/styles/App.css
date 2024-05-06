@@ -411,10 +411,6 @@ header {
   flex: 1;
 }
 
-.secondFactsSet {
-  margin-top: -78px;
-}
-
 .catImages {
   display: flex;
   width: 100%;
@@ -707,8 +703,11 @@ input:focus, input:hover, textarea:focus, textarea:hover {
   .homeContent > h2 {
     font-size: 1.2em;
   }
-  .funFactsSection > div {
+  .funFactsText {
     flex-direction: column;
+  }
+  .secondFactsSet {
+    margin-top: -78px;
   }
   .experienceContent {
     display: flex;
