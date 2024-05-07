@@ -13,7 +13,7 @@ To set up a local copy of this website, follow these steps:
 1. Clone the repo:
 
 ```bash
-git clone https://github.com/[YourGitHubUsername]/[YourRepoName].git
+git clone https://github.com/Aiden-Molyneaux/Portfolio-Website.git
 cd app
 ```
 
