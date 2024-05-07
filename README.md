@@ -3,10 +3,10 @@
 Welcome to the repository for my personal portfolio website! This website showcases my work, skills, and projects as a student and Junior Software Developer. Feel free to explore the code, or visit the live site at aidenmolyneaux.com.
 
 ### Technologies Used
-HTML5
-CSS3
-JavaScript (ES6+)
-React
+HTML5 <br>
+CSS3 & Sass<br>
+JavaScript (ES6+) <br>
+React <br>
 
 ### Setup
 To set up a local copy of this website, follow these steps:
