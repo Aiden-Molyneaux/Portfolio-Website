@@ -1,0 +1,19 @@
+// MODAL
+
+.imgModal {
+  @include flex(row, center, center);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0px;
+  background-color: $faded-dark-black;
+  z-index: 2;
+}
+
+.modalImg {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 1vh;
+}

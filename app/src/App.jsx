@@ -1,8 +1,8 @@
 /* eslint-disable indent */
 import React, { useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import './styles/App.css';
-import Header from './components/Header.jsx';
+import './styles/app.scss';
+import Navbar from './components/Navbar.jsx';
 import Home from './pages/Home.jsx';
 import About from './pages/About.jsx';
 import Experience from './pages/Experience.jsx';
@@ -24,7 +24,7 @@ function App() {
 
   return (
     <>
-      <Header/>
+      <Navbar/>
       <Routes>
         <Route path="/" element={<Home/>}></Route>
         <Route path="/home" element={<Home/>}></Route>
@@ -38,7 +38,6 @@ function App() {
         <Route path="/portfolio/4" element={<Portfolio/>}></Route>
         <Route path="/contact" element={<Contact/>}></Route>
       </Routes>
-      {/* <img src={backgroundSVG} alt='A black and grey geometric pattern.' className='backgroundSVG'/> */}
     </> 
   );
 }

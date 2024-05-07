@@ -11,7 +11,7 @@ export default function EducationDetails({ id }) {
 
   return (
     <>
-      <img src={imgSrc} alt={imgAlt} className='carletonUniversityImg'/>
+      <img src={imgSrc} alt={imgAlt} className='experienceImg'/>
       <div>
         <p><span className='experienceName'>{degree}</span></p>
         <p>{university} | {location}</p>

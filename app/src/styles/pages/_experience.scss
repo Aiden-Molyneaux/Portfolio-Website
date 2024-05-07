@@ -1,0 +1,56 @@
+/* EXPERIENCE PAGE */
+
+.experienceContent {
+  @include flex(row, auto, auto);
+  width: 90%;
+}
+
+.educationSection {
+  @include flex(column, auto, center);
+  flex: 1;
+}
+
+.workSection {
+  @include flex(column, flex-start, center);
+  flex: 1;
+}
+
+.educationSection > *, .workSection > * {
+  width: 80%;
+}
+
+.experienceOptions {
+  @include flex(row, center, center);
+  gap: 50px;
+  font-family: $code-font;
+  white-space: nowrap;
+  transition: all 0.5s ease;
+}
+
+.experienceImg {
+  width: 350px;
+  height: auto;
+  margin: 20px;
+  border-radius: 1vh;
+}
+
+.contributionTitle {
+  text-align: start;
+  font-weight: 700;
+}
+
+@media (max-width: 1350px) {
+  .experienceContent {
+    @include flex(column, center, center);
+    gap: 10px;
+  }
+}
+
+@media (max-width: 750px) {
+  .educationSection > *, .workSection > * {
+    width: 90%;
+  }
+  .experienceOptions > div {
+    flex-wrap: wrap;
+  }
+}

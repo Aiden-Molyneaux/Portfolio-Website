@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import useWindowSize from '../utils/useWindowState.js';
 import ActionButton from './ActionButton.jsx';
 
-export default function Header() {
+export default function Navbar() {
   const routes = [
     { id: '01', path: '/home', name: 'home' },
     { id: '02', path: '/about', name: 'about' },
@@ -19,25 +19,25 @@ export default function Header() {
   };
   
   return (
-    <header>
-      <div className={'headerClass headerBackground'}>
-        <div className='headerSpacer'/>
-        <h2 className='headerName'>
+    <div className='navbar'>
+      <div className={'navbarContent'}>
+        <div className='navbarSpacer'/>
+        <h2 className='navbarName'>
           <span>AidenMolyneaux</span>
           <span className='whiteFont'>.</span>
           <span className='redFont'>_</span>
         </h2>
 
         { width <= 750 && 
-          <div className='hamburgerContainer'>
-            <button onClick={() => toggleMenu()} className='hamburgerButton'>☰</button>
+          <div className='mobileMenuButtonContainer'>
+            <button onClick={() => toggleMenu()} className='mobileMenuButton'>☰</button>
           </div>
         }
       </div>
 
       { width <= 750
-        ? <div className={`mobileMenu ${isMenuOpen ? 'menuOpen' : ''}`}>
-          <div className='headerButtons'>
+        ? <div className={`mobileMenu ${isMenuOpen ? 'mobileMenuOpen' : ''}`}>
+          <div className='navButtons'>
             { routes.map(route => (
               <ActionButton
                 key={route.id}
@@ -47,10 +47,10 @@ export default function Header() {
                 toggleMenu={toggleMenu}
               />
             ))}
-            <button onClick={toggleMenu} className='exitButton'>×</button>
+            <button onClick={toggleMenu} className='mobileMenuExitButton'>×</button>
           </div>
         </div>
-        : <div className='headerButtons'>
+        : <div className='navButtons'>
           { routes.map(route => (
             <ActionButton
               key={route.id}
@@ -61,6 +61,6 @@ export default function Header() {
           ))}
         </div>
       }
-    </header>
+    </div>
   );
 }

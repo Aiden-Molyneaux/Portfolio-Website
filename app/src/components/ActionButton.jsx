@@ -47,8 +47,8 @@ export default function ActionButton({ id, path, name, toggleMenu, supportMobile
       return 'removePadding';
     }
 
-    if (isHovered || isClicked) return 'buttonClicked buttonText';
-    return 'buttonText';
+    if (isHovered || isClicked) return 'actionButtonClicked actionButtonText';
+    return 'actionButtonText';
   }
 
   function generatePath() {
@@ -79,8 +79,8 @@ export default function ActionButton({ id, path, name, toggleMenu, supportMobile
         <Link>
           <span>//</span>
           { supportMobile && window.innerWidth <= 450 
-            ? <span className={'buttonClicked buttonText'}>{supportMobile.name1} <br/> {supportMobile.name2}</span>
-            : <span className={'buttonClicked buttonText'}>{name}</span> 
+            ? <span className={'actionButtonClicked actionButtonText'}>{supportMobile.name1} <br/> {supportMobile.name2}</span>
+            : <span className={'actionButtonClicked actionButtonText'}>{name}</span> 
           }
         </Link>
       </div>

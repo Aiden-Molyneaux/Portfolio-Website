@@ -72,7 +72,7 @@ export default function About() {
   const { firstSet, secondSet } = splitFactsIntoSets(funFacts);
 
   return (
-    <div className='content'>
+    <div className='pageContent'>
       <div className='aboutContent'>
         <p className='sectionHeader'>About Me</p>
         <p className='sectionDescription'>{sectionDescription}</p>

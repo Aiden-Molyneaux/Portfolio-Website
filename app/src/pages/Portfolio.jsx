@@ -6,7 +6,7 @@ export default function Portfolio() {
   const location = JSON.parse(window.localStorage.getItem('location'));
 
   return (
-    <div className='content'>
+    <div className='pageContent'>
       <p className='sectionHeader'>My Portfolio</p>
       <div className='portfolioContent'>
         <p className='sectionDescription'>

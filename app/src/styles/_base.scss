@@ -1,0 +1,165 @@
+/* GENERAL TAG STYLES */
+
+#root {
+  @include flex(column, auto, center);
+  @include customScrollbar;
+  overflow-y: scroll;
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+  line-height: 1.5;
+  color: $white;
+  font-family: $content-font;
+  font-size: 18px;
+  cursor: $cursor;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: url('../assets/backgroundSVG.svg') no-repeat center bottom / cover, 
+              linear-gradient(180deg, $black 0%, $grey 100%);
+  z-index: -1;
+}
+
+h1 {
+  font-size: 5.5em;
+}
+
+h3 {
+  font-size: 1.33em;
+  font-weight: 500;
+}
+
+h4 {
+  font-size: 1.1em;
+  font-weight: 500;
+}
+
+h6 {
+  font-size: 0.66em;
+}
+
+h1, h2, h3, h4 {
+  color: $yellow;
+}
+
+body, h1, h2, h3, h6, p {
+  margin: 0px;
+}
+
+a {
+  color: $white;
+  text-decoration: none;
+  text-wrap: none;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  cursor: $cursor-hover;
+}
+
+.pageContent {
+  @include flex(column, center, center);
+  width: 100%;
+  margin-top: 100px;
+  padding-bottom: 20px;
+  animation: fadeIn .5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.pageContent > * {
+  background-color: $faded-grey;
+}
+
+.sectionHeader {
+  width: 90%;
+  padding: 20px 0px;
+  color: $yellow;
+  font-size: 40px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.sectionDescription {
+  width: 70%;
+}
+
+.sectionText {
+  width: 75%;
+}
+
+.experienceName {
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.mainSectionText {
+  padding-bottom: 20px;
+}
+
+.mainSectionText > * {
+  margin: 20px 0px;
+  text-align: justify;
+}
+
+.mainSectionText > *:not(h4) {
+  padding: 10px;;
+  border-left: 7px solid $faded-faded-white;
+}
+
+.backgroundSVG {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  height: auto;
+  z-index: -2;
+}
+
+@media (max-width: 1350px) {
+  h1 {
+    font-size: 3em;
+  }
+  .pageContent {
+    margin-top: 150px;
+  }
+}
+
+@media (max-width: 750px) {
+  h1 {
+    line-height: 100%;
+  }
+  .sectionDescription {
+    width: 90%;
+  }
+  .mainSectionText > * {
+    text-align: start;
+  }
+}
+
+@media (max-width: 750px) and (orientation: landscape) {
+  .pageContent {
+    margin-top: 75px;
+  }
+}
+
+@media (max-width: 450px) and (orientation: portrait) {
+  #root::-webkit-scrollbar {
+    display: none;
+  }
+  .pageContent {
+    margin-top: 25%;
+  }
+}

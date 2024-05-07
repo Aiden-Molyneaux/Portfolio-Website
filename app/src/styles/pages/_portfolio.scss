@@ -1,0 +1,92 @@
+/* PORTFOLIO / PROJECTS PAGE */
+
+.portfolioContent {
+  @include flex(column, center, center);
+  width: 90%;
+}
+
+.projectsContent {
+  @include flex(column, center, center);
+}
+
+.projectSection {
+  @include flex(row, auto, auto);
+  margin-top: 40px;
+}
+
+.portfolioOptions {
+  @include flex(column, auto, flex-end);
+  flex: 1;
+}
+
+.portfolioOptions > h3 {
+  align-self: flex-end;
+  width: 80%;
+  text-align: start;
+}
+
+.projectOptions {
+  @include flex(column, flex-start, flex-start);
+  gap: 10px;
+  flex: 1;
+
+  width: 80%;
+  font-family: $code-font;
+  white-space: nowrap;
+  transition: all 0.5s ease;
+}
+
+.projectDetails {
+  @include flex(column, auto, center);
+  flex: 3;
+}
+
+.projectDetails > .mainSectionText {
+  width: 80%;
+}
+
+.projectLanguages {
+  @include flex(row, center, center);
+}
+
+.projectImgsContainer {
+  @include flex(column, auto, auto);
+}
+
+.projectImgs {
+  @include flex(row, auto, auto);
+  gap: 20px;
+  width: auto;
+  height: auto;
+}
+
+.projectImg {
+  flex: 1;
+  width: 100%;
+  height: auto;
+  margin: 0px;
+  border-radius: 1vh;
+}
+
+@media (max-width: 1350px) {
+  .portfolioOptions {
+    align-items: center;
+  }
+  .portfolioOptions > h3 {
+    width: 100%;
+    text-align: center;
+  }
+  .projectSection {
+    flex-direction: column;
+    gap: 40px;
+  }
+  .projectOptions {
+    width: auto;
+  }
+}
+
+@media (max-width: 750px) {
+  .projectDetails > .mainSectionText {
+    width: 90%;
+  }
+}

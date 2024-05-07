@@ -11,7 +11,7 @@ export default function WorkDetails({ id }) {
 
   return (
     <>
-      <img src={imgSrc} alt={imgAlt} className='carletonUniversityImg'/>
+      <img src={imgSrc} alt={imgAlt} className='experienceImg'/>
       <p><span className='experienceName'>{role}</span></p>
       <p>{company} | {location}</p>
       <p>{duration}</p>

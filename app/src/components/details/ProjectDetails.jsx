@@ -42,7 +42,7 @@ export default function ProjectDetails({ id }) {
           }
 
           <h4 className='bottomMargin textAlignLeft'>Outcome</h4>
-          <div className='modalContainer'>
+          <div className='projectImgsContainer'>
             <div className='projectImgs'>
               { imgData.map((img, index) => (
                 <div key={index}>

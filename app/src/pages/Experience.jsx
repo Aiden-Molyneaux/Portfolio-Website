@@ -7,7 +7,7 @@ export default function Experience() {
   const location = JSON.parse(window.localStorage.getItem('location'));
 
   return (
-    <div className='content'>
+    <div className='pageContent'>
       <p className='sectionHeader'>My Experience</p>
       <div className='experienceContent'>
         <div className='educationSection'>

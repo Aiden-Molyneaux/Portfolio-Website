@@ -1,0 +1,97 @@
+/* CONTACT PAGE */
+
+.contactForm {
+  @include flex(column, center, center);
+  width: max(20%, 400px);
+  padding-bottom: 30px;
+  background-color: $faded-grey;
+}
+
+.textField {
+  @include flex(column, auto, flex-start);
+  width: 60%;
+  margin: 3px 0px;
+  font-family: $code-font;
+}
+
+label {
+  @include flex(row, space-between, center);
+  width: 100%;
+}
+
+label > h6 {
+  margin-left: auto;
+  padding-top: 4px;
+}
+
+.labelText {
+  padding-left: 10px;
+  transition: all 0.3s ease;
+}
+
+.inputFocused {
+  padding-left: 2px;
+  color: $red;
+}
+
+input, textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0px;
+  background-color: $black;
+  border: 1px solid $yellow;
+  border-radius: 3px;
+  color: $white;
+  font-family: $content-font;
+  font-size: 1em;
+  cursor: $cursor-hover;
+}
+
+input:focus, input:hover, textarea:focus, textarea:hover {
+  border-color: $red;
+  outline: none;
+}
+
+.contactSubmit {
+  margin-top: 10px;
+  padding: 8px;
+  background-color: $black;
+  color: $white;
+  border: 1px solid $yellow;
+  border-radius: 3px;
+  font-family: $code-font;
+  font-size: 1em;
+  cursor: $cursor-hover;
+}
+
+.contactSubmit:hover {
+  border-color: $red;
+}
+
+.contactLinks {
+  @include flex(row, auto, auto);
+  gap: 18px;
+  margin: 25px;
+  margin-bottom: 12px;
+}
+
+.brandLink:hover {
+  color: $red;
+}
+
+#emailLink {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.emailLink:hover {
+  color: $red;
+  font-size: 1.05em;
+}
+
+@media (max-width: 750px) {
+  .contactForm {
+    width: 90%;
+  }
+}

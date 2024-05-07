@@ -38,7 +38,7 @@ export default function Contact() {
   }
 
   return (
-    <div className='content'>
+    <div className='pageContent'>
       <form onSubmit={handleSubmit} className='contactForm'>
         <h3 className='sectionHeader'>Contact Me</h3>
 
