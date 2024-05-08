@@ -123,7 +123,7 @@ const projectData = [
       { name: 'Postgres', icon: faDatabase }
     ],
     duration: 'March 2024 - Current',
-    githubLink: 'https://github.com/Aiden-Molyneaux/3005_ClubProject',
+    githubLink: 'https://github.com/Aiden-Molyneaux/HealthFitnessClub-WebApp',
     objective: 'As the culmination of a 3000-level \'Databases\' course, I took on a solo mission to design and implement a comprehensive Health and Fitness Club web application. Over the span of three intense weeks, I dedicated over 60 hours to crafting a robust platform that seamlessly supports the diverse functionalities and user interactions expected in such a user-oriented application.',
     keyContributions: [
       {
