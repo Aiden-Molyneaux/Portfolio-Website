@@ -20,7 +20,7 @@ export default function Navbar() {
   
   return (
     <div className='navbar'>
-      <div className={'navbarContent'}>
+      <div className='navbarContent'>
         <div className='navbarSpacer'/>
         <h2 className='navbarName'>
           <span>AidenMolyneaux</span>
