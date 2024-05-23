@@ -22,7 +22,7 @@ export default function About() {
     },
     {
       title: 'Movie Referencer',
-      description: 'When I\'m not coding or immersed in virtual realms, you might find me indulging in my love for cinema, with \'Mad Max: Fury Road\' holding a special place in my heart among my favorite titles.',
+      description: 'When I\'m not coding or immersed in virtual realms, you might find me indulging in my love for cinema, with \'A Quiet Place\' holding a special place in my heart among my favorite titles.',
       icon: faFilm
     },
     {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLinkedin, faGithub  } from '@fortawesome/free-brands-svg-icons';
+import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faPaperPlane, faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import TextField from '../components/TextField.jsx';
 
@@ -46,7 +46,7 @@ export default function Contact() {
         <a href='mailto:aidenmolyneaux@hotmail.com' className='experienceName bottomMargin' id='emailLink' >aidenmolyneaux@hotmail.com <FontAwesomeIcon icon={faPaperPlane}/></a>
 
         { formSubmitted 
-        ? <h6 className='bottomMargin topMargin'>Your messsage has been sent to Aiden!</h6>
+        ? <h6 className='bottomMargin topMargin'>Your message has been sent to Aiden!</h6>
         : <>
           <TextField id='01' name='name' type='input' value={formData.name} handleChange={handleChange}/>
           <TextField id='02' name='email' type='input' value={formData.email} handleChange={handleChange}/>

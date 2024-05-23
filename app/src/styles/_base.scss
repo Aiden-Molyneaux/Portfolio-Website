@@ -52,6 +52,16 @@ body, h1, h2, h3, h6, p {
   margin: 0px;
 }
 
+label {
+  @include flex(row, space-between, center);
+  width: 100%;
+}
+
+label > h6 {
+  margin-left: auto;
+  padding-top: 4px;
+}
+
 a {
   color: $white;
   text-decoration: none;
@@ -129,18 +139,12 @@ a:hover {
 }
 
 @media (max-width: 1350px) {
-  h1 {
-    font-size: 3em;
-  }
   .pageContent {
     margin-top: 150px;
   }
 }
 
 @media (max-width: 750px) {
-  h1 {
-    line-height: 100%;
-  }
   .sectionDescription {
     width: 90%;
   }
