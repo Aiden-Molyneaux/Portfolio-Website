@@ -32,11 +32,17 @@ export default function Experience() {
               name='junior software developer, wicket' 
               supportMobile={{name1: 'junior software developer,', name2: 'wicket'}}
             />
+            <ActionButton 
+              id='02' 
+              path='/experience/2' 
+              name='electrical apprentice, IEM' 
+              supportMobile={{name1: 'electrical apprentice,', name2: 'IEM'}}
+            />
           </div>
 
           { location.path === '/experience/1'
-            ? <WorkDetails id='01'/> 
-            : <></>
+            ? <WorkDetails id='01'/>
+            : <WorkDetails id='02'/>
           }
         </div>
       </div>

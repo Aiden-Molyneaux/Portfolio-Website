@@ -4,10 +4,10 @@ import { workData } from './experienceData.js'
 
 export default function WorkDetails({ id }) {
   WorkDetails.propTypes = {
-    details: PropTypes.object.isRequired
+    id: PropTypes.string.isRequired
   };
 
-  const { role, company, location, duration, description, keyContributions, imgSrc, imgAlt } = workData[0];
+  const { role, company, location, duration, description, keyContributions, imgSrc, imgAlt } = workData[id];
 
   return (
     <>

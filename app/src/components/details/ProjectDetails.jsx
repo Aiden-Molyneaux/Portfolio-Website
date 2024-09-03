@@ -69,6 +69,8 @@ export default function ProjectDetails({ id }) {
       { id === '02' && Details(projectData[1]) }
       { id === '03' && Details(projectData[2]) }
       { id === '04' && Details(projectData[3]) }
+      { id === '05' && Details(projectData[4]) }
+      { id === '06' && Details(projectData[5]) }
     </>
   );
 }

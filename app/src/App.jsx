@@ -31,11 +31,14 @@ function App() {
         <Route path="/about" element={<About/>}></Route>
         <Route path="/experience" element={<Experience/>}></Route>
         <Route path="/experience/1" element={<Experience/>}></Route>
+        <Route path="/experience/2" element={<Experience/>}></Route>
         <Route path="/portfolio" element={<Portfolio/>}></Route>
         <Route path="/portfolio/1" element={<Portfolio/>}></Route>
         <Route path="/portfolio/2" element={<Portfolio/>}></Route>
         <Route path="/portfolio/3" element={<Portfolio/>}></Route>
         <Route path="/portfolio/4" element={<Portfolio/>}></Route>
+        <Route path="/portfolio/5" element={<Portfolio/>}></Route>
+        <Route path="/portfolio/6" element={<Portfolio/>}></Route>
         <Route path="/contact" element={<Contact/>}></Route>
       </Routes>
     </> 

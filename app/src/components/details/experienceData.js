@@ -1,5 +1,6 @@
 import carletonUniversityImg from '../../assets/carletonUniversity.jpg';
 import reactAndRubyImg from '../../assets/reactAndRuby.png';
+import iemImg from '../../assets/IEM.png';
 
 const educationData = [
   {
@@ -17,8 +18,8 @@ const educationData = [
   }
 ];
 
-const workData = [
-  {
+const workData = {
+  '01': {
     role: 'Junior Software Developer',
     company: 'Wicket',
     location: 'Remote',
@@ -55,7 +56,33 @@ const workData = [
     ],
     imgSrc: reactAndRubyImg,
     imgAlt: 'React icon and Ruby icon.'
-  }
-];
+  },
+  '02': {
+    role: 'Industrial Electrican Apprentice (Temp)',
+    company: 'Industrial Electrical & Mechanical Inc.',
+    location: 'Ottawa, ON',
+    duration: 'May 2024 - Present',
+    description: [
+      'As an Industrial Electrical Apprentice at Industrial Electrical & Mechanical Inc., I took on a hands-on role in the installation and maintenance of electrical systems within industrial settings. While actively seeking a career in software development, this position allowed me to gain practical experience in a different yet highly technical field, reinforcing my adaptability and problem-solving skills.',
+      'During this period, I supported my team in the field, working in quarries and wash plants around Ottawa. This role required quick thinking and the ability to learn on the job, applying engineering principles in real-time while assisting skilled industrial electricians.'
+    ],
+    keyContributions: [
+      {
+        title: 'Hands-on Technical Assistance',
+        description: 'I provided essential support in the installation and maintenance of complex industrial electrical systems. My responsibilities included fetching tools, cutting wire, and performing basic electrical tasks such as splicing, all of which contributed to the efficient operation of our projects.'
+      },
+      {
+        title: 'Real-Time Problem Solving',
+        description: 'Working closely with experienced electricians, I adapted to rapidly changing tasks, showcasing my ability to troubleshoot and resolve issues in high-pressure environments.'
+      },
+      {
+        title: 'Practical Engineering Application',
+        description: 'Although this role was a departure from my primary focus in software development, it allowed me to deepen my understanding of technical problem-solving and system assembly in an industrial context. I was able to observe and participate in the practical application of engineering principles, which further broadened my technical perspective.'
+      }
+    ],
+    imgSrc: iemImg,
+    imgAlt: 'Industrial Electrical & Mechanicals logo.'
+  },
+};
 
 export { educationData, workData };

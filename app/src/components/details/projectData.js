@@ -122,7 +122,7 @@ const projectData = [
       { name: 'Node', icon: faNodeJs },
       { name: 'Postgres', icon: faDatabase }
     ],
-    duration: 'March 2024 - Current',
+    duration: 'March 2024 - May 2024',
     githubLink: 'https://github.com/Aiden-Molyneaux/HealthFitnessClub-WebApp',
     objective: 'As the culmination of a 3000-level \'Databases\' course, I took on a solo mission to design and implement a comprehensive Health and Fitness Club web application. Over the span of three intense weeks, I dedicated over 60 hours to crafting a robust platform that seamlessly supports the diverse functionalities and user interactions expected in such a user-oriented application.',
     keyContributions: [
@@ -160,7 +160,97 @@ const projectData = [
         imgAlt: 'Screenshot of my Don\'t Snooze Health and Fitness Club Web Application user interface.'
       }
     ]
-  }
+  },
+  {
+    title: 'My Wedding Website',
+    languages: [
+      { name: 'React', icon: faReact }
+    ],
+    duration: 'May 2024 - Current',
+    githubLink: 'https://github.com/Aiden-Molyneaux/WeddingSite',
+    objective: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sed turpis nec sapien scelerisque sollicitudin vel a est. Curabitur in ipsum id est malesuada scelerisque. Ut bibendum auctor libero, vel hendrerit lacus gravida nec. Nam volutpat libero eget justo cursus, et vestibulum libero viverra. Integer maximus, lectus et auctor gravida, erat mi aliquam metus, id volutpat magna nunc id felis. Nullam dapibus, libero et volutpat vulputate, ante quam sagittis nisi, vitae vehicula mi erat sit amet purus. Aliquam erat volutpat. Ut feugiat urna ac libero pretium, in dictum nisi egestas.',
+    keyContributions: [
+      {
+        title: 'WIP',
+        description: 'WIP'
+      },
+      // {
+      //   title: 'Database Design and Implementation',
+      //   description: 'Leveraging my knowledge of database creation and management, I designed a thorough Entity-Relation diagram, which I then translated into a relational database schema. With PostgreSQL as the backbone, I created a database definition scipt to lay the foundation for the application\'s complex data management needs.'
+      // },
+      // {
+      //   title: 'Full-Stack Development',
+      //   description: 'Seamlessly integrating React for the dynamic front-end and Node.js for the back-end, I implemented over one thousand lines of CRUD operations using Express to support data interaction and management. With optimization and scalability in mind, I architected a resilient API to power the application\'s rich functionalities.'
+      // },
+      // {
+      //   title: 'Iterative UI Refinement',
+      //   description: 'Grounded in user feedback, I iteratively refined the application\'s UI, constructing visually appealing and intuitive interfaces that enhance user engagement and satisfaction. From wireframes to polished dashboards, every design decision was guided by careful consideration of usability.'
+      // }
+    ],
+    outcomes: [
+      'WIP'
+    ],
+    imgData: [
+      // { 
+      //   imgSrc: dontSnoozeImg1,
+      //   imgAlt: 'Screenshot of my Don\'t Snooze Health and Fitness Club Web Application user interface.'
+      // },
+      // { 
+      //   imgSrc: dontSnoozeImg2,
+      //   imgAlt: 'Screenshot of my Don\'t Snooze Health and Fitness Club Web Application user interface.'
+      // },
+      // { 
+      //   imgSrc: dontSnoozeImg3,
+      //   imgAlt: 'Screenshot of my Don\'t Snooze Health and Fitness Club Web Application user interface.'
+      // }
+    ]
+  },
+  {
+    title: 'Videogame Statistic Mobile App',
+    languages: [
+      { name: 'React Native', icon: faReact },
+      { name: 'Node', icon: faNodeJs },
+      { name: 'Postgres', icon: faDatabase }
+    ],
+    duration: 'June 2024 - Current',
+    githubLink: 'https://github.com/Aiden-Molyneaux/GameStatsApp',
+    objective: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sed turpis nec sapien scelerisque sollicitudin vel a est. Curabitur in ipsum id est malesuada scelerisque. Ut bibendum auctor libero, vel hendrerit lacus gravida nec. Nam volutpat libero eget justo cursus, et vestibulum libero viverra. Integer maximus, lectus et auctor gravida, erat mi aliquam metus, id volutpat magna nunc id felis. Nullam dapibus, libero et volutpat vulputate, ante quam sagittis nisi, vitae vehicula mi erat sit amet purus. Aliquam erat volutpat. Ut feugiat urna ac libero pretium, in dictum nisi egestas.',
+    keyContributions: [
+      {
+        title: 'WIP',
+        description: 'WIP'
+      },
+      // {
+      //   title: 'Database Design and Implementation',
+      //   description: 'Leveraging my knowledge of database creation and management, I designed a thorough Entity-Relation diagram, which I then translated into a relational database schema. With PostgreSQL as the backbone, I created a database definition scipt to lay the foundation for the application\'s complex data management needs.'
+      // },
+      // {
+      //   title: 'Full-Stack Development',
+      //   description: 'Seamlessly integrating React for the dynamic front-end and Node.js for the back-end, I implemented over one thousand lines of CRUD operations using Express to support data interaction and management. With optimization and scalability in mind, I architected a resilient API to power the application\'s rich functionalities.'
+      // },
+      // {
+      //   title: 'Iterative UI Refinement',
+      //   description: 'Grounded in user feedback, I iteratively refined the application\'s UI, constructing visually appealing and intuitive interfaces that enhance user engagement and satisfaction. From wireframes to polished dashboards, every design decision was guided by careful consideration of usability.'
+      // }
+    ],
+    outcomes: [
+      'WIP'
+    ],
+    imgData: [
+      // { 
+      //   imgSrc: dontSnoozeImg1,
+      //   imgAlt: 'Screenshot of my Don\'t Snooze Health and Fitness Club Web Application user interface.'
+      // },
+      // { 
+      //   imgSrc: dontSnoozeImg2,
+      //   imgAlt: 'Screenshot of my Don\'t Snooze Health and Fitness Club Web Application user interface.'
+      // },
+      // { 
+      //   imgSrc: dontSnoozeImg3,
+      //   imgAlt: 'Screenshot of my Don\'t Snooze Health and Fitness Club Web Application user interface.'
+      // }
+    ]
+  },
 ];
 
 export default projectData;

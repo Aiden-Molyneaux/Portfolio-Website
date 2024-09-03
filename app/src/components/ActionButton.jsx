@@ -16,8 +16,8 @@ export default function ActionButton({ id, path, name, toggleMenu, supportMobile
   const [isHovered, setIsHovered] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
 
-  const isExperiencePage = location && path === '/experience' && location.path === '/experience/1';
-  const isPortfolioPage = location && path === '/portfolio' && ['/portfolio/1', '/portfolio/2', '/portfolio/3', '/portfolio/4'].includes(location.path);
+  const isExperiencePage = location && path === '/experience' && (location.path === '/experience/1' || location.path === '/experience/2');
+  const isPortfolioPage = location && path === '/portfolio' && ['/portfolio/1', '/portfolio/2', '/portfolio/3', '/portfolio/4', '/portfolio/5', '/portfolio/6'].includes(location.path);
 
   useEffect(() => {
     const location = JSON.parse(window.localStorage.getItem('location'));
@@ -37,7 +37,7 @@ export default function ActionButton({ id, path, name, toggleMenu, supportMobile
   function setLocation() {
     // allow the Experience and Portfolio pages to open on the most recent experience and projects
     if (path === '/experience') { path = '/experience/1'; }
-    if (path === '/portfolio') { path = '/portfolio/4'; }
+    if (path === '/portfolio') { path = '/portfolio/6'; }
     window.localStorage.setItem('location', JSON.stringify({ path: path }));
   }
 
@@ -53,7 +53,7 @@ export default function ActionButton({ id, path, name, toggleMenu, supportMobile
 
   function generatePath() {
     if (path === '/experience') return '/experience/1';
-    if (path === '/portfolio') return '/portfolio/4';
+    if (path === '/portfolio') return '/portfolio/6';
     return path;
   } 
 
