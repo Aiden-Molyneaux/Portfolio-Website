@@ -25,7 +25,7 @@ export default function Portfolio() {
               <ActionButton id='03' path='/portfolio/3' name='a.i. image-text assessor'/>
               <ActionButton id='04' path='/portfolio/4' name='fitness club web app'/>
               <ActionButton id='05' path='/portfolio/5' name='my wedding website'/>
-              <ActionButton id='06' path='/portfolio/6' name='videogame statistic mobile app'/>
+              <ActionButton id='06' path='/portfolio/6' name='videogame statistic app'/>
             </div>
           </div>
 

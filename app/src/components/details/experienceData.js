@@ -58,7 +58,7 @@ const workData = {
     imgAlt: 'React icon and Ruby icon.'
   },
   '02': {
-    role: 'Industrial Electrican Apprentice (Temp)',
+    role: 'Industrial Electrical Apprentice (Temp)',
     company: 'Industrial Electrical & Mechanical Inc.',
     location: 'Ottawa, ON',
     duration: 'May 2024 - Present',
