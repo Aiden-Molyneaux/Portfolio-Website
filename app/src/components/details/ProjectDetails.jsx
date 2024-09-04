@@ -44,13 +44,15 @@ export default function ProjectDetails({ id }) {
           <h4 className='bottomMargin textAlignLeft'>Outcome</h4>
           <div className='projectImgsContainer'>
             <div className='projectImgs'>
-              { imgData.map((img, index) => (
-                <div key={index}>
-                  <ImageModal imgSrc={img.imgSrc} imgAlt={img.imgAlt}/>
-                </div>))
+              { imgData.length !== 0 ? 
+                imgData.map((img, index) => (
+                  <div key={index}>
+                    <ImageModal imgSrc={img.imgSrc} imgAlt={img.imgAlt}/>
+                  </div>))
+                : <div>(This is where images of the project would be displayed. At this time the project is still in progress, therefore no images are available. Check back later!)</div>
               }
             </div>
-            <h6 id='clickImgText'>Click images to expand</h6>
+            { imgData.length !== 0 && <h6 id='clickImgText'>Click images to expand</h6> }
           </div>
           
           { outcomes.map((outcome, index) => (

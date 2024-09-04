@@ -166,29 +166,29 @@ const projectData = [
     languages: [
       { name: 'React', icon: faReact }
     ],
-    duration: 'May 2024 - Current',
+    duration: 'May 2024 - Present',
     githubLink: 'https://github.com/Aiden-Molyneaux/WeddingSite',
-    objective: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sed turpis nec sapien scelerisque sollicitudin vel a est. Curabitur in ipsum id est malesuada scelerisque. Ut bibendum auctor libero, vel hendrerit lacus gravida nec. Nam volutpat libero eget justo cursus, et vestibulum libero viverra. Integer maximus, lectus et auctor gravida, erat mi aliquam metus, id volutpat magna nunc id felis. Nullam dapibus, libero et volutpat vulputate, ante quam sagittis nisi, vitae vehicula mi erat sit amet purus. Aliquam erat volutpat. Ut feugiat urna ac libero pretium, in dictum nisi egestas.',
+    objective: 'As a personal project, I designed a simple yet functional wedding website to serve as the central hub for wedding information and RSVPs. The focus was on creating an elegant, user-friendly platform that catered to our needs while minimizing complexity on the backend by leveraging external services.',
     keyContributions: [
       {
-        title: 'WIP',
-        description: 'WIP'
+        title: 'Collaborative Design Process',
+        description: 'I worked closely with my fiancée, iterating on the design to ensure the website was intuitive and easy to use, even for users with limited tech knowledge. This collaboration refined my ability to simplify complex technical concepts and build interfaces that are accessible to non-technical audiences.'
       },
-      // {
-      //   title: 'Database Design and Implementation',
-      //   description: 'Leveraging my knowledge of database creation and management, I designed a thorough Entity-Relation diagram, which I then translated into a relational database schema. With PostgreSQL as the backbone, I created a database definition scipt to lay the foundation for the application\'s complex data management needs.'
-      // },
-      // {
-      //   title: 'Full-Stack Development',
-      //   description: 'Seamlessly integrating React for the dynamic front-end and Node.js for the back-end, I implemented over one thousand lines of CRUD operations using Express to support data interaction and management. With optimization and scalability in mind, I architected a resilient API to power the application\'s rich functionalities.'
-      // },
-      // {
-      //   title: 'Iterative UI Refinement',
-      //   description: 'Grounded in user feedback, I iteratively refined the application\'s UI, constructing visually appealing and intuitive interfaces that enhance user engagement and satisfaction. From wireframes to polished dashboards, every design decision was guided by careful consideration of usability.'
-      // }
+      {
+        title: 'User-Friendly RSVP System',
+        description: 'Developed an easy-to-navigate RSVP system, allowing guests to confirm their attendance, dietary preferences, and other essential details, ensuring a seamless and user-friendly experience.'
+      },
+      {
+        title: 'Responsive and Aesthetic Design',
+        description: 'Focused on creating a mobile-first design that’s not only functional but also visually engaging. I implemented elegant themes and layouts that catered to our wedding theme, ensuring a cohesive user experience across devices.'
+      },
+      {
+        title: 'External Service Integration',
+        description: 'Instead of building a custom backend, I leveraged third-party services like FormSubmit to handle form submissions, reducing complexity while ensuring the website’s core functionality remained intact.'
+      }
     ],
     outcomes: [
-      'WIP'
+      'The wedding website became an essential tool for planning and managing the event, providing guests with all the necessary information in an accessible format. Through user testing with our family and friends, we ensured the design remained intuitive for users of all ages and technical backgrounds.'
     ],
     imgData: [
       // { 
@@ -212,29 +212,33 @@ const projectData = [
       { name: 'Node', icon: faNodeJs },
       { name: 'Postgres', icon: faDatabase }
     ],
-    duration: 'June 2024 - Current',
+    duration: 'June 2024 - Present',
     githubLink: 'https://github.com/Aiden-Molyneaux/GameStatsApp',
-    objective: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sed turpis nec sapien scelerisque sollicitudin vel a est. Curabitur in ipsum id est malesuada scelerisque. Ut bibendum auctor libero, vel hendrerit lacus gravida nec. Nam volutpat libero eget justo cursus, et vestibulum libero viverra. Integer maximus, lectus et auctor gravida, erat mi aliquam metus, id volutpat magna nunc id felis. Nullam dapibus, libero et volutpat vulputate, ante quam sagittis nisi, vitae vehicula mi erat sit amet purus. Aliquam erat volutpat. Ut feugiat urna ac libero pretium, in dictum nisi egestas.',
+    objective: 'The goal of this project was to develop a cross-platform mobile app that allows users to log and track all the video games they have played. The app provides functionality to sort games by purchase date or hours played, alongside a personalized profile system. Built in collaboration with a friend, this app serves as a precursor to a larger-scale project we have in the pipeline, with a focus on scalability and teaching React Native fundamentals.',
     keyContributions: [
       {
-        title: 'WIP',
-        description: 'WIP'
+        title: 'Cross-Platform Functionality',
+        description: 'Integrated React Native with react-native-web to ensure the app runs smoothly across both mobile (iOS) and web platforms, supporting seamless access via web browsers in addition to mobile devices.'
       },
-      // {
-      //   title: 'Database Design and Implementation',
-      //   description: 'Leveraging my knowledge of database creation and management, I designed a thorough Entity-Relation diagram, which I then translated into a relational database schema. With PostgreSQL as the backbone, I created a database definition scipt to lay the foundation for the application\'s complex data management needs.'
-      // },
-      // {
-      //   title: 'Full-Stack Development',
-      //   description: 'Seamlessly integrating React for the dynamic front-end and Node.js for the back-end, I implemented over one thousand lines of CRUD operations using Express to support data interaction and management. With optimization and scalability in mind, I architected a resilient API to power the application\'s rich functionalities.'
-      // },
-      // {
-      //   title: 'Iterative UI Refinement',
-      //   description: 'Grounded in user feedback, I iteratively refined the application\'s UI, constructing visually appealing and intuitive interfaces that enhance user engagement and satisfaction. From wireframes to polished dashboards, every design decision was guided by careful consideration of usability.'
-      // }
+      {
+        title: 'User Account Management and Game Entry System',
+        description: 'Implemented user registration and login systems using JWT for authorization, allowing users to securely create accounts and log entries for each game they’ve played.'
+      },
+      {
+        title: 'Sorting and Profile Features',
+        description: 'Designed and developed a sorting feature that allows users to filter games by purchase date or hours played. Additionally, implemented a profile page for users to display their top 5 games, favourite game genre, and their unique gamertags across platforms.'
+      },
+      {
+        title: 'State Management with Redux',
+        description: 'Utilized Redux to manage application state efficiently, ensuring a seamless flow of data between the frontend and backend. Integrated the Redux store with a custom-built API, enabling real-time interaction with the PostgreSQL database for storing and retrieving user and authorization data.'
+      },
+      {
+        title: 'Version Control and Team Collaboration',
+        description: 'Worked closely with a friend who was new to React Native, managing the development process with strong emphasis on version control, collaboration, and code reviews. This fostered an environment of continuous learning and improvement.'
+      }
     ],
     outcomes: [
-      'WIP'
+      'The Videogame Statistic Mobile App serves as a personal hub for tracking video game history, providing users with insightful data about their gaming habits. The app’s development highlights my ability to adapt to new technologies like React Native while mentoring a teammate and prioritizing cross-platform scalability for future projects.'
     ],
     imgData: [
       // { 
