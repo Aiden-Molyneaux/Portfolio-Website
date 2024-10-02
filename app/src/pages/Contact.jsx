@@ -40,17 +40,17 @@ export default function Contact() {
   async function submitForm(event) {
     event.preventDefault();
     
-    const formData = {
-      name: event.target.name.value,
-      email: event.target.email.value,
-      message: event.target.message.value,
+    const emailData = {
+      name: formData.name,
+      email: formData.email,
+      message: formData.message,
     };
     
     try {
       const response = await fetch('https://u863rlss5k.execute-api.us-east-1.amazonaws.com/Attempt3/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(emailData),
       });
       const result = await response.json();
       console.log(result);
