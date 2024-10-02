@@ -19,27 +19,49 @@ export default function Contact() {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    setIsLoading(true);
+  // function handleSubmit(event) {
+  //   event.preventDefault();
+  //   setIsLoading(true);
     
-    fetch('https://formsubmit.co/9dd068642eb64094e99fc86586fb1715', {
-      method: 'POST',
-      body: new FormData(event.target),
-    })
-    .then(() => {
-      window.localStorage.setItem('formSubmitted', JSON.stringify(true));
-      setIsLoading(false);
-      setFormSubmitted(true);
-    })
-    .catch(() => {
-      setIsLoading(false);
-    });
+  //   fetch('https://formsubmit.co/9dd068642eb64094e99fc86586fb1715', {
+  //     method: 'POST',
+  //     body: new FormData(event.target),
+  //   })
+  //   .then(() => {
+  //     window.localStorage.setItem('formSubmitted', JSON.stringify(true));
+  //     setIsLoading(false);
+  //     setFormSubmitted(true);
+  //   })
+  //   .catch(() => {
+  //     setIsLoading(false);
+  //   });
+  // }
+
+  async function submitForm(event) {
+    event.preventDefault();
+    
+    const formData = {
+      name: event.target.name.value,
+      email: event.target.email.value,
+      message: event.target.message.value,
+    };
+    
+    try {
+      const response = await fetch('https://u863rlss5k.execute-api.us-east-1.amazonaws.com/prod/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      const result = await response.json();
+      console.log(result);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
   }
 
   return (
     <div className='pageContent'>
-      <form onSubmit={handleSubmit} className='contactForm'>
+      <form onSubmit={submitForm} className='contactForm'>
         <h3 className='sectionHeader'>Contact Me</h3>
 
         <p>Aiden Molyneaux</p>
