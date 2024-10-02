@@ -47,7 +47,7 @@ export default function Contact() {
     };
     
     try {
-      const response = await fetch('https://u863rlss5k.execute-api.us-east-1.amazonaws.com/prod/send-email', {
+      const response = await fetch('https://u863rlss5k.execute-api.us-east-1.amazonaws.com/Attempt3/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
