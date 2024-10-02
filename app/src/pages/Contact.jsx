@@ -46,11 +46,15 @@ export default function Contact() {
       message: formData.message,
     };
     
+    const requestBody = {
+      body: JSON.stringify(emailData) // Stringify the emailData and assign it to the "body" property
+    };
+    
     try {
       const response = await fetch('https://u863rlss5k.execute-api.us-east-1.amazonaws.com/Attempt3/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ "body" : emailData }),
+        body: JSON.stringify(requestBody), // Send the entire request body
       });
       const result = await response.json();
       console.log(result);
