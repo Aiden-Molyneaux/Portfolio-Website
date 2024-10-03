@@ -39,6 +39,7 @@ export default function Contact() {
 
   async function submitForm(event) {
     event.preventDefault();
+    setIsLoading(true);
     
     const emailData = {
       name: formData.name,
@@ -47,19 +48,23 @@ export default function Contact() {
     };
     
     const requestBody = {
-      body: JSON.stringify(emailData) // Stringify the emailData and assign it to the "body" property
+      body: JSON.stringify(emailData)
     };
     
     try {
       const response = await fetch('https://u863rlss5k.execute-api.us-east-1.amazonaws.com/Attempt3/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(requestBody), // Send the entire request body
+        body: JSON.stringify(requestBody),
       });
       const result = await response.json();
-      console.log(result);
+
+      window.localStorage.setItem('formSubmitted', JSON.stringify(true));
+      setIsLoading(false);
+      setFormSubmitted(true);
     } catch (error) {
       console.error('Error submitting form:', error);
+      setIsLoading(false);
     }
   }
 
