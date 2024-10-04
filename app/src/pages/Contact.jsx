@@ -19,24 +19,6 @@ export default function Contact() {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   }
 
-  // function handleSubmit(event) {
-  //   event.preventDefault();
-  //   setIsLoading(true);
-    
-  //   fetch('https://formsubmit.co/9dd068642eb64094e99fc86586fb1715', {
-  //     method: 'POST',
-  //     body: new FormData(event.target),
-  //   })
-  //   .then(() => {
-  //     window.localStorage.setItem('formSubmitted', JSON.stringify(true));
-  //     setIsLoading(false);
-  //     setFormSubmitted(true);
-  //   })
-  //   .catch(() => {
-  //     setIsLoading(false);
-  //   });
-  // }
-
   async function submitForm(event) {
     event.preventDefault();
     setIsLoading(true);

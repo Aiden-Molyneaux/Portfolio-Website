@@ -1,25 +1,24 @@
-import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses"; // Import only SES client from AWS SDK v3
+import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses";
 
-const sesClient = new SESClient({ region: "us-east-1" }); // Replace with your region
+const sesClient = new SESClient({ region: "us-east-1" });
 
 export const handler = async (event) => {
-  const formData = JSON.parse(event.body); // Parse form data
-  const { name, email, message } = formData; // Extract form fields
+  const formData = JSON.parse(event.body);
+  const { name, email, message } = formData;
 
-  // Define email parameters
   const emailParams = {
-    Source: 'aidenmolyneaux@hotmail.com', // Your verified email address
+    Source: 'molyneaux271@gmail.com', 
     Destination: {
-      ToAddresses: ['aidenmolyneaux@hotmail.com'], // Your email address to receive the form details
+      ToAddresses: ['aidenmolyneaux@hotmail.com'],
     },
     ReplyToAddresses: [email], // User's email from the form for the reply-to field
     Message: {
       Subject: {
-        Data: `New Form Submission from ${name}`,
+        Data: `New Message from ${name}`,
       },
       Body: {
         Text: {
-          Data: `You received a new form submission:\n\nName: ${name}\nEmail: ${email}\nMessage:\n${message}`,
+          Data: `Contact form submission:\n\nName: ${name}\nEmail: ${email}\nMessage:\n${message}`,
         },
       },
     },
