@@ -1,6 +1,6 @@
 import carletonUniversityImg from '../../assets/carletonUniversity.jpg';
 import reactAndRubyImg from '../../assets/reactAndRuby.png';
-import iemImg from '../../assets/IEM.png';
+import iemImg from '../../assets/IEM2.png';
 
 const educationData = [
   {
