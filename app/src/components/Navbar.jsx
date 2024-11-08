@@ -21,7 +21,7 @@ export default function Navbar() {
   return (
     <div className='navbar'>
       <div className='navbarContent'>
-        <div className='navbarSpacer'/>
+        {/* <div className='navbarSpacer'/> */}
         <h2 className='navbarName'>
           <span>AidenMolyneaux</span>
           <span className='whiteFont'>.</span>
