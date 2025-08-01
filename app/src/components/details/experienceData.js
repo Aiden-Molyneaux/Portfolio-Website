@@ -1,6 +1,7 @@
 import carletonUniversityImg from '../../assets/carletonUniversity.jpg';
-import reactAndRubyImg from '../../assets/reactAndRuby.png';
+import reactAndRubyImg from '../../assets/wicket_img.jpg';
 import iemImg from '../../assets/IEM2.png';
+import vpsImg from '../../assets/vps_img.jpg';
 
 const educationData = [
   {
@@ -61,7 +62,7 @@ const workData = {
     role: 'Industrial Electrical Apprentice (Temp)',
     company: 'Industrial Electrical & Mechanical Inc.',
     location: 'Ottawa, ON',
-    duration: 'May 2024 - Present',
+    duration: 'May 2024 - March 2025',
     description: [
       'As an Industrial Electrical Apprentice at Industrial Electrical & Mechanical Inc., I took on a hands-on role in the installation and maintenance of electrical systems within industrial settings. While actively seeking a career in software development, this position allowed me to gain practical experience in a different yet highly technical field, reinforcing my adaptability and problem-solving skills.',
       'During this period, I supported my team in the field, working in quarries and wash plants around Ottawa. This role required quick thinking and the ability to learn on the job, applying engineering principles in real-time while assisting skilled industrial electricians.'
@@ -82,6 +83,40 @@ const workData = {
     ],
     imgSrc: iemImg,
     imgAlt: 'Industrial Electrical & Mechanicals logo.'
+  },
+  '03': {
+    role: 'Software Application Support Specialist',
+    company: 'Versaterm Public Safety',
+    location: 'Ottawa, ON',
+    duration: 'April 2025 - Present',
+    description: [
+      'At Versaterm Public Safety, I work on the front lines of technical support, helping ensure that first responders can depend on the tools they need in critical moments. Supporting a suite of applications—CAD, MDT, vMobile, and VMC—I troubleshoot and resolve issues across multiple languages and platforms, from Genero4GL and C# to React Native.',
+      'In this fast-paced, high-stakes environment, I triage incoming tickets, reproduce complex client workflows, and work closely with developers, project teams, and end-users to deliver timely, accurate solutions. Contributing to software that supports emergency services has given my work real weight. I’ve felt welcomed into a collaborative, mission-driven environment where I’m proud of what we build and the role I play in making it stronger.'
+    ],
+    keyContributions: [
+      {
+        title: 'Cross-Platform Troubleshooting',
+        description: 'Support and diagnose issues across a suite of public safety products developed in Genero4GL, C#, and React Native, requiring context-switching between multiple languages, architectures, and integrations.'
+      },
+      {
+        title: 'Client Relationship & Communication',
+        description: 'Support clients, including frontline officers and technical personnel, through phone and email, offering timely, empathetic assistance. I take responsibility for each case from start to finish, keeping communication open and solutions on track.'
+      },
+      {
+        title: 'Defect Evaluation & Escalation',
+        description: 'Assess unexpected system behavior and determine whether issues stem from user error, configuration, or underlying bugs. When needed, package detailed, reproducible cases for escalation as formal development defects.'
+      },
+      {
+        title: 'Source-Level Investigation',
+        description: 'Use GitLab, TortoiseGit, and Git Blame to investigate regressions, confirm deployment changes, and trace historical behavior across versions and environments.'
+      },
+      {
+        title: 'Documentation & Internal Knowledge Sharing',
+        description: 'Author internal documentation that clarifies nuanced behaviors, new findings, and cross-product interactions—helping raise the technical baseline across the team and support a consistent client experience.'
+      }
+    ],
+    imgSrc: vpsImg,
+    imgAlt: 'Versaterm Public Safety logo.'
   },
 };
 

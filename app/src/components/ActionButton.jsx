@@ -16,7 +16,7 @@ export default function ActionButton({ id, path, name, toggleMenu, supportMobile
   const [isHovered, setIsHovered] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
 
-  const isExperiencePage = location && path === '/experience' && (location.path === '/experience/1' || location.path === '/experience/2');
+  const isExperiencePage = location && path === '/experience' && (location.path === '/experience/1' || location.path === '/experience/2' || location.path === '/experience/3');
   const isPortfolioPage = location && path === '/portfolio' && ['/portfolio/1', '/portfolio/2', '/portfolio/3', '/portfolio/4', '/portfolio/5', '/portfolio/6'].includes(location.path);
 
   useEffect(() => {
