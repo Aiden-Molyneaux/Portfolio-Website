@@ -39,13 +39,6 @@
   font-weight: 700;
 }
 
-@media (max-width: 1450px) {
-  .experienceOptions {
-    @include flex(column, center, center);
-    gap: 10px;
-  }
-}
-
 @media (max-width: 1350px) {
   .experienceContent {
     @include flex(column, center, center);

@@ -2,6 +2,8 @@ import React from 'react';
 import ActionButton from '../components/ActionButton.jsx';
 import EducationDetails from '../components/details/EducationDetails.jsx';
 import WorkDetails from '../components/details/WorkDetails.jsx';
+import useWindowSize from '../utils/useWindowState.js';
+
 
 export default function Experience() {
   const location = JSON.parse(window.localStorage.getItem('location'));
@@ -12,8 +14,11 @@ export default function Experience() {
   } else if (location.path === '/experience/2') {
     displayedSection = <WorkDetails id='02'/>;
   } else {
+    console.log('experience/3');
     displayedSection = <WorkDetails id='03'/>;
   }
+
+  const { width } = useWindowSize();
 
   return (
     <div className='pageContent'>
@@ -24,8 +29,7 @@ export default function Experience() {
           <div className='experienceOptions'>
             <ActionButton 
               id='01' 
-              name='bachelor of computer science, carleton university' 
-              supportMobile={{name1: 'bachelor of computer science,', name2: 'carleton university'}}
+              name='carleton university' 
             />
           </div>
           
@@ -34,28 +38,47 @@ export default function Experience() {
         
         <div className='workSection'>
           <h3>Work</h3>
-          <div className='experienceOptions'>
-            <ActionButton 
-              id='01' 
-              path='/experience/1' 
+          { width <= 450 ? 
+            <div className=''>
+              <div className='experienceOptions'>
+                <ActionButton 
+                  id='01' 
+                  path='/experience/1' 
               name='Wicket' 
-              supportMobile={{name1: 'junior software developer,', name2: 'wicket'}}
             />
             <ActionButton 
               id='02' 
               path='/experience/2' 
               name='IEM Inc.' 
-              supportMobile={{name1: 'electrical apprentice,', name2: 'IEM'}}
-            />
-            <ActionButton 
-              id='03' 
-              path='/experience/3' 
-              name='Versaterm Public Safety' 
-              supportMobile={{name1: '', name2: 'Versaterm'}}
-            />
-          </div>
-
-          { displayedSection }
+                />
+              </div>
+              <div className='experienceOptions'>
+                <ActionButton 
+                  id='03' 
+                  path='/experience/3' 
+                  name='Versaterm' 
+                />
+              </div>
+            </div>
+          : <div className='experienceOptions'>
+              <ActionButton 
+                id='01' 
+                path='/experience/1' 
+                name='Wicket' 
+              />
+              <ActionButton 
+                id='02' 
+                path='/experience/2' 
+                name='IEM Inc.' 
+              />
+              <ActionButton  
+                id='03' 
+                path='/experience/3' 
+                name='Versaterm' 
+              />
+            </div>
+          }
+          {displayedSection}
         </div>
       </div>
     </div>

@@ -8,7 +8,10 @@ import catImage3 from '../assets/tulip.png';
 
 export default function About() {
   const sectionDescription = 'Welcome to my corner of the web! Here, you\'ll find a glimpse into my journey as a student, junior software developer, and enthusiast of all things digital. But before we dive into the intricacies of code and creativity, let me introduce myself.';
-  const skillsAndExpertise = 'As a recent graduate from Carleton University with a Bachelor of Computer Science, I\'ve tested my skills in various domains of software development. With a primary focus on web development, I\'ve crafted dynamic and user-centric applications. Beyond technical prowess, I bring an inclusive mindset and a deep respect for people and their unique needs to every project I undertake. My technical abilities are complimented by my soft skills, which include my positive attitude and aptitude for continuous learning, analytical thinking, and technical writing, ensuring well-rounded solutions that exceed expectations.';
+  const skillsAndExpertise = [
+    'As a recent graduate from Carleton University with a Bachelor of Computer Science, I\'ve tested my skills in various domains of software development. With a primary focus on web development, I\'ve crafted dynamic and user-centric applications. Beyond technical prowess, I bring an inclusive mindset and a deep respect for people and their unique needs to every project I undertake. My technical abilities are complimented by my soft skills, which include my positive attitude and aptitude for continuous learning, analytical thinking, and technical writing, ensuring well-rounded solutions that exceed expectations.',
+    'Currently, I apply these strengths at Versaterm Public Safety, where I support mission-critical software used by emergency responders—contributing to systems that make a real-world impact while deepening my technical expertise.'
+  ]
   const funFacts = [
     {
       title: 'Gaming Enthusiast',
@@ -82,7 +85,8 @@ export default function About() {
           <div className='skillsSection'>
             <h3>Skills and Expertise</h3>
             <div className='mainSectionText'>
-              <p>{skillsAndExpertise}</p>
+              <p>{skillsAndExpertise[0]}</p>
+              <p>{skillsAndExpertise[1]}</p>
             </div>
           </div>
 

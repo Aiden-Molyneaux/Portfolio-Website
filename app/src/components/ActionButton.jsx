@@ -36,7 +36,7 @@ export default function ActionButton({ id, path, name, toggleMenu, supportMobile
 
   function setLocation() {
     // allow the Experience and Portfolio pages to open on the most recent experience and projects
-    if (path === '/experience') { path = '/experience/1'; }
+    if (path === '/experience') { path = '/experience/3'; }
     if (path === '/portfolio') { path = '/portfolio/6'; }
     window.localStorage.setItem('location', JSON.stringify({ path: path }));
   }
@@ -52,7 +52,7 @@ export default function ActionButton({ id, path, name, toggleMenu, supportMobile
   }
 
   function generatePath() {
-    if (path === '/experience') return '/experience/1';
+    if (path === '/experience') return '/experience/3';
     if (path === '/portfolio') return '/portfolio/6';
     return path;
   } 
@@ -68,20 +68,15 @@ export default function ActionButton({ id, path, name, toggleMenu, supportMobile
           onMouseLeave={() => setIsHovered(false)}
         >
           <span>//</span>
-          { supportMobile && window.innerWidth <= 450 
-            ? <span className={getClassName()}>{supportMobile.name1} <br/> {supportMobile.name2}</span>
-            : <span className={getClassName()}>{name}</span> 
-          }
+          <span className={getClassName()}>{name}</span> 
         </Link>
       </div>
       : <div key={id} className='actionButton'>
         <h6>{id}</h6>
         <Link>
           <span>//</span>
-          { supportMobile && window.innerWidth <= 450 
-            ? <span className={'actionButtonClicked actionButtonText'}>{supportMobile.name1} <br/> {supportMobile.name2}</span>
-            : <span className={'actionButtonClicked actionButtonText'}>{name}</span> 
-          }
+          <span className={'actionButtonClicked actionButtonText'}>{name}</span> 
+
         </Link>
       </div>
   );

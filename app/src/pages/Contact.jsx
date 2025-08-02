@@ -14,6 +14,7 @@ export default function Contact() {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   function handleChange(event) {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -50,13 +51,15 @@ export default function Contact() {
     }
   }
 
+
+
   return (
     <div className='pageContent'>
       <form onSubmit={submitForm} className='contactForm'>
         <h3 className='sectionHeader'>Contact Me</h3>
 
         <p>Aiden Molyneaux</p>
-        <a href='mailto:aidenmolyneaux@hotmail.com' className='experienceName bottomMargin' id='emailLink' >aidenmolyneaux@hotmail.com <FontAwesomeIcon icon={faPaperPlane}/></a>
+        <a href='mailto:aidenmolyneaux@hotmail.com' className='experienceNamebottomMargin' id='emailLink' >aidenmolyneaux@hotmail.com <FontAwesomeIcon icon={faPaperPlane}/></a>
 
         { formSubmitted 
         ? <h6 className='bottomMargin topMargin'>Your message has been sent to Aiden!</h6>

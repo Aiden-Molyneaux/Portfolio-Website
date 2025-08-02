@@ -104,7 +104,7 @@ const workData = {
       },
       {
         title: 'Defect Evaluation & Escalation',
-        description: 'Assess unexpected system behavior and determine whether issues stem from user error, configuration, or underlying bugs. When needed, package detailed, reproducible cases for escalation as formal development defects.'
+        description: 'Assess unexpected system behavior and determine whether issues stem from user error, configuration, or underlying bugs. When necessary, compile detailed, reproducible cases and escalate them as formal development defects.'
       },
       {
         title: 'Source-Level Investigation',
