@@ -7,6 +7,15 @@ import aiAssessorImg2 from '../../assets/aiAssessor2.png';
 import dontSnoozeImg1 from '../../assets/dontSnoozeImg1.png';
 import dontSnoozeImg2 from '../../assets/dontSnoozeImg2.png';
 import dontSnoozeImg3 from '../../assets/dontSnoozeImg3.png';
+import homePageImg from '../../assets/homePageImg.png';
+import homePageMobileImg from '../../assets/homePageMobileImg.png';
+import RSVPImg from '../../assets/RSVPImg.png';
+import menuPageMobile from '../../assets/menuPageMobile.png';
+import ingameAuthImg from '../../assets/ingameAuthImg.png';
+import ingameHomeImg1 from '../../assets/ingameHomeImg1.png';
+import ingameHomeImg2 from '../../assets/ingameHomeImg2.png';
+import ingameHomeImg3 from '../../assets/ingameHomeImg3.png';
+
 
 const projectData = [
   {
@@ -191,18 +200,22 @@ const projectData = [
       'The wedding website became an essential tool for planning and managing the event, providing guests with all the necessary information in an accessible format. Through user testing with our family and friends, we ensured the design remained intuitive for users of all ages and technical backgrounds.'
     ],
     imgData: [
-      // { 
-      //   imgSrc: dontSnoozeImg1,
-      //   imgAlt: 'Screenshot of my Don\'t Snooze Health and Fitness Club Web Application user interface.'
-      // },
-      // { 
-      //   imgSrc: dontSnoozeImg2,
-      //   imgAlt: 'Screenshot of my Don\'t Snooze Health and Fitness Club Web Application user interface.'
-      // },
-      // { 
-      //   imgSrc: dontSnoozeImg3,
-      //   imgAlt: 'Screenshot of my Don\'t Snooze Health and Fitness Club Web Application user interface.'
-      // }
+      { 
+        imgSrc: homePageImg,
+        imgAlt: 'Screenshot of my person Wedding Website user interface.'
+      },
+      { 
+        imgSrc: homePageMobileImg,
+        imgAlt: 'Screenshot of my person Wedding Website user interface.'
+      },
+      { 
+        imgSrc: RSVPImg,
+        imgAlt: 'Screenshot of my person Wedding Website user interface.'
+      },
+      { 
+        imgSrc: menuPageMobile,
+        imgAlt: 'Screenshot of my person Wedding Website user interface.'
+      }
     ]
   },
   {
@@ -241,18 +254,22 @@ const projectData = [
       'The Videogame Statistic Mobile App serves as a personal hub for tracking video game history, providing users with insightful data about their gaming habits. The app’s development highlights my ability to adapt to new technologies like React Native while mentoring a teammate and prioritizing cross-platform scalability for future projects.'
     ],
     imgData: [
-      // { 
-      //   imgSrc: dontSnoozeImg1,
-      //   imgAlt: 'Screenshot of my Don\'t Snooze Health and Fitness Club Web Application user interface.'
-      // },
-      // { 
-      //   imgSrc: dontSnoozeImg2,
-      //   imgAlt: 'Screenshot of my Don\'t Snooze Health and Fitness Club Web Application user interface.'
-      // },
-      // { 
-      //   imgSrc: dontSnoozeImg3,
-      //   imgAlt: 'Screenshot of my Don\'t Snooze Health and Fitness Club Web Application user interface.'
-      // }
+      { 
+        imgSrc: ingameAuthImg,
+        imgAlt: 'Screenshot of my InGame mobile application user interface.'
+      },
+      { 
+        imgSrc: ingameHomeImg1,
+        imgAlt: 'Screenshot of my InGame mobile application user interface.'
+      },
+      { 
+        imgSrc: ingameHomeImg2,
+        imgAlt: 'Screenshot of my InGame mobile application user interface.'
+      },
+      { 
+        imgSrc: ingameHomeImg3,
+        imgAlt: 'Screenshot of my InGame mobile application user interface.'
+      }
     ]
   },
 ];
