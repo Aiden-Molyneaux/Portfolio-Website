@@ -90,13 +90,13 @@ const workData = {
     location: 'Ottawa, ON',
     duration: 'April 2025 - Present',
     description: [
-      'At Versaterm Public Safety, I work on the front lines of technical support, helping ensure that first responders can depend on the tools they need in critical moments. Supporting a suite of applications—CAD, MDT, vMobile, and VMC—I troubleshoot and resolve issues across multiple languages and platforms, from Genero4GL and C# to React Native.',
+      'At Versaterm Public Safety, I work on the front lines of technical support, helping ensure that first responders can depend on the tools they need in critical moments. Supporting a suite of applications—CAD, MDT, vMobile, and VMC—I troubleshoot and resolve issues across multiple languages and platforms, from Genero4GL and C# to ReactJS.',
       'In this fast-paced, high-stakes environment, I triage incoming tickets, reproduce complex client workflows, and work closely with developers, project teams, and end-users to deliver timely, accurate solutions. Contributing to software that supports emergency services has given my work real weight. I’ve felt welcomed into a collaborative, mission-driven environment where I’m proud of what we build and the role I play in making it stronger.'
     ],
     keyContributions: [
       {
         title: 'Cross-Platform Troubleshooting',
-        description: 'Support and diagnose issues across a suite of public safety products developed in Genero4GL, C#, and React Native, requiring context-switching between multiple languages, architectures, and integrations.'
+        description: 'Support and diagnose issues across a suite of public safety products developed in Genero4GL, C#, and ReactJS, requiring context-switching between multiple languages, architectures, and integrations.'
       },
       {
         title: 'Client Relationship & Communication',
