@@ -2,9 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/src/assets/headshot.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/jpeg" href="/src/assets/web/headshot.jpg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Aiden Molyneaux, software engineer in Ottawa. Public-safety software, and tools for coding with AI agents." />
     <title>Aiden Molyneaux</title>
+    <script>
+      // apply a stored theme pick before first paint; with none, the CSS follows the system setting
+      try { var t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) { /* storage blocked */ }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" />
+    <!-- Caveat is only for the three margin notes, so load just their letters -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&text=presitlbaodgunfw%2C%20&display=swap" />
   </head>
   <body>
     <div id="root"></div>

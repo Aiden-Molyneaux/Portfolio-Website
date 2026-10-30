@@ -1,0 +1,38 @@
+// The hero is a technical drawing: dashed construction lines through the centre, a live width dimension,
+// the heart rate top-left and a figure label top-right.
+.hero { position: relative; height: 460px; }
+.hero::before, .hero::after { content: ""; position: absolute; pointer-events: none; }
+.hero::before { left: 50%; top: 40px; bottom: 24px; border-left: 1px dashed var(--line); }
+.hero::after { left: 0; right: 0; top: 52%; border-top: 1px dashed var(--line); }
+.focal { position: absolute; inset: 36px 0 16px; display: grid; place-items: center; z-index: 1; }
+.focal-btn { all: unset; position: relative; display: block; width: min(100%, 470px); height: 100%; cursor: grab; touch-action: pan-y; -webkit-tap-highlight-color: transparent; }
+.focal-btn.dragging { cursor: grabbing; }
+.focal-btn.flat { cursor: default; }
+.focal-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: -8px; border-radius: 12px; }
+.focal-cv { display: block; width: 100%; height: 100%; }
+.hero-read, .hero-fig { position: absolute; top: 34px; z-index: 2; display: grid; gap: 3px; font: 400 11px/1.35 var(--mono); color: var(--muted); pointer-events: none; }
+.hero-read { left: 20px; }
+.hero-fig { right: 20px; text-align: right; text-transform: uppercase; letter-spacing: .06em; }
+.hero-fig span:first-child { color: var(--ink); }
+.hero-bpm { color: var(--ink); font-size: 12px; margin-bottom: 3px; }
+.hero-bpm b { font: 500 30px/1 var(--mono); letter-spacing: -.03em; font-variant-numeric: tabular-nums; color: var(--accent-text); }
+.note-press { right: -150px; top: 210px; }
+.note-drag { left: -128px; top: 260px; transform: rotate(5deg); text-align: right; }
+.note-drag svg { margin: 2px 0 0 auto; }
+
+.dim { position: absolute; font: 400 11px/1 var(--mono); color: var(--muted); pointer-events: none; }
+.dim-w { left: 0; right: 0; top: 14px; height: 1px; background: var(--line-2); }
+.dim-w::before, .dim-w::after { content: ""; position: absolute; top: -4px; height: 9px; border-left: 1px solid var(--line-2); }
+.dim-w::before { left: 0; }
+.dim-w::after { right: 0; }
+.dim-w span { position: absolute; left: 50%; top: -6px; transform: translateX(-50%); background: var(--paper); padding: 0 6px; }
+
+@media (max-width: 560px) {
+  .hero { height: 380px; }
+  .hero-read, .hero-fig { top: 30px; font-size: 10px; }
+  .hero-read { left: 14px; }
+  .hero-fig { right: 14px; }
+  .hero-bpm b { font-size: 24px; }
+  .hero-read span:last-child, .hero-fig span:last-child { display: none; }
+  .focal { top: 64px; }
+}

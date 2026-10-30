@@ -10,7 +10,7 @@ module.exports = {
       template: './index.html',
       filename: 'index.html',
       inject: 'body',
-      favicon: './src/assets/headshot.png'
+      favicon: './src/assets/web/headshot.jpg'
     })
   ],
   module: {

@@ -1,0 +1,29 @@
+// Colour tokens. Light by default; dark is the old site's palette (#111, red #ff4122, yellow #ffd741).
+// The heart reads --heart, --heart-edge and --heart-flat; the cats' outline reads --cat-stroke.
+@mixin dark {
+  --paper: #111111; --ink: #f2efe9; --muted: #8f8d88; --line: #262626; --line-2: #333333; --chip: #1a1a1a;
+  --accent: #ff4122; --accent-text: #ff6a4f; --dot: #ffd741;
+  --c0: #1c1c1c; --c1: #4a1a12; --c2: #8a2617; --c3: #d1351c; --c4: #ff4122;
+  --cat-stroke: #5c5a56;
+  --heart: #ff4122; --heart-edge: #0d0d0d; --heart-flat: #3a3a3a; --mark: #ff4122;
+  --tip-bg: #f2efe9; --tip-fg: #111;
+  color-scheme: dark;
+}
+
+:root {
+  --paper: #fbfbfa; --ink: #18181a; --muted: #6a6a70; --line: #e4e4e2; --line-2: #d2d2cf; --chip: #f2f2f0;
+  --accent: #e8361c; --accent-text: #b02a14; --dot: #e8361c;
+  --c0: #ececea; --c1: #f6c3b8; --c2: #f08f78; --c3: #e85c3e; --c4: #c8321a;
+  --cat-stroke: #18181a;
+  --heart: #e8361c; --heart-edge: #18181a; --heart-flat: #d9d8d4; --mark: #e8361c;
+  --tip-bg: #18181a; --tip-fg: #fbfbfa;
+  --sans: 'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --mono: 'Geist Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  --hand: 'Caveat', 'Segoe Print', 'Bradley Hand', cursive;
+  --col: 720px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { @include dark; }
+}
+:root[data-theme="dark"] { @include dark; }

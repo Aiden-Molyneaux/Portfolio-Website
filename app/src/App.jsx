@@ -1,49 +1,86 @@
-/* eslint-disable indent */
-import React, { useEffect } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import './styles/app.scss';
-import Navbar from './components/Navbar.jsx';
-import Home from './pages/Home.jsx';
-import About from './pages/About.jsx';
-import Experience from './pages/Experience.jsx';
-import Portfolio from './pages/Portfolio.jsx';
-import Contact from './pages/Contact.jsx';
+import Header from './components/Header.jsx';
+import Hero from './components/Hero.jsx';
+import Identity from './components/Identity.jsx';
+import Contributions from './components/Contributions.jsx';
+import { About, CatShelf, Experience, Footer, NotFound, Projects } from './components/Sections.jsx';
+import { useContributions } from './lib/hooks.js';
+import { restBpm, weekTotal } from './lib/contrib.js';
+import { mountCats } from './lib/cats.js';
 
-function App() {
-  const navigate = useNavigate();
+// The old site had five pages; their paths now point at the matching section of the one page.
+const LEGACY = { home: '', about: 'about', experience: 'experience', portfolio: 'projects', contact: '' };
+
+function routeFromPath() {
+  const path = window.location.pathname.replace(/\/index\.html$/, '/').replace(/\/+$/, '') || '/';
+  if (path === '/') return 'home';
+  const legacy = path.match(/^\/(home|about|experience|portfolio|contact)(\/\d+)?$/);
+  if (legacy) {
+    const id = LEGACY[legacy[1]];
+    window.history.replaceState(null, '', '/' + (id ? '#' + id : ''));
+    return 'home';
+  }
+  return 'notFound';
+}
+
+const Rule = () => <div className="rule" />;
+const Band = () => <><Rule /><div className="hatch" /><Rule /></>;
+
+export default function App() {
+  const [route, setRoute] = useState(routeFromPath);
+  const days = useContributions();
+  const notFound = route === 'notFound';
 
   useEffect(() => {
-    const location = JSON.parse(window.localStorage.getItem('location'));
-    if (location) {
-      navigate(location.path);
-    } else {
-      window.localStorage.setItem('location', JSON.stringify({ path: '/home' }));
-      navigate('/home');
-    }
+    document.title = notFound ? 'Page not found · Aiden Molyneaux' : 'Aiden Molyneaux';
+  }, [notFound]);
+
+  // the page renders after the browser's own jump to #section, so make that jump once it exists,
+  // and again once the web fonts have settled the layout
+  useEffect(() => {
+    const id = window.location.hash.slice(1);
+    if (!id) return;
+    const jump = () => document.getElementById(id)?.scrollIntoView();
+    jump();
+    document.fonts?.ready.then(jump);
   }, []);
+
+  useEffect(() => {
+    const q = s => document.querySelector(s);
+    return mountCats({
+      anchors: { tubbin: { el: q('#meta'), x: 0.86 }, timber: { el: q('#experience .sec-h'), x: 0.42 }, tulip: { el: q('#projects .sec-h'), x: 0.36 } },
+      bottom: q('#foot'),
+    });
+  }, []);
+
+  const goHome = () => {
+    window.history.pushState(null, '', '/');
+    setRoute('home');
+    window.scrollTo({ top: 0 });
+  };
 
   return (
     <>
-      <Navbar/>
-      <Routes>
-        <Route path="/" element={<Home/>}></Route>
-        <Route path="/home" element={<Home/>}></Route>
-        <Route path="/about" element={<About/>}></Route>
-        <Route path="/experience" element={<Experience/>}></Route>
-        <Route path="/experience/1" element={<Experience/>}></Route>
-        <Route path="/experience/2" element={<Experience/>}></Route>
-        <Route path="/experience/3" element={<Experience/>}></Route>
-        <Route path="/portfolio" element={<Portfolio/>}></Route>
-        <Route path="/portfolio/1" element={<Portfolio/>}></Route>
-        <Route path="/portfolio/2" element={<Portfolio/>}></Route>
-        <Route path="/portfolio/3" element={<Portfolio/>}></Route>
-        <Route path="/portfolio/4" element={<Portfolio/>}></Route>
-        <Route path="/portfolio/5" element={<Portfolio/>}></Route>
-        <Route path="/portfolio/6" element={<Portfolio/>}></Route>
-        <Route path="/contact" element={<Contact/>}></Route>
-      </Routes>
-    </> 
+      <Header />
+      <main className="frame" id="top">
+        <Hero rest={restBpm(days)} week={weekTotal(days)} flat={notFound} />
+        <Rule />
+        <Identity />
+        <Rule />
+        <div className="pad"><Contributions days={days} /></div>
+        <Band />
+        <About />
+        <Rule />
+        <CatShelf />
+        <Band />
+        <Experience />
+        <Band />
+        <Projects />
+        <Band />
+        <Footer />
+      </main>
+      {notFound && <NotFound onHome={goHome} />}
+    </>
   );
 }
-
-export default App;
