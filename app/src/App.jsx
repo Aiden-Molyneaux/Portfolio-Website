@@ -8,6 +8,7 @@ import { About, CatShelf, Experience, Footer, NotFound, Projects, Stack } from '
 import { useContributions } from './lib/hooks.js';
 import { restBpm, weekTotal } from './lib/contrib.js';
 import { mountCats } from './lib/cats.js';
+import { CONTENT } from './content.js';
 
 // The old site had five pages; their paths now point at the matching section of the one page.
 const LEGACY = { home: '', about: 'about', experience: 'experience', portfolio: 'projects', contact: '' };
@@ -51,6 +52,7 @@ export default function App() {
     return mountCats({
       anchors: { tubbin: { el: q('#meta'), x: 0.86 }, timber: { el: q('#experience .sec-h'), x: 0.42 }, tulip: { el: q('#projects .sec-h'), x: 0.36 } },
       bottom: q('#foot'),
+      roles: Object.fromEntries(CONTENT.cats.map(c => [c.id, c.role])),
     });
   }, []);
 

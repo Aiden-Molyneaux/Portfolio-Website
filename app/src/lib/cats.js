@@ -1,6 +1,6 @@
 // The four cats as low-poly vector poses with an ink outline, faceted like the heart.
 // Coats come from photos of the real cats. Frame art and timing are a first pass; tune them in the page.
-// mountCats({ anchors: { tubbin, timber, tulip }, bottom }) -> unmount()
+// mountCats({ anchors: { tubbin, timber, tulip }, bottom, roles }) -> unmount()
 const NAMES = { tubbin: 'Tubbin', timber: 'Timber', tulip: 'Tulip', tonka: 'Tonka' };
 export const CAT_NAMES = NAMES;
 const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -208,7 +208,7 @@ export function portraitMarkup(id, px = 64) {
 let gen = 0;
 export function mountCats(o) {
   const my = ++gen;
-  const opts = Object.assign({ scale: 3, anchors: {}, tonkaAfter: 40000 }, o);
+  const opts = Object.assign({ scale: 3, anchors: {}, roles: {}, tonkaAfter: 40000 }, o);
   const live = () => my === gen;
   const px = 16 * opts.scale;
   const SETS = { sit: SIT, nap: NAP, stroll: STROLL, trot: TROT, run: RUN, crouch: [CROUCH], pounce: [POUNCE] };
@@ -219,9 +219,18 @@ export function mountCats(o) {
   function make(id, onClick) {
     const el = document.createElement('div');
     el.className = `cat cat-${id} cat-geo`; el.setAttribute('role', 'button'); el.setAttribute('tabindex', '0');
-    el.setAttribute('aria-label', NAMES[id] + ', one of the cats');
+    const role = opts.roles[id];
+    el.setAttribute('aria-label', NAMES[id] + ', ' + (role || 'one of the cats'));
     const body = document.createElement('div'); body.className = 'cat-body'; el.append(body);
-    const tag = document.createElement('span'); tag.className = 'cat-tag'; tag.textContent = NAMES[id]; el.append(tag);
+    // the name tag: a drafting callout with the name and shelf role, shown on hover, focus or a tap
+    const tag = document.createElement('span'); tag.className = 'cat-tag'; tag.setAttribute('aria-hidden', 'true');
+    const label = document.createElement('span'), name = document.createElement('b');
+    name.textContent = NAMES[id]; label.append(name);
+    if (role) { const r = document.createElement('small'); r.textContent = role; label.append(r); }
+    tag.append(label); el.append(tag);
+    // the callout leans right, or left when the cat is near the right of the screen
+    const aim = () => { const r = el.getBoundingClientRect(); el.classList.toggle('tag-left', r.left + r.width / 2 > window.innerWidth * 0.6); };
+    el.addEventListener('pointerenter', aim); el.addEventListener('focus', aim);
     const built = {}; let cur = null, timer = null;
     cleanups.push(() => clearInterval(timer));
     const frames = set => built[set] || (built[set] = SETS[set].map(f => { const s = geoSVG(f, COATS[id], px); s.style.display = 'none'; body.append(s); return s; }));
@@ -236,7 +245,7 @@ export function mountCats(o) {
       },
       face(dir) { el.style.setProperty('--face', dir < 0 ? -1 : 1); },
       bob(v) { el.style.setProperty('--bob', v + 'px'); },
-      tagFor(ms) { el.classList.add('tagged'); later(() => el.classList.remove('tagged'), ms); },
+      tagFor(ms) { aim(); el.classList.add('tagged'); later(() => el.classList.remove('tagged'), ms); },
     };
     el.addEventListener('click', e => { e.stopPropagation(); cat.tagFor(2000); if (onClick) onClick(cat); });
     el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); } });

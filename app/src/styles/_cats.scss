@@ -20,9 +20,23 @@ svg.geo polygon.detail { stroke: none; }
 .cat { position: absolute; z-index: 4; cursor: pointer; line-height: 0; user-select: none; -webkit-user-select: none; color: var(--ink); }
 .cat svg { display: block; transform: scaleX(var(--face, 1)); }
 .cat.fixed { position: fixed; }
-.cat .cat-tag { position: absolute; left: 50%; top: -1.6em; transform: translateX(-50%); font: 400 11px/1.4 var(--mono); letter-spacing: .04em;
-  white-space: nowrap; padding: 2px 6px; background: var(--tip-bg); color: var(--tip-fg); border-radius: 2px; pointer-events: none; opacity: 0; transition: opacity 200ms; }
-.cat.tagged .cat-tag { opacity: 1; }
+// name tags, as drafting callouts: a dot on the cat, a 45° leader up to a shoulder line, and the name and role on it.
+// --tag turns one on (hover, focus, or a tap); .tag-left mirrors it when the cat is near the right of the screen.
+.cat.tagged, .cat:focus-visible { --tag: 1; }
+@media (hover: hover) { .cat:hover { --tag: 1; } }
+.cat-tubbin { --tag-x: 61%; --tag-y: 20px; } // napping: his head is low and right of centre
+.cat .cat-tag { position: absolute; left: var(--tag-x, 50%); bottom: calc(100% - var(--tag-y, 8px)); padding: 0 0 16px 16px; line-height: 1;
+  pointer-events: none; opacity: var(--tag, 0); transition: opacity var(--dur) var(--ease); }
+.cat-tag::before { content: ""; position: absolute; left: 0; bottom: 0; width: 22.6px; height: 1px; background: var(--muted); // 16px across and up
+  transform-origin: 0 50%; transform: rotate(-45deg) scaleX(var(--tag, 0)); transition: transform 180ms var(--ease); }
+.cat-tag::after { content: ""; position: absolute; left: -2.5px; bottom: -2.5px; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+.cat-tag > span { display: grid; gap: 3px; padding: 0 3px 4px; border-bottom: 1px solid var(--muted); background: var(--paper); white-space: nowrap;
+  opacity: var(--tag, 0); transition: opacity var(--dur) var(--ease) 120ms; }
+.cat-tag b { font: 600 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink); }
+.cat-tag small { font: 400 10px/1 var(--mono); color: var(--muted); }
+.cat.tag-left .cat-tag { left: auto; right: calc(100% - var(--tag-x, 50%)); padding: 0 16px 16px 0; text-align: right; }
+.cat.tag-left .cat-tag::before { left: auto; right: 0; transform-origin: 100% 50%; transform: rotate(45deg) scaleX(var(--tag, 0)); }
+.cat.tag-left .cat-tag::after { left: auto; right: -2.5px; }
 .cat .cat-body { position: relative; transform: translateY(var(--bob, 0px)); }
 .cat.wiggle .cat-body { animation: cat-wiggle 110ms linear infinite; }
 @keyframes cat-wiggle { 0%, 100% { transform: translate(0, var(--bob, 0px)) } 50% { transform: translate(1px, var(--bob, 0px)) rotate(-2deg) } }
@@ -34,4 +48,5 @@ svg.geo polygon.detail { stroke: none; }
 @media (prefers-reduced-motion: reduce) {
   .cat-z { display: none; }
   .cat.wiggle .cat-body { animation: none; }
+  .cat-tag::before, .cat-tag > span { transition: none; }
 }
