@@ -2,6 +2,8 @@
 html, body { overflow-x: clip; }
 // the sticky header is 52px; keep section headings clear of it when jumping to an anchor
 html { scroll-padding-top: 53px; }
+// header and footer links glide to their section instead of jumping
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 body {
   margin: 0; background: var(--paper); color: var(--ink);
   font: 400 16px/1.6 var(--sans); -webkit-font-smoothing: antialiased;

@@ -41,7 +41,7 @@ export default function App() {
   useEffect(() => {
     const id = window.location.hash.slice(1);
     if (!id) return;
-    const jump = () => document.getElementById(id)?.scrollIntoView();
+    const jump = () => document.getElementById(id)?.scrollIntoView({ behavior: 'instant' });
     jump();
     document.fonts?.ready.then(jump);
   }, []);
@@ -57,7 +57,7 @@ export default function App() {
   const goHome = () => {
     window.history.pushState(null, '', '/');
     setRoute('home');
-    window.scrollTo({ top: 0 });
+    window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
   return (

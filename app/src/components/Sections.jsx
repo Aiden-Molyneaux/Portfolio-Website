@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { CONTENT, monthDot, monthsBetween, spanLabel } from '../content.js';
 import { CAT_NAMES, portraitMarkup } from '../lib/cats.js';
+import { toggleDetails } from '../lib/motion.js';
+import { useSlide } from '../lib/hooks.js';
 import { Chevron, GitHubIcon, LinkIcon, LinkedInIcon, iconUrl } from './icons.jsx';
 
 // date ranges read like chanhdai's: sans digits, a mono dash, and a drawn ∞ for an open end (the glyph is tiny in both fonts)
@@ -58,7 +60,7 @@ export function Experience() {
             <div className="roles">
               {org.roles.map((r, ri) => (
                 <details className="role" key={r.title} open={oi === 0 && ri === 0} style={{ '--ico': iconUrl(r.icon) }}>
-                  <summary>
+                  <summary onClick={toggleDetails}>
                     <span className="role-t">{r.title}</span><Chevron />
                     <span className="role-m dates">{monthDot(r.start)}<Dash />{r.end ? monthDot(r.end) : <Inf label="present" />}<span className="sep">|</span>{spanLabel(monthsBetween(r.start, r.end))}</span>
                   </summary>
@@ -85,7 +87,7 @@ const projInitials = name => name.replace(/[^A-Za-z ]/g, ' ').split(/\s+/).filte
 function Project({ p, open }) {
   return (
     <details className="p" open={open}>
-      <summary>
+      <summary onClick={toggleDetails}>
         <span className="p-ico" aria-hidden="true">{projInitials(p.name)}</span>
         <span className="p-n">{p.name}</span>
         {p.link
@@ -108,6 +110,8 @@ function Project({ p, open }) {
 
 export function Projects() {
   const [more, setMore] = useState(false);
+  const moreRef = useRef(null), btnRef = useRef(null);
+  useSlide(moreRef, more, btnRef);
   const selected = CONTENT.selected.map(id => CONTENT.projects.find(p => p.id === id));
   const rest = CONTENT.projects.filter(p => !CONTENT.selected.includes(p.id));
   return (
@@ -115,12 +119,14 @@ export function Projects() {
       <div className="pad"><h2 className="sec-h">Projects<sup>({CONTENT.projects.length})</sup></h2></div>
       <div className="rule" />
       <div className="pad">{selected.map((p, i) => <Project key={p.id} p={p} open={i === 0} />)}</div>
-      <div className="pad" id="proj-more" hidden={!more}>{rest.map(p => <Project key={p.id} p={p} />)}</div>
-      {more && <div className="pad"><p className="also">Also in the works: {CONTENT.alsoMentioned}</p></div>}
+      <div id="proj-more" ref={moreRef}>
+        <div className="pad">{rest.map(p => <Project key={p.id} p={p} />)}</div>
+        <div className="pad"><p className="also">Also in the works: {CONTENT.alsoMentioned}</p></div>
+      </div>
       <div className="more-btn">
-        <button type="button" aria-expanded={more} aria-controls="proj-more" onClick={() => setMore(!more)}>
+        <button type="button" ref={btnRef} aria-expanded={more} aria-controls="proj-more" onClick={() => setMore(!more)}>
           {more ? 'Show less' : 'Show more'}
-          <svg viewBox="0 0 16 16" aria-hidden="true" style={more ? { transform: 'rotate(180deg)' } : undefined}><path d="M4 6l4 4 4-4" /></svg>
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
         </button>
       </div>
     </section>

@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { SNAPSHOT, isCalendar } from './contrib.js';
+import { canSlide, slide } from './motion.js';
 import { CONTRIB_URL } from '../config.js';
 
 // The bundled snapshot first, then the live calendar from the Lambda when it answers. A failed or odd
@@ -41,6 +42,21 @@ export function useTheme() {
     setTheme(next);
   };
   return [theme, toggle];
+}
+
+// Shows and hides a block (Show more, the phone menu) with the page's slide instead of the hidden attribute
+// snapping it. The block itself carries no hidden prop; this sets it, before first paint. keep: an element
+// to hold still on screen while the block closes above it.
+export function useSlide(ref, open, keep) {
+  const was = useRef(null); // the last state applied, so a re-run with the same value (StrictMode) does nothing
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (!el || was.current === open) return;
+    const first = was.current === null;
+    was.current = open;
+    if (first || !canSlide(el)) { el.hidden = !open; return; }
+    slide(el, open, { show: () => { el.hidden = false; }, hide: () => { el.hidden = true; }, keep: keep?.current });
+  }, [open]);
 }
 
 // Width of an element in CSS pixels, for the live dimension labels.

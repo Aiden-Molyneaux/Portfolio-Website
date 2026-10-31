@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { GitHubIcon, PixelHeart } from './icons.jsx';
 import { CONTENT } from '../content.js';
-import { useTheme } from '../lib/hooks.js';
+import { useSlide, useTheme } from '../lib/hooks.js';
 
 const SECTIONS =[['top', 'Index'], ['about', 'About'], ['experience', 'Experience'], ['projects', 'Projects']];
 
@@ -27,6 +27,8 @@ export default function Header() {
   const cur = useActiveSection();
   const [theme, toggleTheme] = useTheme();
   const [menu, setMenu] = useState(false);
+  const menuRef = useRef(null);
+  useSlide(menuRef, menu);
   const links = SECTIONS.slice(1).map(([id, name]) => (
     <a key={id} href={`#${id}`} className={cur === id ? 'on' : undefined} aria-current={cur === id ? 'true' : undefined} onClick={() => setMenu(false)}>{name}</a>
   ));
@@ -44,7 +46,7 @@ export default function Header() {
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M4 9h16M4 15h16" /></svg>
         </button>
       </div>
-      <nav className="frame pad menu-panel" id="menu-panel" aria-label="Sections" hidden={!menu}>{links}</nav>
+      <nav className="frame pad menu-panel" id="menu-panel" aria-label="Sections" ref={menuRef}>{links}</nav>
       <div className="rule" />
     </header>
   );
