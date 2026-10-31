@@ -27,6 +27,15 @@ export const CONTENT = {
     'Most of my work now is <b>AI-native</b>: I built cad-dev-loop, the Claude Code plugin my team works tickets with, and I co-lead the Bug pod.',
     'Off the clock: my wife, our four cats, too many movies, Destiny, and a Rubik\'s cube.',
   ],
+  // Stack section: [group, tools]. A draft from the tech tags below, for Aiden to edit. Each tool needs a glyph in
+  // data/stack-icons.js (a Simple Icons logo, an alias of one, or one of our outline glyphs).
+  stack: [
+    ['Language', ['TypeScript', 'JavaScript', 'Python', 'C#', 'C++', 'Genero 4GL']],
+    ['Frontend', ['React', 'React Native', 'Vite', 'Sass', 'Electron', 'WPF']],
+    ['Backend & Data', ['Node.js', '.NET', 'FastAPI', 'Fastify', 'PostgreSQL', 'Informix', 'Redis', 'SQLite', 'MongoDB', 'AWS Lambda']],
+    ['AI', ['Claude Code', 'Ollama', 'Qdrant']],
+    ['Workflow & Testing', ['Git', 'GitHub', 'GitHub Actions', 'GitLab', 'Jira', 'Vitest', 'Playwright', 'Cypress']],
+  ],
   shelfTitle: 'The rest of the household',
   cats: [
     { id: 'tubbin', role: 'senior napper' },

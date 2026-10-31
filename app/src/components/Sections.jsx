@@ -3,6 +3,7 @@ import { CONTENT, monthDot, monthsBetween, spanLabel } from '../content.js';
 import { CAT_NAMES, portraitMarkup } from '../lib/cats.js';
 import { toggleDetails } from '../lib/motion.js';
 import { useSlide } from '../lib/hooks.js';
+import { GLYPHS, GLYPH_FOR, LOGOS, LOGO_ALIAS } from '../data/stack-icons.js';
 import { Chevron, GitHubIcon, LinkIcon, LinkedInIcon, iconUrl } from './icons.jsx';
 
 // date ranges read like chanhdai's: sans digits, a mono dash, and a drawn ∞ for an open end (the glyph is tiny in both fonts)
@@ -19,6 +20,34 @@ export function About() {
     <section className="about pad" id="about">
       <h2 className="sec-h">{greeting()}</h2>
       <ul>{CONTENT.about.map((t, i) => <li key={i} dangerouslySetInnerHTML={{ __html: t }} />)}</ul>
+    </section>
+  );
+}
+
+// A tool's glyph: its brand mark, filled, or one of our outline glyphs, stroked.
+function ToolGlyph({ name }) {
+  const logo = LOGOS[LOGO_ALIAS[name] || name];
+  if (logo) return <svg viewBox="0 0 24 24" aria-hidden="true"><path d={logo} /></svg>;
+  return <svg className="outline" viewBox="0 0 24 24" aria-hidden="true"><path d={GLYPHS[GLYPH_FOR[name] || 'code']} /></svg>;
+}
+
+// Stack: one row per group, a numbered label on the left and the tools as pills (not links) on the right.
+export function Stack() {
+  return (
+    <section id="stack">
+      <div className="pad"><h2 className="sec-h">Stack</h2></div>
+      <div className="rule" />
+      <div className="stack">
+        {CONTENT.stack.map(([group, tools], i) => {
+          const id = `stack-${i + 1}`;
+          return (
+            <div className="stack-row" key={group}>
+              <div className="stack-g" id={id}><span aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>{group}</div>
+              <ul aria-labelledby={id}>{tools.map(t => <li key={t}><ToolGlyph name={t} />{t}</li>)}</ul>
+            </div>
+          );
+        })}
+      </div>
     </section>
   );
 }

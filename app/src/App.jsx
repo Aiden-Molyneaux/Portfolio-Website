@@ -4,7 +4,7 @@ import Header from './components/Header.jsx';
 import Hero from './components/Hero.jsx';
 import Identity from './components/Identity.jsx';
 import Contributions from './components/Contributions.jsx';
-import { About, CatShelf, Experience, Footer, NotFound, Projects } from './components/Sections.jsx';
+import { About, CatShelf, Experience, Footer, NotFound, Projects, Stack } from './components/Sections.jsx';
 import { useContributions } from './lib/hooks.js';
 import { restBpm, weekTotal } from './lib/contrib.js';
 import { mountCats } from './lib/cats.js';
@@ -72,6 +72,8 @@ export default function App() {
         <About />
         <Rule />
         <CatShelf />
+        <Band />
+        <Stack />
         <Band />
         <Experience />
         <Band />
