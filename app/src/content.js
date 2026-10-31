@@ -11,7 +11,13 @@ import dontSnoozeImg from './assets/web/dontSnoozeImg1.jpg';
 export const CONTENT = {
   name: 'Aiden Molyneaux',
   headshot,
-  tagline: 'Coding still makes my heart beat.',
+  // the line under the name cycles through these, starting with the first
+  taglines: [
+    'Coding still makes my heart beat.',
+    'Software engineer. I make my own tools.',
+    'Public-safety software, built with AI.',
+    'Mostly agents, tooling, and the odd game.',
+  ],
   role: { title: 'Software Engineer', org: 'Versaterm' },
   place: 'Ottawa, Canada',
   field: 'Public-safety software',

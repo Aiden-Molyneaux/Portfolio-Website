@@ -20,7 +20,15 @@ h1 { margin: 0; padding: 0 16px; font: 500 clamp(22px, 6.4vw, 32px)/40px var(--s
 // inline, so if the name ever wraps the heart follows the last word instead of taking its own line
 h1 .badge { display: inline-block; width: .625em; height: .5625em; margin-left: .25em; vertical-align: 0; }
 h1 .badge path { fill: var(--mark); }
-.tagline { margin: 0; min-height: 36px; padding: 4px 16px; display: flex; align-items: center; border-top: 1px solid var(--line); font: 400 14px/20px var(--mono); color: var(--muted); }
+.tagline { margin: 0; min-height: 36px; padding: 4px 16px; display: flex; align-items: center; border-top: 1px solid var(--line); font: 400 14px/20px var(--mono); color: var(--muted); text-wrap: balance; }
+// the rotating tagline: each line drops in from just above, slightly blurred, and leaves the same way downward
+.tagline .swaps { display: grid; }
+.tagline .swaps > span { grid-area: 1 / 1; align-self: center; }
+.tagline .ghost { visibility: hidden; }
+.tagline .swap.in { animation: tagline-in 300ms var(--ease) both; }
+.tagline .swap.out { animation: tagline-out 200ms var(--ease) both; }
+@keyframes tagline-in { from { opacity: 0; transform: translateY(-.25em); filter: blur(2px); } }
+@keyframes tagline-out { to { opacity: 0; transform: translateY(.25em); filter: blur(2px); } }
 @media (max-width: 640px) { .id { --av: 128px; } }
 @media (max-width: 384px) { .id { --av: 120px; } }
 // the Ø label needs room beside the column

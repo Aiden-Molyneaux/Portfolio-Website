@@ -47,6 +47,31 @@ function CopyEmail({ email }) {
   return <button className={`copy${state ? ' done' : ''}`} type="button" title="Copy email" onClick={copy} ref={ref}>{state || email}</button>;
 }
 
+// The tagline cycles through a few lines: each drops in from just above and leaves downward. It holds while hovered,
+// and under reduced motion it stays on the first line. Screen readers get every line once, not the swapping.
+const SWAP_MS = 5000, OUT_MS = 200; // OUT_MS matches .swap.out in _identity.scss
+function Tagline({ lines }) {
+  const [n, setN] = useState(0), [leaving, setLeaving] = useState(false), [held, setHeld] = useState(false); // n: swaps so far
+  const still = lines.length < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // timers drive the swap (the animations only dress it), so it never stalls where animations don't run
+  useEffect(() => {
+    if (still || (held && !leaving)) return undefined;
+    const id = leaving ? setTimeout(() => { setLeaving(false); setN(n + 1); }, OUT_MS) : setTimeout(() => setLeaving(true), SWAP_MS);
+    return () => clearTimeout(id);
+  }, [n, held, leaving, still]);
+  return (
+    <p className="tagline" onMouseEnter={() => setHeld(true)} onMouseLeave={() => setHeld(false)}>
+      <span className="sr-only">{lines.join(' ')}</span>
+      {/* every line sits hidden in the same cell, so the row keeps the tallest one's height and never jumps on a swap.
+          The first line is there on load; every later one animates in. */}
+      <span className="swaps" aria-hidden="true">
+        {lines.map(l => <span className="ghost" key={l}>{l}</span>)}
+        <span key={n} className={leaving ? 'swap out' : n ? 'swap in' : 'swap'}>{lines[n % lines.length]}</span>
+      </span>
+    </p>
+  );
+}
+
 export default function Identity() {
   const avatarRef = useRef(null);
   const d = useWidth(avatarRef);
@@ -71,7 +96,7 @@ export default function Identity() {
         </div>
         <div className="id-name">
           <h1><span>{CONTENT.name}</span><PixelHeart className="badge" /></h1>
-          <p className="tagline">{CONTENT.tagline}</p>
+          <Tagline lines={CONTENT.taglines} />
         </div>
       </div>
       <div className="rule" />
