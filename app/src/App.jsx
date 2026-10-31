@@ -65,7 +65,6 @@ export default function App() {
       <Header />
       <main className="frame" id="top">
         <Hero rest={restBpm(days)} week={weekTotal(days)} flat={notFound} />
-        <Rule />
         <Identity />
         <Rule />
         <div className="pad"><Contributions days={days} /></div>

@@ -1,20 +1,30 @@
-.id { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 20px; align-items: end; position: relative; padding-block: 0 18px; }
-.avatar-wrap { position: relative; margin-top: -54px; z-index: 2; }
-.avatar { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; display: block; border: 1px solid var(--line-2); background: var(--chip); outline: 6px solid var(--paper); }
-.dim-d { position: absolute; left: -16px; top: 0; bottom: 0; width: 1px; background: var(--line-2); }
-.dim-d::before, .dim-d::after { content: ""; position: absolute; left: -4px; width: 9px; border-top: 1px solid var(--line-2); }
-.dim-d::before { top: 0; }
-.dim-d::after { bottom: 0; }
-.dim-d span { position: absolute; top: 50%; left: -2px; transform: translate(-100%, -50%); font: 400 11px/1 var(--mono); color: var(--muted); padding-right: 4px; }
-h1 { margin: 0; font: 500 32px/1 var(--sans); letter-spacing: -.025em; }
-// inline, so on a phone the heart follows the last word instead of dropping to its own line
-h1 .badge { display: inline-block; width: 20px; height: 18px; margin-left: 8px; vertical-align: 1px; }
+// Profile header, drawn on the grid: the avatar fills a square cell whose edges are page lines and which rises
+// into the hero, and the name and tagline each sit on their own ruled row, ending level with the avatar.
+.id { --av: 160px; position: relative; padding-left: calc(var(--av) - 1px); }
+// the cell's top edge, running the width of the page (behind the heart, which sits above it)
+.id-line { position: absolute; left: 50%; width: 100vw; transform: translateX(-50%); top: min(0px, calc(100% - var(--av))); border-top: 1px solid var(--line); pointer-events: none; }
+// the cell sits inside the frame line and draws its own top and right edges, so it is boxed in on all four sides
+.avatar-cell { position: absolute; z-index: 2; left: 0; bottom: 0; width: calc(var(--av) - 1px); height: max(var(--av), 100%); border-top: 1px solid var(--line); border-right: 1px solid var(--line); background: var(--paper); }
+// the circle overlaps the frame line and the cell's edges by a pixel, so it touches all four lines
+.avatar-wrap { position: absolute; left: -1px; bottom: 0; width: var(--av); height: var(--av); border-radius: 50%; }
+.avatar-wrap::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 1px var(--avatar-ring); pointer-events: none; }
+.avatar { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; background: var(--chip); }
+// diameter dimension, hanging outside the frame to the left
+.dim-d { position: absolute; left: -24px; bottom: 0; height: var(--av); width: 1px; background: var(--line-2); pointer-events: none; }
+.dim-d::before, .dim-d::after { content: ""; position: absolute; left: -3px; border: 3px solid transparent; }
+.dim-d::before { top: 0; border-top: 0; border-bottom: 5px solid var(--line-2); }
+.dim-d::after { bottom: 0; border-bottom: 0; border-top: 5px solid var(--line-2); }
+.dim-d span { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 4px 0; background: var(--paper); font: 400 11px/1 var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+.id-name { border-top: 1px solid var(--line); }
+h1 { margin: 0; padding: 0 16px; font: 500 clamp(22px, 6.4vw, 32px)/40px var(--sans); letter-spacing: -.025em; }
+// inline, so if the name ever wraps the heart follows the last word instead of taking its own line
+h1 .badge { display: inline-block; width: .625em; height: .5625em; margin-left: .25em; vertical-align: 0; }
 h1 .badge path { fill: var(--mark); }
-.tagline { margin: 8px 0 0; font: 400 14px/1.4 var(--mono); color: var(--muted); }
-// the Ø label hangs outside the frame, so it needs a margin beside the column
-@media (max-width: 840px) { .dim-d { display: none; } }
-@media (max-width: 640px) { .avatar { width: 128px; height: 128px; } }
-@media (max-width: 384px) { .avatar { width: 120px; height: 120px; } }
+.tagline { margin: 0; min-height: 36px; padding: 4px 16px; display: flex; align-items: center; border-top: 1px solid var(--line); font: 400 14px/20px var(--mono); color: var(--muted); }
+@media (max-width: 640px) { .id { --av: 128px; } }
+@media (max-width: 384px) { .id { --av: 120px; } }
+// the Ø label needs room beside the column
+@media (max-width: 900px) { .dim-d { display: none; } }
 
 .meta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .meta .cell { display: flex; align-items: center; gap: 12px; padding: 10px 0; font: 400 14px/20px var(--mono); min-width: 0; }

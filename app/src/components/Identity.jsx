@@ -61,16 +61,21 @@ export default function Identity() {
   };
   return (
     <>
-      <div className="id pad">
-        <div className="avatar-wrap">
+      <div className="id">
+        <div className="id-line" aria-hidden="true" />
+        <div className="avatar-cell">
           <div className="dim-d" aria-hidden="true"><span>{d ? `Ø${d}` : ''}</span></div>
-          <img className="avatar" ref={avatarRef} src={CONTENT.headshot} alt={CONTENT.name} width="160" height="160" />
+          <div className="avatar-wrap">
+            <img className="avatar" ref={avatarRef} src={CONTENT.headshot} alt={CONTENT.name} width="160" height="160" />
+          </div>
         </div>
-        <div>
+        <div className="id-name">
           <h1><span>{CONTENT.name}</span><PixelHeart className="badge" /></h1>
           <p className="tagline">{CONTENT.tagline}</p>
         </div>
       </div>
+      <div className="rule" />
+      <div className="hatch" />
       <div className="rule" />
       <div className="meta pad" id="meta">
         {Object.entries(cells).map(([icon, v]) => <div className="cell" key={icon}><span className="ibox"><Icon name={icon} /></span><span>{v}</span></div>)}
