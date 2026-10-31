@@ -16,12 +16,15 @@ const shadeHex = (hex, k) => {
 
 // ---------- coats ----------
 const COATS = {
-  tubbin: { ear: '#2b2b2b', earIn: '#6b4a4a', headA: '#353535', headB: '#2b2b2b', mask: null, muzzle: '#323232', chest: '#333333', body: '#2e2e2e', bodyB: '#262626', leg: '#2b2b2b', paw: '#2b2b2b', tail: '#282828', eye: '#c7c24a', pupil: '#111', nose: '#6b4a4a', lid: '#8c8c8c', stripe: null },
+  // Tubbin and Tonka are long-haired: their tails are drawn furry (tailFur) instead of plain, and only their coats fill the fur regions
+  tubbin: { ear: '#2a2726', earIn: '#4a3d3d', headA: '#363231', headB: '#2c2928', mask: null, muzzle: '#33302e', chest: '#33302e', body: '#2e2b2a', bodyB: '#262423', leg: '#2a2726', paw: '#2a2726', tail: null, eye: '#b8bb52', pupil: '#111', nose: '#1c1a1a', lid: '#a19b94', stripe: null,
+    ruffFur: '#3a3633', ruff: '#3a3633', ruffB: '#322e2c', bodyFur: '#2e2b2a', tailFur: '#34302e', tuft: '#8a837b' },
   timber: { ear: '#4a3f3a', earIn: '#6b5a52', headA: '#d2c3ae', headB: '#c4b39c', mask: '#5a4c44', muzzle: '#5a4c44', chest: '#f3ead9', body: '#ece2cf', bodyB: '#ddd0b9', leg: '#ddd0b9', paw: '#5a4c44', tail: '#4a3f3a', eye: '#6fa8ff', pupil: '#111', nose: '#3a3030', lid: '#2f2723', stripe: null },
   tulip: { ear: '#66707b', earIn: '#8a7f86', headA: '#76808b', headB: '#6a747f', mask: null, muzzle: '#7d8792', chest: '#76808b', body: '#6f7a86', bodyB: '#636d78', leg: '#6f7a86', paw: '#6f7a86', tail: '#5e6873', eye: '#7fbf4d', pupil: '#111', nose: '#4e5560', lid: '#3e454d', stripe: null },
-  tonka: { ear: '#8c7666', earIn: '#d8b8a8', headA: '#ebdfd0', headB: '#e0d2c0', mask: '#9c8778', muzzle: '#f4eee6', chest: '#faf6f0', body: '#efe6d8', bodyB: '#e4d8c6', leg: '#b9a594', paw: '#ffffff', tail: '#a8927f', eye: '#7fa9e8', pupil: '#111', nose: '#d9a59a', lid: '#6b5a4c', stripe: '#7a6656' },
+  tonka: { ear: '#8c7666', earIn: '#d8b8a8', headA: '#ebdfd0', headB: '#e0d2c0', mask: '#9c8778', muzzle: '#f4eee6', chest: '#faf6f0', body: '#efe6d8', bodyB: '#e4d8c6', leg: '#b9a594', paw: '#ffffff', tail: null, eye: '#7fa9e8', pupil: '#111', nose: '#d9a59a', lid: '#6b5a4c', stripe: '#7a6656',
+    ruffFur: '#faf6f0', ruff: '#faf6f0', ruffB: '#f1e9de', bodyFur: '#efe6d8', tailFur: '#a8927f', tuft: '#f4eee6' },
 };
-const DETAIL = new Set(['stripe', 'legStripe', 'eye', 'pupil', 'nose', 'lid']);
+const DETAIL = new Set(['stripe', 'legStripe', 'eye', 'pupil', 'nose', 'lid', 'tuft']);
 function fillOf(coat, r) {
   if (r === 'legFar') return coat.leg && shadeHex(coat.leg, -0.22);
   if (r === 'pawFar') return coat.paw && shadeHex(coat.paw, -0.22);
@@ -29,19 +32,51 @@ function fillOf(coat, r) {
   return coat[r];
 }
 
+// ---------- fur ----------
+// Tubbin and Tonka are long-haired. fur() breaks the chosen edges of an outline into tufts that stick out by depth. The
+// furry regions (ruffFur, ruff, bodyFur, tailFur, tuft) ride along in the shared poses; the short-haired cats' coats
+// don't fill them, so they are skipped.
+const TUFTS = [1, 0.6, 1.25, 0.8, 1.1, 0.7]; // tuft lengths in turn, so the fringe isn't a saw blade
+function fur(outline, depth, edges, step = 3.4) {
+  const n = outline.length;
+  const area = outline.reduce((s, [x, y], i) => { const [x2, y2] = outline[(i + 1) % n]; return s + x * y2 - x2 * y; }, 0);
+  const out = [];
+  let t = 0;
+  outline.forEach(([ax, ay], i) => {
+    const [bx, by] = outline[(i + 1) % n];
+    out.push([ax, ay]);
+    if (!edges.includes(i)) return;
+    const len = Math.hypot(bx - ax, by - ay), k = Math.max(1, Math.round(len / step)), s = area > 0 ? 1 : -1;
+    const nx = s * (by - ay) / len, ny = -s * (bx - ax) / len; // outward, whichever way the outline winds
+    for (let j = 0; j < k; j++) {
+      const tip = (j + 0.75) / k, end = (j + 1) / k, d = depth * TUFTS[t++ % TUFTS.length]; // tips lean along the edge, like brushed fur
+      out.push([ax + (bx - ax) * tip + nx * d, ay + (by - ay) * tip + ny * d]);
+      if (j < k - 1) out.push([ax + (bx - ax) * end, ay + (by - ay) * end]);
+    }
+  });
+  return out;
+}
+
+
 // ---------- sitting, front view ----------
 const HEAD_O = [16, 12.5], HEAD = [[5, 9], [12, 7], [16, 6], [20, 7], [27, 9], [27, 12], [25, 16], [16, 18.5], [7, 16], [5, 12]];
 const HEAD_REG = ['headA', 'headB'];
 const BODY = [[9, 17.5], [23, 17.5], [26, 25], [25, 31], [7, 31], [6, 25]];
-const sitCommon = [
+const RUFF = [[5, 9.4], [27, 9.4], [27.5, 13.4], [26.3, 17], [21.7, 20.1], [16, 21.3], [10.3, 20.1], [5.7, 17], [4.5, 13.4]]; // cheeks and chest
+const sitBody = [
+  ['bodyFur', fur(BODY, 0.4, [1, 2, 4, 5]).flat()],
   ...fan(BODY, [16, 24], ['chest', 'body', 'bodyB', 'body', 'bodyB', 'body']),
   ['leg', P('11 23 14.5 23 14.5 31 11 31')], ['leg', P('17.5 23 21 23 21 31 17.5 31')],
   ['paw', P('10.5 29.4 15 29.4 15 31.3 10.5 31.3')], ['paw', P('17 29.4 21.5 29.4 21.5 31.3 17 31.3')],
   ['legStripe', P('11 25 14.5 25 14.5 25.8 11 25.8')], ['legStripe', P('11 27.1 14.5 27.1 14.5 27.9 11 27.9')],
   ['legStripe', P('17.5 25 21 25 21 25.8 17.5 25.8')], ['legStripe', P('17.5 27.1 21 27.1 21 27.9 17.5 27.9')],
+];
+const sitRuff = [['ruffFur', fur(RUFF, 0.45, [1, 2, 3, 4, 5, 6, 7, 8]).flat()], ...fan(RUFF, [16, 14], ['ruff', 'ruffB'])];
+const sitFace = [
   ...fan(HEAD, HEAD_O, HEAD_REG),
   ['ear', P('6 1.5 5 9 12 7')], ['ear', P('26 1.5 20 7 27 9')],
   ['earIn', P('7 4 6.5 8 10 7')], ['earIn', P('25 4 22 7 25.5 8')],
+  ['tuft', P('7.2 7.6 7.4 4.4 8.4 7.4')], ['tuft', P('8.6 7.4 9.6 5.2 9.8 7.2')], ['tuft', P('24.8 7.6 24.6 4.4 23.6 7.4')], ['tuft', P('23.4 7.4 22.4 5.2 22.2 7.2')],
   ['mask', P('8.8 10.6 14.4 10.4 14.6 14.4 9 14.6')], ['mask', P('17.6 10.4 23.2 10.6 23 14.6 17.4 14.4')],
   ['muzzle', P('13 14 19 14 18.6 17.4 16 18.5 13.4 17.4')],
   ['stripe', P('13.8 7.2 14.4 7 14.8 10 14.2 10.1')], ['stripe', P('15.7 6.6 16.3 6.6 16.3 10 15.7 10')], ['stripe', P('17.6 7 18.2 7.2 17.8 10.1 17.2 10')],
@@ -49,28 +84,28 @@ const sitCommon = [
 ];
 const eyesOpen = [['eye', P('10.5 12.5 12 11.2 13.5 12.5 12 13.7')], ['eye', P('18.5 12.5 20 11.2 21.5 12.5 20 13.7')],
   ['pupil', P('11.7 12.5 12 11.5 12.3 12.5 12 13.4')], ['pupil', P('19.7 12.5 20 11.5 20.3 12.5 20 13.4')]];
+// each tail: the plain outline, and the long-haired one, drawn to a point and furred all along but the point
 const SIT = [
-  [['tail', P('24 30 28 30.6 31 26 31 20 29 19 29.6 25 27 28')], ...sitCommon, ...eyesOpen],
-  [['tail', P('24 30 28 30.6 31.6 25 30.2 16.8 28.2 17.4 29.6 24 27 28')], ...sitCommon, ...eyesOpen],
-];
+  [[[24, 30], [28, 30.6], [31, 26], [31, 20], [29, 19], [29.6, 25], [27, 28]], [[24, 30], [28, 30.6], [31, 26], [31, 20.4], [29.8, 17], [29, 19.6], [29.6, 25], [27, 28]]],
+  [[[24, 30], [28, 30.6], [31.6, 25], [30.2, 16.8], [28.2, 17.4], [29.6, 24], [27, 28]], [[24, 30], [28, 30.6], [31.6, 25], [30.8, 18.2], [28.6, 14.4], [28.3, 17.8], [29.6, 24], [27, 28]]],
+].map(([tail, long]) => [['tailFur', fur(long, 0.8, [1, 2, 5, 6, 7], 2.6).flat()], ['tail', tail.flat()], ...sitBody, ...sitRuff, ...sitFace, ...eyesOpen]);
 
-// ---------- sleeping: curled up on its side, head on its paws, tail wrapped round ----------
+// ---------- sleeping: curled up, face turned out with both eyes shut, tail round the front ----------
+// The face is the sitting one, shrunk and set down on the body, so it reads as a cat at a glance even when small.
+const atNap = ([r, pts]) => [r, pts.map((v, i) => i % 2 ? 21.6 + (v - 12.5) * 0.72 : 19.6 + (v - 16) * 0.72)];
+const lidAt = x => ['lid', P('10.2 12.2 11.1 13 12 13.3 12.9 13 13.8 12.2 13.8 13.1 12.9 13.9 12 14.2 11.1 13.9 10.2 13.1').map((v, i) => i % 2 ? v : v + x)];
+const eyesShut = [lidAt(0), lidAt(8)]; // closed eyes curve down, like a content smile
+const napRuff = sitRuff.map(atNap), napFace = [...sitFace, ...eyesShut].map(atNap);
+const NAP_TAIL = [[2.6, 26.4], [7.4, 28.2], [13, 28.8], [19, 29], [24.6, 28.6], [28.6, 27.2], [29.4, 29.4], [24.6, 31.2], [18, 31.7], [10, 31.7], [3, 31.4]];
+const NAP_LONG = [[2.6, 26.4], [7.4, 28.2], [13, 28.8], [19, 29], [24.6, 28.6], [27.6, 27.8], [31, 27.4], [28.4, 29.8], [24.6, 31.2], [18, 31.7], [10, 31.7], [3, 31.4]]; // pointed
 function napFrame(breath) {
   const b = breath ? -0.7 : 0;
-  // the body mound dips at the neck so the head reads as its own shape
-  const body = [[4, 30.4], [4.4, 25], [7.6, 20.6 + b], [13.6, 18.6 + b], [18.6, 19.4 + b], [21.4, 22.6], [22.6, 26.8], [22.4, 30.4]];
+  const body = [[3, 31], [2.6, 25.6], [6, 20.4 + b], [12.6, 17.8 + b], [19, 18.4], [27, 21.6], [29.2, 31]];
   return [
-    ['tail', P('3.6 28.6 10 30 19 30.4 23 29.6 23.2 31.4 12 31.7 3.6 31.2')],
-    ...fan(body, [14, 25.6], ['body', 'bodyB']),
-    ['paw', P('20.6 28 29.4 28 29.4 30.6 20.6 30.6')],
-    ['ear', P('20.6 19.6 21.4 13.4 25 17.8')], ['ear', P('25.8 17.6 29.4 12.8 30.2 19.8')],
-    ['earIn', P('21.6 18.6 21.9 15.6 23.8 17.8')], ['earIn', P('26.8 17.6 28.9 15 29.2 18.8')],
-    ...fan([[19.6, 21.4], [22.2, 18.4], [27, 18], [30.6, 20.4], [31.4, 24.6], [29.4, 27.8], [24, 28.4], [20.4, 26.2]], [25.6, 23.2], HEAD_REG),
-    ['mask', P('25.4 20.4 30.6 20.4 31.4 24.6 29.4 27.8 25.6 26.4')],
-    ['muzzle', P('28.4 24 31.4 24 30.6 26.8 28.6 27.4')],
-    ['stripe', P('23 19.2 23.6 19 24 21.4 23.4 21.6')], ['stripe', P('24.8 18.6 25.4 18.6 25.4 21 24.8 21')],
-    ['lid', P('26.4 22.2 27.9 23.1 29.4 22.2 29.4 22.8 27.9 23.7 26.4 22.8')],
-    ['nose', P('30.8 23.8 31.6 24.2 30.8 24.7')],
+    ['bodyFur', fur(body, 0.4, [0, 1, 2, 5]).flat()],
+    ...fan(body, [15, 31], ['body', 'bodyB']),
+    ['tailFur', fur(NAP_LONG, 0.65, [0, 1, 2, 3, 4], 2.6).flat()], ['tail', NAP_TAIL.flat()],
+    ...napRuff, ...napFace,
   ];
 }
 const NAP = [napFrame(false), napFrame(true)];
@@ -78,11 +113,16 @@ const NAP = [napFrame(false), napFrame(true)];
 // ---------- side view, facing right: walks, trot, run, crouch, pounce ----------
 const S_BODY = [[7, 15], [12, 13.5], [18, 13.5], [23, 14.5], [25, 18], [23, 22], [16, 22.5], [9, 22], [6, 19]];
 const S_HEAD = [[22, 10], [25, 8.5], [29, 9.5], [31, 12.5], [30.5, 15.5], [27.5, 17.2], [23.5, 16.5], [21.5, 13.5]];
+const S_RUFF = [[21.6, 13.4], [24.4, 15.8], [25.3, 18.4], [24.2, 20.9], [21.6, 21.1], [20.6, 17.4]]; // chest ruff, long-haired coats only
 const TAILS = {
   up: [[7.5, 15.5], [5.5, 12.5], [4.6, 8], [4.8, 3.8], [6.6, 3.6], [6.6, 8], [8, 12], [9.2, 14.6]],
   curl: [[7.5, 15.5], [4.8, 12], [3.6, 7.5], [4.6, 3.6], [7.6, 2.6], [9.4, 4.4], [8.2, 5.6], [6.8, 4.8], [6.2, 7.6], [7.6, 11.6], [9.4, 14.4]],
   straight: [[7, 15.2], [3, 13.6], [0.4, 12.8], [0.5, 14.8], [3.2, 16], [7, 17.6]],
   low: [[7, 18], [3, 19.6], [0.6, 21.4], [0.9, 23], [3.6, 21.6], [7.4, 20.4]],
+};
+// long-haired tails: the outline drawn to a point, and the edges that get fur (not the point's); others use the plain one
+const LONG_TAILS = {
+  curl: [[[7.5, 15.5], [4.8, 12], [3.6, 7.5], [4.6, 3.6], [7.6, 2.6], [9.4, 4.4], [9.8, 7.2], [8.2, 5.6], [6.8, 4.8], [6.2, 7.6], [7.6, 11.6], [9.4, 14.4]], [0, 1, 2, 3, 4, 7, 8, 9, 10]],
 };
 // legs: [anchorX, footX, footY, far]
 function sideCat({ dy = 0, tilt = 0, stretch = 0, legs, tail = 'up', tailSway = 0 }) {
@@ -90,7 +130,9 @@ function sideCat({ dy = 0, tilt = 0, stretch = 0, legs, tail = 'up', tailSway = 
   const T = ([x, y]) => { x = 16 + (x - 16) * (1 + stretch); return [16 + (x - 16) * c - (y - 18) * s, 18 + (x - 16) * s + (y - 18) * c + dy]; };
   const TT = arr => arr.map(T);
   const flat = arr => arr.flat();
-  const tailPts = TAILS[tail].map(([x, y]) => [x + (y < 9 ? tailSway : 0), y]);
+  const sway = ([x, y]) => [x + (y < 9 ? tailSway : 0), y];
+  const tailPts = TAILS[tail].map(sway);
+  const [longPts, furEdges] = LONG_TAILS[tail] || [TAILS[tail], TAILS[tail].map((_, i) => i).slice(0, -1)];
   const legPoly = ([ax, fx, fy]) => { const [tx, ty] = T([ax, 20.8]); return [tx - 1.1, ty, tx + 1.1, ty, fx + 1, fy, fx - 1, fy]; };
   const pawPoly = ([, fx, fy]) => [fx - 1.2, fy - 1.1, fx + 1.7, fy - 1.1, fx + 1.7, fy + 0.1, fx - 1.2, fy + 0.1];
   const stripePolys = ([ax, fx, fy]) => {
@@ -98,12 +140,14 @@ function sideCat({ dy = 0, tilt = 0, stretch = 0, legs, tail = 'up', tailSway = 
     return [0.45, 0.68].map(k => { const y = ty + (fy - ty) * k, x = tx + (fx - tx) * k; return ['legStripe', [x - 1.05, y, x + 1.05, y, x + 1.05, y + 0.8, x - 1.05, y + 0.8]]; });
   };
   const far = legs.filter(l => l[3]), near = legs.filter(l => !l[3]);
-  const head = TT(S_HEAD), ho = T([26, 13]);
+  const head = TT(S_HEAD), ho = T([26, 13]), tl = TT(tailPts), ruff = TT(S_RUFF);
   return [
-    ['tail', flat(TT(tailPts))],
+    ['tailFur', flat(fur(TT(longPts.map(sway)), 0.8, furEdges, 2.6))], ['tail', flat(tl)],
     ...far.map(l => ['legFar', legPoly(l)]), ...far.map(l => ['pawFar', pawPoly(l)]),
+    ['bodyFur', flat(fur(TT(S_BODY), 0.4, [3, 4, 5, 6, 7]))],
     ...fan(TT(S_BODY), T([15, 18]), ['body', 'bodyB']),
     ['chest', flat(TT([[21, 18], [24.6, 18.4], [23, 22], [20, 22]]))],
+    ['ruffFur', flat(fur(ruff, 0.45, [1, 2, 3]))], // one piece: facets here make the neck too busy at size
     ...near.map(l => ['leg', legPoly(l)]), ...near.flatMap(stripePolys), ...near.map(l => ['paw', pawPoly(l)]),
     ...fan(head, ho, HEAD_REG),
     ['ear', flat(TT([[22.6, 10.2], [23.4, 4.8], [25.6, 9]]))], ['ear', flat(TT([[26.2, 9], [28.2, 4.6], [29.2, 10]]))],
