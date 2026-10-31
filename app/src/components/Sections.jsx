@@ -1,7 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { CONTENT, monthDot, monthsBetween, spanLabel } from '../content.js';
 import { CAT_NAMES, catSound, meow, portraitMarkup, setCatSound } from '../lib/cats.js';
 import { toggleDetails } from '../lib/motion.js';
+import { mountEcg } from '../lib/ecg.js';
 import { useSlide } from '../lib/hooks.js';
 import { GLYPHS, GLYPH_FOR, LOGOS, LOGO_ALIAS } from '../data/stack-icons.js';
 import { Chevron, GitHubIcon, Icon, LinkIcon, LinkedInIcon, iconUrl } from './icons.jsx';
@@ -168,7 +169,21 @@ export function Projects() {
   );
 }
 
-export function Footer() {
+// A heart monitor: an ECG trace at the hero heart's rate, flat on the 404.
+function Ecg({ bpm, flat }) {
+  const ref = useRef(null), mon = useRef(null);
+  useEffect(() => {
+    mon.current = mountEcg(ref.current, { bpm, flat });
+    return () => mon.current.destroy();
+    // mounted once; bpm and flat are pushed in below
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  useEffect(() => { mon.current.setBpm(bpm); }, [bpm]);
+  useEffect(() => { mon.current.flatten(flat); }, [flat]);
+  return <div className="ecg" aria-hidden="true"><span className="ecg-cap">ECG · {flat ? 0 : bpm} bpm</span><canvas ref={ref} /></div>;
+}
+
+export function Footer({ bpm, flat }) {
   const c = CONTENT.contact;
   return (
     <footer className="pad" id="foot">
@@ -178,6 +193,7 @@ export function Footer() {
         <a className="glyph" href={c.linkedin} target="_blank" rel="noopener" aria-label="LinkedIn"><LinkedInIcon /></a>
         <a href="#top">Back to top ↑</a>
       </nav>
+      <Ecg bpm={bpm} flat={flat} />
     </footer>
   );
 }
@@ -190,6 +206,7 @@ export function NotFound({ onHome }) {
         <span className="code">404</span>
         <h2 id="nf-title">{nf.title}</h2>
         <p>{nf.body}</p>
+        <Ecg bpm={0} flat />
         <a href="/" onClick={e => { e.preventDefault(); onHome(); }}>{nf.link}</a>
       </div>
     </div>

@@ -32,6 +32,7 @@ export default function App() {
   const [route, setRoute] = useState(routeFromPath);
   const days = useContributions();
   const notFound = route === 'notFound';
+  const [bpm, setBpm] = useState(null); // the hero heart's rate, which the footer's monitor follows
 
   useEffect(() => {
     document.title = notFound ? 'Page not found · Aiden Molyneaux' : 'Aiden Molyneaux';
@@ -66,7 +67,7 @@ export default function App() {
     <>
       <Header />
       <main className="frame" id="top">
-        <Hero rest={restBpm(days)} week={weekTotal(days)} flat={notFound} />
+        <Hero rest={restBpm(days)} week={weekTotal(days)} flat={notFound} onBpm={setBpm} />
         <Identity />
         <Rule />
         <div className="pad"><Contributions days={days} /></div>
@@ -81,7 +82,7 @@ export default function App() {
         <Band />
         <Projects />
         <Band />
-        <Footer />
+        <Footer bpm={bpm ?? restBpm(days)} flat={notFound} />
       </main>
       {notFound && <NotFound onHome={goHome} />}
     </>
