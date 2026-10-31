@@ -237,29 +237,46 @@ export function mountCats(o) {
     listen(ta.el, 'mouseleave', () => { want = false; settle(); });
   }
 
-  // Tulip sits until clicked; then she crouches, wiggles, gallops after the pointer and pounces when she's close
+  // Tulip sits until clicked; then she crouches, wiggles, gallops after the pointer and pounces when she's close.
+  // If the pointer holds still through a pounce she has caught it, and sits down right there; otherwise she gives
+  // up after a while and sits wherever she ended up.
   const tu = opts.anchors.tulip;
   if (tu) {
     let chasing = false;
     const chase = () => {
       if (reduced() || chasing) return; chasing = true;
       const r = t.el.getBoundingClientRect();
-      document.body.append(t.el); t.el.classList.add('fixed');
-      let cx = r.left, cy = r.top, tx = cx + 120, ty = cy, raf = 0, mode = 'crouch', until = performance.now() + 700, mode0 = null, hopStart = 0;
+      document.body.append(t.el); t.el.classList.add('fixed'); t.el.style.position = ''; // a previous sit left it absolute
+      let cx = r.left, cy = r.top, tx = cx + 120, ty = cy, raf = 0, mode = 'crouch', until = performance.now() + 700, mode0 = null, hopStart = 0, aim = null, done = false;
       t.el.style.left = cx + 'px'; t.el.style.top = cy + 'px';
       const set = md => { if (md === mode0) return; mode0 = md; t.el.classList.toggle('wiggle', md === 'crouch'); if (md === 'run') t.play('run', 85); else t.still(md); };
+      const sitDown = () => {
+        if (done) return; done = true; // once per chase: the give-up timer may still be pending when she catches it
+        cancelAnimationFrame(raf); document.removeEventListener('mousemove', onMove);
+        if (!live()) return;
+        const rr = t.el.getBoundingClientRect();
+        t.el.classList.remove('fixed', 'wiggle'); t.bob(0); t.face(1);
+        t.el.style.left = (rr.left + window.scrollX) + 'px'; t.el.style.top = (rr.top + window.scrollY) + 'px';
+        t.el.style.position = 'absolute';
+        t.play('sit', 2600); chasing = false;
+      };
       set('crouch');
       const step = now => {
         if (!live()) return;
         const dx = tx - cx, dy = ty - cy, d = Math.hypot(dx, dy);
         if (Math.abs(dx) > 2) t.face(dx);
         if (mode === 'crouch' && now > until) mode = d > 46 ? 'run' : 'pounce';
-        if (mode === 'run') { cx += dx * 0.09; cy += dy * 0.09; if (d < 46) { mode = 'pounce'; hopStart = now; } }
+        if (mode === 'run') { cx += dx * 0.09; cy += dy * 0.09; if (d < 46) mode = 'pounce'; }
         if (mode === 'pounce') {
-          if (!hopStart) hopStart = now;
+          if (!hopStart) { hopStart = now; aim = [tx, ty]; }
           const p = Math.min(1, (now - hopStart) / 340);
           cx += dx * 0.16; cy += dy * 0.16; t.bob(-Math.sin(p * Math.PI) * 14);
-          if (p >= 1) { t.bob(0); mode = 'crouch'; until = now + 650; hopStart = 0; }
+          if (p >= 1) {
+            t.bob(0); hopStart = 0;
+            // caught: the pointer moved less than a few pixels while she was in the air (touch has no pointer to catch)
+            if (!touch() && Math.hypot(tx - aim[0], ty - aim[1]) < 12) { t.el.style.left = cx + 'px'; t.el.style.top = cy + 'px'; sitDown(); return; }
+            mode = 'crouch'; until = now + 650;
+          }
         }
         set(mode);
         t.el.style.left = cx + 'px'; t.el.style.top = cy + 'px';
@@ -270,16 +287,7 @@ export function mountCats(o) {
       else listen(document, 'mousemove', onMove);
       raf = requestAnimationFrame(step);
       cleanups.push(() => cancelAnimationFrame(raf));
-      // after the chase she sits down wherever she ended up
-      later(() => {
-        cancelAnimationFrame(raf); document.removeEventListener('mousemove', onMove);
-        if (!live()) return;
-        const rr = t.el.getBoundingClientRect();
-        t.el.classList.remove('fixed', 'wiggle'); t.bob(0); t.face(1);
-        t.el.style.left = (rr.left + window.scrollX) + 'px'; t.el.style.top = (rr.top + window.scrollY) + 'px';
-        t.el.style.position = 'absolute';
-        t.play('sit', 2600); chasing = false;
-      }, touch() ? 5200 : 20000);
+      later(sitDown, touch() ? 5200 : 20000);
     };
     const t = make('tulip', chase);
     perch(t, tu.el, tu.x ?? 0.5); t.play('sit', 2600);
