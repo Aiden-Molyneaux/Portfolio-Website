@@ -204,6 +204,71 @@ export function portraitMarkup(id, px = 64) {
   return geoSVG(SIT[0], COATS[id], px).outerHTML;
 }
 
+// ---------- voices ----------
+// Meows and purrs are synthesised with Web Audio, each cat at its own pitch (Tulip, the one girl, softer too). Sound is
+// off until the visitor turns it on by the cat shelf, and the choice is remembered in their browser. While it's off,
+// or before the browser allows sound, only the written cue shows.
+const VOICE = { tubbin: { pitch: 0.8, word: 'mrrp' }, timber: { pitch: 1, word: 'meow' }, tulip: { pitch: 1.3, word: 'mrow!', soft: true }, tonka: { pitch: 1.6, word: 'mew' } };
+let ac = null, noise = null, soundOn = false;
+try { soundOn = localStorage.getItem('cat-sound') === 'on'; } catch {}
+export const catSound = () => soundOn;
+export function setCatSound(on) {
+  soundOn = on;
+  try { localStorage.setItem('cat-sound', on ? 'on' : 'off'); } catch {}
+  if (on) audio(); else ac?.suspend();
+}
+function audio() {
+  const AC = window.AudioContext || window.webkitAudioContext;
+  if (!soundOn) return null;
+  if (!AC || (navigator.userActivation && !navigator.userActivation.hasBeenActive)) return null;
+  ac = ac || new AC();
+  if (ac.state === 'suspended') ac.resume().catch(() => {});
+  return ac;
+}
+// a meow: a buzzy tone that rises then falls, through a filter that opens and closes like a mouth (m-ee-ow).
+// Smaller cats are higher and quicker.
+export function meow(id) {
+  const a = audio(); if (!a) return;
+  const { pitch: p, soft } = VOICE[id], t = a.currentTime, f = 520 * p, d = 0.62 / Math.sqrt(p);
+  const osc = a.createOscillator(), vib = a.createOscillator(), wobble = a.createGain(), mouth = a.createBiquadFilter(), env = a.createGain();
+  osc.type = 'sawtooth';
+  osc.frequency.setValueAtTime(f * 0.8, t);
+  osc.frequency.linearRampToValueAtTime(f * 1.12, t + d * 0.22);
+  osc.frequency.exponentialRampToValueAtTime(f * 0.68, t + d * 0.95);
+  vib.frequency.value = 6; wobble.gain.value = f * 0.02; vib.connect(wobble).connect(osc.frequency);
+  mouth.type = 'lowpass'; mouth.Q.value = soft ? 3 : 5;
+  mouth.frequency.setValueAtTime(700 * p, t);
+  mouth.frequency.linearRampToValueAtTime(2600 * p, t + d * 0.25);
+  mouth.frequency.exponentialRampToValueAtTime(800 * p, t + d * 0.95);
+  env.gain.setValueAtTime(0.0001, t);
+  env.gain.exponentialRampToValueAtTime(0.14, t + (soft ? 0.09 : 0.05));
+  env.gain.setValueAtTime(0.14, t + d * 0.65);
+  env.gain.exponentialRampToValueAtTime(0.0001, t + d);
+  osc.connect(mouth).connect(env).connect(a.destination);
+  [osc, vib].forEach(n => { n.start(t); n.stop(t + d + 0.05); });
+}
+// a purr: low noise pulsed about 25 times a second, swelling with each breath. Returns a function that fades it out.
+function purr(id) {
+  const a = audio(); if (!a) return null;
+  const p = VOICE[id].pitch, t = a.currentTime;
+  if (!noise) { noise = a.createBuffer(1, a.sampleRate * 2, a.sampleRate); const ch = noise.getChannelData(0); for (let i = 0; i < ch.length; i++) ch[i] = Math.random() * 2 - 1; }
+  const src = a.createBufferSource(), low = a.createBiquadFilter(), pulse = a.createGain(), rate = a.createOscillator(), depth = a.createGain();
+  const swell = a.createGain(), breath = a.createOscillator(), breathDepth = a.createGain(), out = a.createGain();
+  src.buffer = noise; src.loop = true;
+  low.type = 'lowpass'; low.frequency.value = 400 * p;
+  pulse.gain.value = 0.5; rate.frequency.value = 20 + 6 * p; depth.gain.value = 0.5; rate.connect(depth).connect(pulse.gain);
+  swell.gain.value = 0.8; breath.frequency.value = 0.6; breathDepth.gain.value = 0.2; breath.connect(breathDepth).connect(swell.gain);
+  out.gain.setValueAtTime(0, t); out.gain.linearRampToValueAtTime(0.8, t + 0.3);
+  src.connect(low).connect(pulse).connect(swell).connect(out).connect(a.destination);
+  const nodes = [src, rate, breath];
+  nodes.forEach(n => n.start(t));
+  return () => {
+    const now = a.currentTime;
+    out.gain.cancelScheduledValues(now); out.gain.setValueAtTime(out.gain.value, now); out.gain.linearRampToValueAtTime(0, now + 0.25);
+    nodes.forEach(n => n.stop(now + 0.3));
+  };
+}
+
 // ---------- behaviour ----------
 let gen = 0;
 export function mountCats(o) {
@@ -231,6 +296,22 @@ export function mountCats(o) {
     // the callout leans right, or left when the cat is near the right of the screen
     const aim = () => { const r = el.getBoundingClientRect(); el.classList.toggle('tag-left', r.left + r.width / 2 > window.innerWidth * 0.6); };
     el.addEventListener('pointerenter', aim); el.addEventListener('focus', aim);
+    // petting: stroke a cat back and forth and it purrs until the strokes stop; click it and it meows. What it says is
+    // written beside it too, for anyone without sound (the purr's tremble is left out under reduced motion).
+    const say = document.createElement('span'); say.className = 'cat-say'; say.setAttribute('aria-hidden', 'true'); el.append(say);
+    let purring = false, hush = null, quiet = null, said = null, lastX = null, travel = 0;
+    const cue = () => { if (said) return; say.textContent = purring ? 'prrr' : ''; el.classList.toggle('saying', purring); };
+    const stopPurr = () => { clearTimeout(quiet); travel = 0; if (!purring) return; purring = false; hush?.(); hush = null; el.classList.remove('purr'); cue(); };
+    const speak = () => { meow(id); clearTimeout(said); say.textContent = VOICE[id].word; el.classList.add('saying'); said = setTimeout(() => { said = null; cue(); }, 1100); };
+    cleanups.push(stopPurr, () => clearTimeout(said));
+    el.addEventListener('pointermove', e => {
+      if (el.classList.contains('fixed')) return; // not while Tulip chases or Tonka crosses
+      if (lastX !== null) travel += Math.abs(e.clientX - lastX);
+      lastX = e.clientX;
+      clearTimeout(quiet); quiet = setTimeout(stopPurr, 700);
+      if (!purring && travel > 90) { purring = true; hush = purr(id); el.classList.add('purr'); cue(); }
+    });
+    el.addEventListener('pointerleave', () => { lastX = null; });
     const built = {}; let cur = null, timer = null;
     cleanups.push(() => clearInterval(timer));
     const frames = set => built[set] || (built[set] = SETS[set].map(f => { const s = geoSVG(f, COATS[id], px); s.style.display = 'none'; body.append(s); return s; }));
@@ -247,7 +328,7 @@ export function mountCats(o) {
       bob(v) { el.style.setProperty('--bob', v + 'px'); },
       tagFor(ms) { aim(); el.classList.add('tagged'); later(() => el.classList.remove('tagged'), ms); },
     };
-    el.addEventListener('click', e => { e.stopPropagation(); cat.tagFor(2000); if (onClick) onClick(cat); });
+    el.addEventListener('click', e => { e.stopPropagation(); speak(); cat.tagFor(2000); if (onClick) onClick(cat); });
     el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); } });
     return cat;
   }

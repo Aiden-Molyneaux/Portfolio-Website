@@ -1,5 +1,11 @@
 // the cat shelf
-.shelf-h { padding-block: 12px; text-align: center; font: 500 11px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.shelf-h { position: relative; padding-block: 12px; text-align: center; font: 500 11px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+// the cats' sound switch, at the right of the shelf heading: muted until pressed, then lit
+.shelf-h .sound { all: unset; position: absolute; right: 12px; top: 50%; transform: translateY(-50%); display: inline-flex; align-items: center; gap: 5px;
+  padding: 4px; border-radius: 4px; cursor: pointer; color: var(--muted); transition: color var(--dur) var(--ease); }
+.shelf-h .sound:hover, .shelf-h .sound[aria-pressed="true"] { color: var(--ink); }
+.shelf-h .sound:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.shelf-h .sound svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .shelf { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); color: var(--ink); }
 .shelf > button { all: unset; cursor: pointer; display: grid; justify-items: center; gap: 8px; padding-block: 18px 14px; border-left: 1px solid var(--line); }
 .shelf > button:first-child { border-left: 0; }
@@ -8,6 +14,7 @@
 .shelf b { font: 600 14px/1 var(--sans); }
 .shelf small { font: 400 11px/1 var(--mono); color: var(--muted); }
 @media (max-width: 560px) {
+  .shelf-h .sound span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); } // icon only; the word stays its name
   .shelf { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .shelf > button:nth-child(3) { border-left: 0; }
   .shelf > button:nth-child(n+3) { border-top: 1px solid var(--line); }
@@ -39,6 +46,13 @@ svg.geo polygon.detail { stroke: none; }
 .cat.tag-left .cat-tag::after { left: auto; right: -2.5px; }
 .cat .cat-body { position: relative; transform: translateY(var(--bob, 0px)); }
 .cat.wiggle .cat-body { animation: cat-wiggle 110ms linear infinite; }
+// petting: a purring cat trembles a little, and what a cat says is written beside it, on the side away from its name tag
+.cat.purr .cat-body { animation: cat-purr 80ms linear infinite; }
+@keyframes cat-purr { 0%, 100% { transform: translate(0, var(--bob, 0px)) } 50% { transform: translate(.5px, var(--bob, 0px)) } }
+.cat-say { position: absolute; top: 35%; right: 100%; margin-right: 2px; font: 500 10px/1 var(--mono); letter-spacing: .04em; color: var(--muted);
+  white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity var(--dur) var(--ease); }
+.cat.tag-left .cat-say { right: auto; left: 100%; margin: 0 0 0 2px; }
+.cat.saying .cat-say { opacity: 1; }
 @keyframes cat-wiggle { 0%, 100% { transform: translate(0, var(--bob, 0px)) } 50% { transform: translate(1px, var(--bob, 0px)) rotate(-2deg) } }
 .cat-z { position: absolute; right: 2px; top: -4px; pointer-events: none; font: 600 10px/1 var(--mono); color: var(--muted); }
 .cat-z i { position: absolute; right: 0; top: 0; font-style: normal; opacity: 0; animation: cat-z 3s linear infinite; }
@@ -47,6 +61,6 @@ svg.geo polygon.detail { stroke: none; }
 @keyframes cat-z { 0% { opacity: 0; transform: translate(0, 0) } 20% { opacity: .9 } 100% { opacity: 0; transform: translate(10px, -22px) } }
 @media (prefers-reduced-motion: reduce) {
   .cat-z { display: none; }
-  .cat.wiggle .cat-body { animation: none; }
+  .cat.wiggle .cat-body, .cat.purr .cat-body { animation: none; }
   .cat-tag::before, .cat-tag > span { transition: none; }
 }

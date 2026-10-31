@@ -1,10 +1,10 @@
 import React, { useRef, useState } from 'react';
 import { CONTENT, monthDot, monthsBetween, spanLabel } from '../content.js';
-import { CAT_NAMES, portraitMarkup } from '../lib/cats.js';
+import { CAT_NAMES, catSound, meow, portraitMarkup, setCatSound } from '../lib/cats.js';
 import { toggleDetails } from '../lib/motion.js';
 import { useSlide } from '../lib/hooks.js';
 import { GLYPHS, GLYPH_FOR, LOGOS, LOGO_ALIAS } from '../data/stack-icons.js';
-import { Chevron, GitHubIcon, LinkIcon, LinkedInIcon, iconUrl } from './icons.jsx';
+import { Chevron, GitHubIcon, Icon, LinkIcon, LinkedInIcon, iconUrl } from './icons.jsx';
 
 // date ranges read like chanhdai's: sans digits, a mono dash, and a drawn ∞ for an open end (the glyph is tiny in both fonts)
 const Dash = () => <span className="dash">—</span>;
@@ -54,14 +54,20 @@ export function Stack() {
 
 const hop = e => e.currentTarget.animate?.([{ transform: 'translateY(0)' }, { transform: 'translateY(-5px)' }, { transform: 'translateY(0)' }], { duration: 280, easing: 'cubic-bezier(.4,0,.2,1)' });
 
+// The shelf heading carries the cats' sound switch; sound is off until a visitor turns it on.
 export function CatShelf() {
+  const [sound, setSound] = useState(catSound);
+  const toggle = () => { setCatSound(!sound); setSound(!sound); };
   return (
     <>
-      <div className="shelf-h pad">{CONTENT.shelfTitle}</div>
+      <div className="shelf-h pad">
+        {CONTENT.shelfTitle}
+        <button type="button" className="sound" aria-pressed={sound} onClick={toggle}><Icon name={sound ? 'soundOn' : 'soundOff'} /><span>Sound</span></button>
+      </div>
       <div className="rule" />
       <div className="shelf">
         {CONTENT.cats.map(({ id, role }) => (
-          <button key={id} type="button" aria-label={`${CAT_NAMES[id]}, ${role}`} onClick={hop}>
+          <button key={id} type="button" aria-label={`${CAT_NAMES[id]}, ${role}`} onClick={e => { hop(e); meow(id); }}>
             <span className="portrait" dangerouslySetInnerHTML={{ __html: portraitMarkup(id, 64) }} />
             <b>{CAT_NAMES[id]}</b><small>{role}</small>
           </button>
