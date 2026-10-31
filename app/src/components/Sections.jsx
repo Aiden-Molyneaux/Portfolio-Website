@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
-import { CONTENT, monthDot, monthsBetween, projYears, spanLabel } from '../content.js';
+import { CONTENT, monthDot, monthsBetween, spanLabel } from '../content.js';
 import { CAT_NAMES, portraitMarkup } from '../lib/cats.js';
 import { Chevron, LinkIcon, iconUrl } from './icons.jsx';
+
+// date ranges read like chanhdai's: sans digits, a mono dash, and a drawn ∞ for an open end (the glyph is tiny in both fonts)
+const Dash = () => <span className="dash">—</span>;
+const Inf = ({ label }) => <svg className="inf" viewBox="0 0 24 24" role="img" aria-label={label}><path d="M12 12c-2-2.7-3.7-4-5.5-4a4 4 0 0 0 0 8c1.8 0 3.5-1.3 5.5-4s3.7-4 5.5-4a4 4 0 0 1 0 8c-1.8 0-3.5-1.3-5.5-4z" /></svg>;
 
 const greeting = () => {
   const hr = new Date().getHours();
@@ -56,7 +60,7 @@ export function Experience() {
                 <details className="role" key={r.title} open={oi === 0 && ri === 0} style={{ '--ico': iconUrl(r.icon) }}>
                   <summary>
                     <span className="role-t">{r.title}</span><Chevron />
-                    <span className="role-m">{monthDot(r.start)}–{r.end ? monthDot(r.end) : '∞'}<span className="sep">|</span>{spanLabel(monthsBetween(r.start, r.end))}</span>
+                    <span className="role-m dates">{monthDot(r.start)}<Dash />{r.end ? monthDot(r.end) : <Inf label="present" />}<span className="sep">|</span>{spanLabel(monthsBetween(r.start, r.end))}</span>
                   </summary>
                   <div className="role-b">
                     <ul>{r.bullets.map(b => <li key={b}>{b}</li>)}</ul>
@@ -88,7 +92,7 @@ function Project({ p, open }) {
           ? <a className="p-lnk" href={p.link} target="_blank" rel="noopener" aria-label={`${p.name} on GitHub`} onClick={e => e.stopPropagation()}><LinkIcon /></a>
           : <span className="p-lnk private">{p.tag || 'private'}</span>}
         <Chevron />
-        <span className="p-d" title={p.ongoing ? 'Ongoing, no end date' : undefined}>{projYears(p)}</span>
+        <span className="p-d dates" title={p.ongoing ? 'Ongoing, no end date' : undefined}>{p.ongoing ? <>{p.start}<Dash /><Inf label="ongoing" /></> : p.year}</span>
       </summary>
       <div className="p-b">
         <div className="pills">{p.tech.map(t => <span key={t}>{t}</span>)}</div>

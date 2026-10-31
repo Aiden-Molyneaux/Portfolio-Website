@@ -153,5 +153,3 @@ export function spanLabel(months) {
 }
 // '2026-03' -> '03.2026'
 export const monthDot = s => s.split('-').reverse().join('.');
-// '2024–∞' for ongoing projects, else the year.
-export const projYears = p => p.ongoing ? `${p.start}–∞` : p.year;
