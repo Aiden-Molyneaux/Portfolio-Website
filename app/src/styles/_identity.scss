@@ -1,22 +1,26 @@
 .id { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 20px; align-items: end; position: relative; padding-block: 0 18px; }
 .avatar-wrap { position: relative; margin-top: -54px; z-index: 2; }
-.avatar { width: 112px; height: 112px; border-radius: 50%; object-fit: cover; display: block; border: 1px solid var(--line-2); background: var(--chip); outline: 6px solid var(--paper); }
+.avatar { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; display: block; border: 1px solid var(--line-2); background: var(--chip); outline: 6px solid var(--paper); }
 .dim-d { position: absolute; left: -16px; top: 0; bottom: 0; width: 1px; background: var(--line-2); }
 .dim-d::before, .dim-d::after { content: ""; position: absolute; left: -4px; width: 9px; border-top: 1px solid var(--line-2); }
 .dim-d::before { top: 0; }
 .dim-d::after { bottom: 0; }
 .dim-d span { position: absolute; top: 50%; left: -2px; transform: translate(-100%, -50%); font: 400 11px/1 var(--mono); color: var(--muted); padding-right: 4px; }
-h1 { margin: 0; font: 600 30px/1.1 var(--sans); letter-spacing: -.02em; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-h1 .badge { width: 18px; height: 16px; }
+h1 { margin: 0; font: 500 32px/1 var(--sans); letter-spacing: -.025em; }
+// inline, so on a phone the heart follows the last word instead of dropping to its own line
+h1 .badge { display: inline-block; width: 20px; height: 18px; margin-left: 8px; vertical-align: 1px; }
 h1 .badge path { fill: var(--mark); }
-.tagline { margin: 6px 0 0; font: 400 13px/1.4 var(--mono); color: var(--muted); }
-@media (max-width: 760px) { .dim-d { display: none; } }
+.tagline { margin: 8px 0 0; font: 400 14px/1.4 var(--mono); color: var(--muted); }
+// the Ø label hangs outside the frame, so it needs a margin beside the column
+@media (max-width: 840px) { .dim-d { display: none; } }
+@media (max-width: 640px) { .avatar { width: 128px; height: 128px; } }
+@media (max-width: 384px) { .avatar { width: 120px; height: 120px; } }
 
 .meta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.meta .cell { display: flex; align-items: center; gap: 12px; padding: 9px 0; font: 400 13px/1.4 var(--mono); min-width: 0; }
+.meta .cell { display: flex; align-items: center; gap: 12px; padding: 10px 0; font: 400 14px/20px var(--mono); min-width: 0; }
 .meta .cell > span:last-child { min-width: 0; overflow-wrap: anywhere; }
-.ibox { flex: none; width: 30px; height: 30px; border: 1px solid var(--line-2); border-radius: 7px; display: grid; place-items: center; background: var(--chip); }
-.ibox svg { width: 15px; height: 15px; fill: none; stroke: var(--muted); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.ibox { flex: none; width: 32px; height: 32px; border: 1px solid var(--line-2); border-radius: 7px; display: grid; place-items: center; background: var(--chip); }
+.ibox svg { width: 16px; height: 16px; fill: none; stroke: var(--muted); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .meta .soft { color: var(--muted); }
 .copy { all: unset; cursor: pointer; border-bottom: 1px dashed var(--line-2); }
 .copy:hover { border-bottom-color: var(--accent); }
@@ -25,8 +29,8 @@ h1 .badge path { fill: var(--mark); }
 @media (max-width: 600px) { .meta { grid-template-columns: 1fr; } }
 
 .socials { display: flex; gap: 8px; padding-block: 12px; position: relative; }
-.socials a { width: 34px; height: 34px; border: 1px solid var(--line-2); border-radius: 8px; display: grid; place-items: center; }
+.socials a { width: 36px; height: 36px; border: 1px solid var(--line-2); border-radius: 8px; display: grid; place-items: center; }
 .socials a:hover { border-color: var(--ink); }
-.socials svg { width: 16px; height: 16px; fill: var(--ink); }
+.socials svg { width: 18px; height: 18px; fill: var(--ink); }
 .note-follow { left: -110px; top: 66px; transform: rotate(-8deg); }
 .note-follow svg { margin: 2px 0 0 54px; }

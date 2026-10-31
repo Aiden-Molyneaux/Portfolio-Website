@@ -64,7 +64,7 @@ export default function Identity() {
       <div className="id pad">
         <div className="avatar-wrap">
           <div className="dim-d" aria-hidden="true"><span>{d ? `Ø${d}` : ''}</span></div>
-          <img className="avatar" ref={avatarRef} src={CONTENT.headshot} alt={CONTENT.name} width="112" height="112" />
+          <img className="avatar" ref={avatarRef} src={CONTENT.headshot} alt={CONTENT.name} width="160" height="160" />
         </div>
         <div>
           <h1><span>{CONTENT.name}</span><PixelHeart className="badge" /></h1>
