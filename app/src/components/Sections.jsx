@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { CONTENT, monthDot, monthsBetween, spanLabel } from '../content.js';
 import { CAT_NAMES, portraitMarkup } from '../lib/cats.js';
-import { Chevron, LinkIcon, iconUrl } from './icons.jsx';
+import { Chevron, GitHubIcon, LinkIcon, LinkedInIcon, iconUrl } from './icons.jsx';
 
 // date ranges read like chanhdai's: sans digits, a mono dash, and a drawn ∞ for an open end (the glyph is tiny in both fonts)
 const Dash = () => <span className="dash">—</span>;
@@ -133,8 +133,8 @@ export function Footer() {
     <footer className="pad" id="foot">
       <span>© {new Date().getFullYear()} {CONTENT.name} · Ottawa</span>
       <nav className="foot-links" aria-label="Footer">
-        <a href={c.github} target="_blank" rel="noopener">GitHub</a>
-        <a href={c.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+        <a className="glyph" href={c.github} target="_blank" rel="noopener" aria-label="GitHub"><GitHubIcon /></a>
+        <a className="glyph" href={c.linkedin} target="_blank" rel="noopener" aria-label="LinkedIn"><LinkedInIcon /></a>
         <a href="#top">Back to top ↑</a>
       </nav>
     </footer>
