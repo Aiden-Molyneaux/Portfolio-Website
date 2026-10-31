@@ -1,17 +1,33 @@
 // One hover language for the whole page, kept in one place and loaded last.
-// Controls (icon buttons, buttons, chevrons, shelf cells) fill with --hover and go to ink. Text links go to ink and
-// take an accent underline. Project screenshots sit in greyscale and gain their colour, where hover exists.
-// Keyboard focus gets the same look as hover, on top of the focus outline. Everything shares one duration and easing.
+// Controls (icon buttons, buttons, shelf cells) fill with --hover and go to ink. Experience and project rows get a
+// rounded highlight behind them, starting just right of their icon. Text links go to ink and take an accent underline.
+// Project screenshots sit in greyscale and gain their colour, where hover exists.
+// Keyboard focus gets the same look as hover. Everything shares one duration and easing.
 
-.ico-btn, .socials a, a.p-lnk, .more-btn button, .shelf > button, summary .chev {
+.ico-btn, .socials a, a.p-lnk, .more-btn button, .shelf > button {
   transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
 }
 .ico-btn:hover, .ico-btn:focus-visible,
 .socials a:hover, .socials a:focus-visible,
 a.p-lnk:hover, a.p-lnk:focus-visible,
 .more-btn button:hover, .more-btn button:focus-visible,
-.shelf > button:hover, .shelf > button:focus-visible,
-summary:hover .chev, summary:focus-visible .chev { background: var(--hover); color: var(--ink); }
+.shelf > button:hover, .shelf > button:focus-visible { background: var(--hover); color: var(--ink); }
+
+// rows: the highlight is a pseudo-element behind the summary, a little larger than its text
+details.role > summary, details.p > summary { position: relative; z-index: 0; }
+details.role > summary::before, details.p > summary::before {
+  content: ""; position: absolute; z-index: -1; border-radius: 8px; pointer-events: none;
+  transition: background-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+details.role > summary::before { inset: -8px -6px -6px -8px; }
+// projects: clear of the 36px icon tile and its gap, inside the row's own padding
+details.p > summary::before { inset: 6px -6px 8px 44px; }
+@media (hover: hover) {
+  details.role > summary:hover::before, details.p > summary:hover::before { background: var(--chip); }
+  details.role > summary:hover .chev, details.p > summary:hover .chev { color: var(--ink); }
+}
+details.role > summary:focus-visible, details.p > summary:focus-visible { outline: none; }
+details.role > summary:focus-visible::before, details.p > summary:focus-visible::before { background: var(--chip); box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--accent) 50%, transparent); }
 
 // nav and footer links carry a hidden underline, so hover shows the same accent line the current section wears
 // (before the a:hover rule below, which has to win over it)
