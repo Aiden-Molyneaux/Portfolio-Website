@@ -1,0 +1,27 @@
+// One hover language for the whole page, kept in one place and loaded last.
+// Controls (icon buttons, buttons, chevrons, shelf cells) fill with --hover and go to ink. Text links go to ink and
+// take an accent underline. Project screenshots sit in greyscale and gain their colour, where hover exists.
+// Keyboard focus gets the same look as hover, on top of the focus outline. Everything shares one duration and easing.
+
+.ico-btn, .socials a, a.p-lnk, .more-btn button, .shelf > button, summary .chev {
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.ico-btn:hover, .ico-btn:focus-visible,
+.socials a:hover, .socials a:focus-visible,
+a.p-lnk:hover, a.p-lnk:focus-visible,
+.more-btn button:hover, .more-btn button:focus-visible,
+.shelf > button:hover, .shelf > button:focus-visible,
+summary:hover .chev, summary:focus-visible .chev { background: var(--hover); color: var(--ink); }
+
+// nav and footer links carry a hidden underline, so hover shows the same accent line the current section wears
+// (before the a:hover rule below, which has to win over it)
+.links a, .menu-panel a, .foot-links a { text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 6px; }
+a, .copy { transition: color var(--dur) var(--ease), text-decoration-color var(--dur) var(--ease), border-color var(--dur) var(--ease); }
+a:hover, a:focus-visible, .copy:hover, .copy:focus-visible { color: var(--ink); }
+a:hover, a:focus-visible { text-decoration-color: var(--accent); }
+.copy:hover, .copy:focus-visible { border-bottom-color: var(--accent); }
+
+@media (hover: hover) {
+  .shot { filter: grayscale(1); transition: filter var(--dur-slow) var(--ease); }
+  details.p:hover .shot { filter: none; }
+}

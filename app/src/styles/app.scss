@@ -1,4 +1,4 @@
-// Mock A · Blueprint, Take 1: one 720px column, a sticky bar header, the red palette and the faceted heart.
+// Mock A · Blueprint, Take 1: one 768px column, a sticky bar header, the red palette and the faceted heart.
 @use './tokens';
 @use './base';
 @use './header';
@@ -7,3 +7,4 @@
 @use './contrib';
 @use './cats';
 @use './sections';
+@use './hover';

@@ -33,14 +33,12 @@ h1 .badge path { fill: var(--mark); }
 .ibox svg { width: 16px; height: 16px; fill: none; stroke: var(--muted); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .meta .soft { color: var(--muted); }
 .copy { all: unset; cursor: pointer; border-bottom: 1px dashed var(--line-2); }
-.copy:hover { border-bottom-color: var(--accent); }
 .copy:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .copy.done { color: var(--accent-text); border-bottom-color: transparent; }
 @media (max-width: 600px) { .meta { grid-template-columns: 1fr; } }
 
 .socials { display: flex; gap: 8px; padding-block: 12px; position: relative; }
 .socials a { width: 36px; height: 36px; border: 1px solid var(--line-2); border-radius: 8px; display: grid; place-items: center; }
-.socials a:hover { border-color: var(--ink); }
 .socials svg { width: 18px; height: 18px; fill: var(--ink); }
 .note-follow { left: -110px; top: 66px; transform: rotate(-8deg); }
 .note-follow svg { margin: 2px 0 0 54px; }

@@ -1,7 +1,7 @@
 // Colour tokens. Light by default; dark is the old site's palette (#111, red #ff4122, yellow #ffd741).
 // The heart reads --heart, --heart-edge and --heart-flat; the cats' outline reads --cat-stroke.
 @mixin dark {
-  --paper: #111111; --ink: #f2efe9; --muted: #8f8d88; --line: #262626; --line-2: #333333; --chip: #1a1a1a;
+  --paper: #111111; --ink: #f2efe9; --muted: #8f8d88; --line: #262626; --line-2: #333333; --chip: #1a1a1a; --hover: #232323;
   --accent: #ff4122; --accent-text: #ff6a4f; --dot: #ffd741;
   --c0: #1c1c1c; --c1: #4a1a12; --c2: #8a2617; --c3: #d1351c; --c4: #ff4122;
   --cat-stroke: #5c5a56;
@@ -12,7 +12,7 @@
 }
 
 :root {
-  --paper: #fbfbfa; --ink: #18181a; --muted: #6a6a70; --line: #e4e4e2; --line-2: #d2d2cf; --chip: #f2f2f0;
+  --paper: #fbfbfa; --ink: #18181a; --muted: #6a6a70; --line: #e4e4e2; --line-2: #d2d2cf; --chip: #f2f2f0; --hover: #e9e9e6;
   --accent: #e8361c; --accent-text: #b02a14; --dot: #e8361c;
   --c0: #ececea; --c1: #f6c3b8; --c2: #f08f78; --c3: #e85c3e; --c4: #c8321a;
   --cat-stroke: #18181a;
@@ -23,6 +23,7 @@
   --mono: 'Geist Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
   --hand: 'Caveat', 'Segoe Print', 'Bradley Hand', cursive;
   --col: 768px;
+  --dur: 150ms; --dur-slow: 300ms; --ease: cubic-bezier(.4, 0, .2, 1);
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
