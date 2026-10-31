@@ -214,22 +214,27 @@ export function mountCats(o) {
     t.el.append(z);
   }
 
-  // Timber sits on a heading; hover the heading and he gets up and strolls out of the way, then walks back
+  // Timber sits on a heading; point at the heading and he gets up and strolls out of the way, then walks back once
+  // the pointer has left it. He is perched inside the heading, so pointing at Timber himself doesn't count (that
+  // was the loop: he walked out from under the pointer, which "left", so he walked back under it). A walk is never
+  // turned round halfway; when it ends he checks where the pointer is now.
   const ta = opts.anchors.timber;
   if (ta) {
     const t = make('timber');
     perch(t, ta.el, ta.x ?? 0.6); t.play('sit', 2200);
-    const base = t.el.style.left; let away = false, busy = null;
-    const walk = (to, dir) => {
-      clearTimeout(busy);
-      if (reduced()) { t.el.style.left = to; return; }
-      t.face(dir); t.play('stroll', 170);
-      t.el.style.transition = 'left 1300ms linear'; t.el.style.left = to;
-      busy = setTimeout(() => { t.el.style.transition = ''; t.face(1); t.play('sit', 2200); }, 1300);
+    const base = t.el.style.left, aside = `calc(${base} + 84px)`;
+    let away = false, want = false, busy = null;
+    const settle = () => {
+      if (busy || want === away) return;
+      away = want;
+      if (reduced()) { t.el.style.left = away ? aside : base; return; }
+      t.face(away ? 1 : -1); t.play('stroll', 170);
+      t.el.style.transition = 'left 1300ms linear'; t.el.style.left = away ? aside : base;
+      busy = setTimeout(() => { busy = null; t.el.style.transition = ''; t.face(1); t.play('sit', 2200); settle(); }, 1300);
     };
     cleanups.push(() => clearTimeout(busy));
-    listen(ta.el, 'mouseenter', () => { if (!t.el.isConnected || away) return; away = true; walk(`calc(${base} + 84px)`, 1); });
-    listen(ta.el, 'mouseleave', () => { if (!away) return; away = false; walk(base, -1); });
+    listen(ta.el, 'mouseover', e => { if (!t.el.contains(e.target)) { want = true; settle(); } });
+    listen(ta.el, 'mouseleave', () => { want = false; settle(); });
   }
 
   // Tulip sits until clicked; then she crouches, wiggles, gallops after the pointer and pounces when she's close
