@@ -1,17 +1,19 @@
 // One hover language for the whole page, kept in one place and loaded last.
 // Controls (icon buttons, buttons, shelf cells) fill with --hover and go to ink. Experience and project rows get a
 // rounded highlight behind them, starting just right of their icon. Text links go to ink and take an accent underline.
-// Project screenshots sit in greyscale and gain their colour, where hover exists.
 // Keyboard focus gets the same look as hover. Everything shares one duration and easing.
 
-.ico-btn, .socials a, a.p-lnk, .more-btn button, .shelf > button {
+.ico-btn, .socials a, a.p-lnk, .more-btn button, .shelf > button, .lb-bar button {
   transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
 }
 .ico-btn:hover, .ico-btn:focus-visible,
 .socials a:hover, .socials a:focus-visible,
 a.p-lnk:hover, a.p-lnk:focus-visible,
 .more-btn button:hover, .more-btn button:focus-visible,
-.shelf > button:hover, .shelf > button:focus-visible { background: var(--hover); color: var(--ink); }
+.shelf > button:hover, .shelf > button:focus-visible,
+.lb-bar button:hover, .lb-bar button:focus-visible { background: var(--hover); color: var(--ink); }
+.shot { transition: border-color var(--dur) var(--ease); }
+.shot:hover, .shot:focus-visible { border-color: var(--ink); outline: none; }
 
 // rows: the highlight is a pseudo-element behind the summary, a little larger than its text
 details.role > summary, details.p > summary { position: relative; z-index: 0; }
@@ -36,8 +38,3 @@ a, .copy { transition: color var(--dur) var(--ease), text-decoration-color var(-
 a:hover, a:focus-visible, .copy:hover, .copy:focus-visible { color: var(--ink); }
 a:hover, a:focus-visible { text-decoration-color: var(--accent); }
 .copy:hover, .copy:focus-visible { border-bottom-color: var(--accent); }
-
-@media (hover: hover) {
-  .shot { filter: grayscale(1); transition: filter var(--dur-slow) var(--ease); }
-  details.p:hover .shot { filter: none; }
-}
