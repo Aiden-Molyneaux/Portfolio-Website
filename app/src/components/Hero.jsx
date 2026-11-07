@@ -30,7 +30,7 @@ export default function Hero({ rest, week, flat, onBpm }) {
       </div>
       <div className="hero-fig"><span>Fig. 01</span><span>Heart, faceted</span><span>{FACETS} facets, canvas 2D</span></div>
       <div className="focal" ref={focalRef} />
-      <div className="note note-press">{arrowR}press it,<br />it still beats</div>
+      <div className="note note-press">{arrowR}press it</div>
       <div className="note note-drag">{arrowL}or drag it<br />to turn it</div>
     </div>
   );

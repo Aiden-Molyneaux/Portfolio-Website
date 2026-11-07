@@ -35,8 +35,8 @@ export const CONTENT = {
   // the line under the name cycles through these, starting with the first
   taglines: [
     'Building tools that build software.',
-    'Creating with code. Small details matter.',
     'Designing, Developing, and Experimenting.',
+    'When building something big, small details matter.',
     'Coding makes my heart beat.',
   ],
   role: { title: 'Software Engineer', org: 'Versaterm' },
@@ -50,18 +50,18 @@ export const CONTENT = {
   },
   // HTML: <b> marks the bold phrases
   about: [
-    'I\'m a <b>Software Engineer II</b> at Versaterm in Ottawa. I work on the dispatch software that police, fire and 911 centres use in Canada and the US, and I hold federal and state-level security clearances in both countries.',
+    'I\'m a <b>Software Engineer II</b> at Versaterm in Ottawa. I work on the computer-aided dispatch software that 911 centres (police, fire, EMS) use in Canada and the US, and I hold federal and state-level security clearances in both countries.',
     'I went from <b>technical support to engineering in under a year</b>, and now I co-lead the pod that owns customer-reported bugs.',
     'I studied Computer Science at Carleton and have worked full-stack since my first co-op. I\'m as comfortable in a .NET backend as in a React frontend.',
   ],
   // Stack section: [group, tools], as Aiden trimmed it. Each tool needs a glyph in
   // data/stack-icons.js (a Simple Icons logo, an alias of one, or one of our outline glyphs).
   stack: [
-    ['Language', ['TypeScript', 'JavaScript', 'C#', 'Python', 'C++']],
+    ['Language', ['JavaScript', 'TypeScript', 'C#', 'Python', 'C++']],
     ['Frontend', ['React', 'React Native', 'Vite', 'Electron', 'WPF']],
     ['Backend & Data', ['Node.js', '.NET', 'PostgreSQL', 'Informix', 'Redis', 'SQLite', 'AWS Lambda']],
     ['AI', ['Claude Code']],
-    ['Workflow & Tools', ['Git', 'GitHub', 'GitHub Actions', 'GitLab', 'Jira', 'Docker', 'VMware']],
+    ['Workflow & Tools', ['Git', 'GitHub', 'GitHub Actions', 'Jira', 'Zendesk', 'Docker', 'VMware']],
   ],
   shelfTitle: 'The rest of the household',
   cats: [
@@ -80,19 +80,19 @@ export const CONTENT = {
             'Host a show-and-tell on working with AI every other week.',
             'Rewrote a legacy interface service in .NET with Claude Code at the 2026 company hackathon, then presented it to the whole company.',
           ],
-          tech: ['Claude Code', 'Genero4GL', 'C#/.NET', 'Postgres', 'Informix', 'Redis', 'GitHub'] },
+          tech: ['Claude Code', 'C#/.NET', 'Genero4GL', 'Postgres', 'Informix', 'Redis', 'GitHub', 'Jira'] },
         { title: 'Technical Support II', start: '2025-04', end: '2026-03', icon: 'code',
           bullets: [
-            'Resolved 200+ tickets across the desktop, mobile and messaging products (Genero4GL, C#, React).',
-            'Spent a year on the 24/7 after-hours rotation and answered all 30+ calls.',
+            'Resolved 200+ tickets across the desktop, mobile and messaging products.',
+            'Spent a year on the 24/7 after-hours rotation and answered 30+ calls.',
             'Trained my own backfill with a two-week technical onboarding that ended in a final project.',
-            'Worked directly with police and fire staff, and with every internal team, including Support and Customer Success.',
+            'Worked directly with police and fire staff, and with every internal team, including Customer Success, Deployments, and Engineering.',
           ],
-          tech: ['Genero4GL', 'C#', 'React', 'Cordova', 'GitLab', 'Zendesk'] },
+          tech: ['C#', 'React', 'Genero4GL', 'GitHub', 'Zendesk'] },
       ] },
     { org: 'Industrial Electrical & Mechanical', icon: iemIcon, iconFill: true, place: 'Ottawa', ended: true,
       roles: [
-        { title: 'Industrial Electrical Apprentice (temp)', start: '2024-05', end: '2025-03', icon: 'shield',
+        { title: 'Industrial Electrical Apprentice', start: '2024-05', end: '2025-03', icon: 'shield',
           bullets: ['Installed and maintained electrical systems in quarries and wash plants around Ottawa.'],
           tech: ['Field work', 'Industrial electrical'] },
       ] },
@@ -101,7 +101,7 @@ export const CONTENT = {
         { title: 'Junior Software Developer', start: '2021-05', end: '2023-11', icon: 'code',
           bullets: [
             'React and Ruby on a SaaS product, from student developer to junior over 2.5 years.',
-            'Wrote 90+ Cypress end-to-end tests that run in CI.',
+            'Wrote and maintained a suite of 90+ Cypress end-to-end tests that run in CI.',
             'Halved load times on several resources with paginated queries.',
           ],
           tech: ['React', 'Ruby', 'Cypress', 'GitHub Actions', 'Python', 'AWS S3'] },
@@ -126,7 +126,7 @@ export const CONTENT = {
       more: 'Version two is mobile-first, for iOS and Android. The spec, contract and design system all came before the code.',
       tech: ['React Native', 'Expo', 'Express', 'Postgres', 'Drizzle'], tag: 'private repo', link: null, shots: [shot(ingameCollection, 390, 844, 'The InGame collection'), shot(ingameGame, 390, 844, 'A game page in InGame'), shot(ingameFriends, 390, 844, 'Friends and activity in InGame')] },
     { id: 'shipwright', name: 'shipwright', icon: shipwrightIcon, iconPad: true, year: '2026', start: '2026', ongoing: true, tier: 'full',
-      line: 'A portable toolkit that lets Claude drive an app from day one to launched: spec-first, design-first, robustness-first, with one owner reviewing at a few gates.',
+      line: 'A portable toolkit that lets Claude drive new software projects from day one to launched: spec-first, design-first, robustness-first, with one owner reviewing at a few gates.',
       more: 'Generalized from InGame. A starter kit, reviewer skills, subagent wrappers and a local dashboard.',
       tech: ['Claude Code skills', 'Starter-kit doc graph'], tag: null, link: 'https://github.com/Aiden-Molyneaux/shipwright', shots: [] },
     { id: 'inthink', name: 'InThink', icon: inthinkIcon, year: '2026', start: '2026', ongoing: true, tier: 'full',
@@ -147,7 +147,7 @@ export const CONTENT = {
       more: 'React and SCSS on Vite, with a small AWS Lambda for the GitHub data. The low-poly heart has been on every version.',
       tech: ['React', 'Vite', 'SCSS', 'AWS Lambda'], tag: null, link: 'https://github.com/Aiden-Molyneaux/Portfolio-Website', shots: [shot(portfolioBefore, 1440, 900, 'The site before the 2026 redesign'), shot(portfolioAfter, 1440, 900, 'The site after the 2026 redesign')] },
     { id: 'wedding', name: 'My Wedding Website', icon: weddingIcon, year: '2024', tier: 'full',
-      line: 'The site our guests used for details and RSVPs. Built with my fiancée, tested on family of every age.',
+      line: 'The site our guests used for details and RSVPs. Designed with my fiancée.',
       more: 'RSVP system backed by an external service, responsive design, and the planning tool for the whole event.',
       tech: ['React'], tag: null, link: 'https://github.com/Aiden-Molyneaux/WeddingSite', shots: [shot(rsvpImg, 600, 450, 'The RSVP page')] },
     { id: 'fitness-club', name: 'Health & Fitness Club Web App', year: '2024', tier: 'short',
