@@ -41,7 +41,7 @@ export const CONTENT = {
     email: 'aidenmolyneaux@hotmail.com',
     github: 'https://github.com/Aiden-Molyneaux',
     linkedin: 'https://linkedin.com/in/aiden-molyneaux',
-    resume: 'Résumé · coming soon',
+    resume: { label: 'Résumé', note: 'PDF, one page', href: '/AidenMolyneaux_Resume.pdf' },
   },
   // HTML: <b> marks the bold phrases
   about: [

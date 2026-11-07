@@ -82,7 +82,7 @@ export default function Identity() {
     pin: CONTENT.place,
     mail: <CopyEmail email={c.email} />,
     shield: CONTENT.field,
-    file: <span className="soft">{c.resume}</span>,
+    file: <a className="file" href={c.resume.href} target="_blank" rel="noopener">{c.resume.label} <span className="soft">{'// '}{c.resume.note}</span></a>,
   };
   return (
     <>
