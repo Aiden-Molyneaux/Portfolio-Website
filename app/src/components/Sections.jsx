@@ -97,7 +97,7 @@ export function Experience() {
           <div className="org" key={org.org}>
             <div className="org-h">
               <OrgMark icon={org.icon} fill={org.iconFill} text={initialsOf(org.org)} /><b>{org.org}</b>
-              <span className="where">{org.place}, Canada{!org.ended && <i title="Current" />}</span>
+              <span className="where">{org.place}{!org.ended && <i title="Current" />}</span>
             </div>
             <div className="roles">
               {org.roles.map((r, ri) => (
@@ -108,7 +108,7 @@ export function Experience() {
                   </summary>
                   <div className="role-b">
                     <ul>{r.bullets.map(b => <li key={b}>{b}</li>)}</ul>
-                    <div className="pills">{r.tech.map(t => <span key={t}>{t}</span>)}</div>
+                    {r.tech.length > 0 && <div className="pills">{r.tech.map(t => <span key={t}>{t}</span>)}</div>}
                   </div>
                 </details>
               ))}
@@ -166,7 +166,7 @@ function Lightbox({ view, onClose, onStep }) {
 
 function Project({ p, open, onShot }) {
   return (
-    <details className="p" open={open}>
+    <details className="p" id={p.id} open={open}>
       <summary onClick={toggleDetails}>
         <span className={'p-ico' + (p.icon && !p.iconPad ? ' app' : '')} aria-hidden="true">
           {p.icon === 'heart' ? <PixelHeart /> : p.icon ? <img src={p.icon} alt="" /> : projInitials(p.name)}
@@ -202,11 +202,13 @@ export function Projects() {
   useSlide(moreRef, more, btnRef);
   const selected = CONTENT.selected.map(id => CONTENT.projects.find(p => p.id === id));
   const rest = CONTENT.projects.filter(p => !CONTENT.selected.includes(p.id));
+  // a deep link like /#ingame (the résumé uses one) lands on that card open
+  const linked = typeof window !== 'undefined' ? window.location.hash.slice(1) : '';
   return (
     <section id="projects">
       <div className="pad"><h2 className="sec-h">Projects<sup>({CONTENT.projects.length})</sup></h2></div>
       <div className="rule" />
-      <div className="pad">{selected.map((p, i) => <Project key={p.id} p={p} open={i === 0} onShot={onShot} />)}</div>
+      <div className="pad">{selected.map((p, i) => <Project key={p.id} p={p} open={i === 0 || p.id === linked} onShot={onShot} />)}</div>
       <div id="proj-more" ref={moreRef}>
         <div className="pad">{rest.map(p => <Project key={p.id} p={p} onShot={onShot} />)}</div>
         <div className="pad"><p className="also">Also in the works: {CONTENT.alsoMentioned}</p></div>

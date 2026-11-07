@@ -25,8 +25,8 @@ export default function Hero({ rest, week, flat, onBpm }) {
       <div className="dim dim-w"><span>{width || ''}</span></div>
       <div className="hero-read" aria-live="off">
         <span className="hero-bpm"><b>{flat ? 0 : bpm}</b> bpm</span>
-        <span>resting 60, +1 per 10</span>
-        <span>contributions this week ({week})</span>
+        <span>60 at rest, +1 for every 10</span>
+        <span>GitHub contributions this week ({week})</span>
       </div>
       <div className="hero-fig"><span>Fig. 01</span><span>Heart, faceted</span><span>{FACETS} facets, canvas 2D</span></div>
       <div className="focal" ref={focalRef} />
