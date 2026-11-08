@@ -1,0 +1,47 @@
+# Refreshes the GitHub contribution map once a day. The site renders app/src/data/github-contributions.json,
+# so this rewrites it from GitHub's GraphQL API and commits it when it changed; the push redeploys the site.
+#
+# Needs a repository secret CONTRIB_TOKEN: a fine-grained token with public-repository read access and no
+# extra permissions. (Secret names can't start with GITHUB_.)
+name: Refresh contributions
+
+on:
+  schedule:
+    - cron: '17 9 * * *' # daily, 09:17 UTC (early morning in Ottawa)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-contributions
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # The script has no dependencies, so there is no npm install.
+      - name: Refresh the snapshot
+        working-directory: app
+        env:
+          CONTRIB_TOKEN: ${{ secrets.CONTRIB_TOKEN }}
+        run: npm run refresh:contributions
+
+      - name: Commit if it changed
+        run: |
+          if git diff --quiet -- app/src/data/github-contributions.json; then
+            echo "No change."
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add app/src/data/github-contributions.json
+          git commit -m "Refresh GitHub contributions snapshot"
+          git push

@@ -1,4 +1,4 @@
-// GitHub contribution calendar: [[date, count], ...] from the bundled snapshot or the Lambda's /contributions endpoint.
+// GitHub contribution calendar: [[date, count], ...] from the bundled snapshot, or from CONTRIB_URL when one is set.
 import SNAPSHOT from '../data/github-contributions.json';
 
 export { SNAPSHOT };

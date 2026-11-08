@@ -3,8 +3,8 @@ import { SNAPSHOT, isCalendar } from './contrib.js';
 import { canSlide, slide } from './motion.js';
 import { CONTRIB_URL } from '../config.js';
 
-// The bundled snapshot first, then the live calendar from the Lambda when it answers. A failed or odd
-// response keeps the snapshot, so the grid and the heart rate always have data.
+// The bundled snapshot (refreshed daily by a GitHub Action), then a live calendar if CONTRIB_URL is set and
+// answers. A failed or odd response keeps the snapshot, so the grid and the heart rate always have data.
 export function useContributions(url = CONTRIB_URL) {
   const [days, setDays] = useState(SNAPSHOT);
   useEffect(() => {
