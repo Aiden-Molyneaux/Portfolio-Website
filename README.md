@@ -1,32 +1,38 @@
-# Aiden Molyneaux Portfolio Website
+# aidenmolyneaux.com
 
-Welcome to the repository for my personal portfolio website! This website showcases my work, skills, and projects as a student and Junior Software Developer. Feel free to explore the code, or visit the live site at aidenmolyneaux.com.
+My portfolio site, live at https://aidenmolyneaux.com. It's a single page built with React 18, SCSS and Vite 5.
 
-### Technologies Used
-HTML5 <br>
-CSS3 & Sass<br>
-JavaScript (ES6+) <br>
-React <br>
+## Run it locally
 
-### Setup
-To set up a local copy of this website, follow these steps:
-1. Clone the repo:
+I use Node 20.
 
 ```bash
 git clone https://github.com/Aiden-Molyneaux/Portfolio-Website.git
-cd app
-```
-
-3. Install dependencies and run development
-```bash
+cd Portfolio-Website/app
 npm install
 npm run dev
 ```
 
-4. Access the website at http://localhost:5743/
+The dev server runs at http://localhost:5173.
 
-### Contributing
-While this is a personal project, I appreciate any feedback or contributions you might have. Feel free to fork the repository and submit a pull request, or open an issue with your comments and suggestions.
+`npm run build` writes the site to `app/dist`, `npm run preview` serves that build, and `npm run lint` runs ESLint.
 
-### Contact
-If you have any questions, please feel free to contact me directly via email at aidenmolyneaux@hotmail.com.
+## Where things are
+
+- `app/src/content.js`: all the copy on the page
+- `app/src/components/`: the page sections
+- `app/src/styles/`: the SCSS, with colour tokens in `_tokens.scss`
+
+## Contribution map
+
+The GitHub contribution map renders from a snapshot, `app/src/data/github-contributions.json`. The `Refresh contributions` Action (`.github/workflows/refresh-contributions.yml`) rewrites that file every day at 09:17 UTC and commits it if it changed. The Action needs a repository secret named `CONTRIB_TOKEN`, a GitHub token that can read public user data.
+
+To refresh it by hand from `app/`:
+
+```bash
+CONTRIB_TOKEN=<token> npm run refresh:contributions
+```
+
+## Deployment
+
+Cloudflare Pages builds the site and deploys every push to `master`. Other branches get preview deployments. The project uses root directory `app`, build command `npm run build`, output directory `dist`, and `NODE_VERSION` set to `20`.
