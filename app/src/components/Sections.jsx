@@ -174,9 +174,9 @@ function Project({ p, open, onShot }) {
         <span className="p-n">{p.name}</span>
         {p.link || p.demo
           ? <span className="p-lnks">
-              {p.demo && <a className="p-lnk" href={p.demo} target="_blank" rel="noopener" aria-label={`${p.name}, live demo`} onClick={e => e.stopPropagation()}><ExternalIcon /></a>}
-              {p.link && <a className="p-lnk" href={p.link} target="_blank" rel="noopener" aria-label={`${p.name} on GitHub`} onClick={e => e.stopPropagation()}><LinkIcon /></a>}
-            </span>
+            {p.demo && <a className="p-lnk" href={p.demo} target="_blank" rel="noopener" aria-label={`${p.name}, live demo`} onClick={e => e.stopPropagation()}><ExternalIcon /></a>}
+            {p.link && <a className="p-lnk" href={p.link} target="_blank" rel="noopener" aria-label={`${p.name} on GitHub`} onClick={e => e.stopPropagation()}><LinkIcon /></a>}
+          </span>
           : <span className="p-lnk private">{p.tag || 'private'}</span>}
         <Chevron />
         <span className="p-d dates" title={p.ongoing ? 'Ongoing, no end date' : undefined}>{p.ongoing ? <>{p.start}<Dash /><Inf label="ongoing" /></> : p.year}</span>

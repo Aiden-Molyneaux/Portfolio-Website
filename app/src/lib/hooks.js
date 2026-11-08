@@ -56,6 +56,7 @@ export function useSlide(ref, open, keep) {
     was.current = open;
     if (first || !canSlide(el)) { el.hidden = !open; return; }
     slide(el, open, { show: () => { el.hidden = false; }, hide: () => { el.hidden = true; }, keep: keep?.current });
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- runs on open only; ref and keep are read fresh each run
   }, [open]);
 }
 

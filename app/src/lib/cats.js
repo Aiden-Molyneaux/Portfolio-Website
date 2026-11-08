@@ -57,7 +57,6 @@ function fur(outline, depth, edges, step = 3.4) {
   return out;
 }
 
-
 // ---------- sitting, front view ----------
 const HEAD_O = [16, 12.5], HEAD = [[5, 9], [12, 7], [16, 6], [20, 7], [27, 9], [27, 12], [25, 16], [16, 18.5], [7, 16], [5, 12]];
 const HEAD_REG = ['headA', 'headB'];
@@ -210,11 +209,11 @@ export function portraitMarkup(id, px = 64) {
 // or before the browser allows sound, only the written cue shows.
 const VOICE = { tubbin: { pitch: 0.8, word: 'mrrp' }, timber: { pitch: 1, word: 'meow' }, tulip: { pitch: 1.3, word: 'mrow!', soft: true }, tonka: { pitch: 1.6, word: 'mew' } };
 let ac = null, noise = null, soundOn = false;
-try { soundOn = localStorage.getItem('cat-sound') === 'on'; } catch {}
+try { soundOn = localStorage.getItem('cat-sound') === 'on'; } catch { /* storage blocked */ }
 export const catSound = () => soundOn;
 export function setCatSound(on) {
   soundOn = on;
-  try { localStorage.setItem('cat-sound', on ? 'on' : 'off'); } catch {}
+  try { localStorage.setItem('cat-sound', on ? 'on' : 'off'); } catch { /* storage blocked */ }
   if (on) audio(); else ac?.suspend();
 }
 function audio() {

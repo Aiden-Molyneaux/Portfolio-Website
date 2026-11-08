@@ -1,7 +1,7 @@
 import React from 'react';
 
 // 24px stroke icons for the metadata rows and experience roles
-export const ICON_PATHS = {
+const ICON_PATHS = {
   code: '<path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/>',
   pin: '<path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
   clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
@@ -17,6 +17,7 @@ export function Icon({ name }) {
 }
 
 // the same icon as a CSS background, for the role markers on the experience timeline
+// eslint-disable-next-line react-refresh/only-export-components -- a helper beside the icons; costs only fast refresh of this file
 export const iconUrl = name => `url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='#8f8d88' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'>${ICON_PATHS[name]}</svg>`)}")`;
 
 // the header mark: the site heart as a 7 x 6 pixel heart
