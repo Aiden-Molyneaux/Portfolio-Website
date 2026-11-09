@@ -1,6 +1,5 @@
 import React, { useLayoutEffect, useMemo, useRef } from 'react';
 import { buildCalendar } from '../lib/contrib.js';
-import { CONTENT } from '../content.js';
 
 export default function Contributions({ days }) {
   const cal = useMemo(() => buildCalendar(days), [days]);
@@ -20,7 +19,7 @@ export default function Contributions({ days }) {
         </div>
       </div>
       <div className="contrib-foot">
-        <span>{cal.caption} Source: <a href={CONTENT.contact.github} target="_blank" rel="noopener">GitHub</a>.</span>
+        <span>{cal.caption}</span>
         <span className="contrib-legend" aria-hidden="true">Less <i className="l0" /><i className="l1" /><i className="l2" /><i className="l3" /><i className="l4" /> More</span>
       </div>
     </div>

@@ -34,7 +34,7 @@ export const CONTENT = {
     'Building tools that build software.',
     '911 dispatch software, and the AI tools my team builds it with.',
   ],
-  role: { title: 'Software Engineer II', org: 'Versaterm Public Safety' },
+  role: { title: 'Software Engineer', org: 'Versaterm Public Safety' },
   place: 'Ottawa, Canada',
   field: 'Public-safety software',
   contact: {

@@ -105,6 +105,13 @@ footer { padding-block: 22px 70px; font: 400 13px/1.6 var(--mono); color: var(--
 .foot-links { margin-left: auto; display: flex; align-items: center; gap: 16px; }
 .foot-links .glyph { display: grid; place-items: center; }
 .foot-links .glyph svg { width: 16px; height: 16px; fill: currentColor; }
+// on a phone the footer stays on one row, with shorter text
+@media (max-width: 480px) {
+  footer { flex-wrap: nowrap; }
+  .foot-wide { display: none; }
+  .foot-links { flex: none; gap: 12px; white-space: nowrap; }
+  .foot-links a:not(.glyph) { text-transform: capitalize; }
+}
 // the heart monitor: a trace in the heart's red. In the footer it runs the column's full width
 // along the bottom; in the 404 card it sits under the message, flat.
 .ecg { position: relative; height: 44px; pointer-events: none; }

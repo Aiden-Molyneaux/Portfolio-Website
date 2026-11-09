@@ -242,11 +242,11 @@ export function Footer({ bpm, flat }) {
   const c = CONTENT.contact;
   return (
     <footer className="pad" id="foot">
-      <span>© {new Date().getFullYear()} {CONTENT.name} · Ottawa</span>
+      <span>© {new Date().getFullYear()} {CONTENT.name}<span className="foot-wide"> · Ottawa</span></span>
       <nav className="foot-links" aria-label="Footer">
         <a className="glyph" href={c.github} target="_blank" rel="noopener" aria-label="GitHub"><GitHubIcon /></a>
         <a className="glyph" href={c.linkedin} target="_blank" rel="noopener" aria-label="LinkedIn"><LinkedInIcon /></a>
-        <a href="#top">Back to top ↑</a>
+        <a href="#top" aria-label="Back to top"><span className="foot-wide">Back to </span>top ↑</a>
       </nav>
       <Ecg bpm={bpm} flat={flat} />
     </footer>
