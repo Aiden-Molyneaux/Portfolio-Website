@@ -7,7 +7,7 @@ export { SNAPSHOT };
 // doesn't open on half a year of blanks. The filler replays the real weeks from May 2026 on, shuffled
 // in three-week blocks so busy and quiet spells stay together, which keeps both halves of the grid
 // reading the same. It only touches days before FILLER_END, so it fades out on its own as the window
-// moves; remove it once the window starts after FILLER_END (about April 2027).
+// moves; remove it once the window starts at FILLER_END (March 2027).
 const FILLER_END = '2026-04-01', SOURCE_FROM = '2026-05-01';
 const dow = d => new Date(d + 'T00:00:00Z').getUTCDay();
 
@@ -50,15 +50,26 @@ const fmtDay = s => new Date(s + 'T00:00:00Z').toLocaleDateString('en-CA', { mon
 const monthOf = s => new Date(s + 'T00:00:00Z').toLocaleDateString('en-CA', { month: 'short', timeZone: 'UTC' });
 const monthLong = s => new Date(s + 'T00:00:00Z').toLocaleDateString('en-CA', { month: 'long', timeZone: 'UTC' });
 
-// Weeks x 7 cells, month labels and the caption. Levels and the caption use the real days only,
-// so the filler never shifts the scale.
+// The 1st of the month 11 months before `end` (YYYY-MM-DD): the grid shows that month through `end`,
+// twelve calendar months in all, so no month appears at both ends.
+export function windowStart(end) {
+  const months = Number(end.slice(0, 4)) * 12 + Number(end.slice(5, 7)) - 1 - 11;
+  return `${Math.floor(months / 12)}-${String(months % 12 + 1).padStart(2, '0')}-01`;
+}
+
+// Weeks x 7 cells, month labels and the caption for the window ending on the last day of data.
+// Levels and the caption use the real days in the window only, so the filler never shifts the scale.
+// The filler runs on the full data and is trimmed afterwards, so its pattern doesn't reshuffle each month.
 export function buildCalendar(real) {
-  const total = real.reduce((a, b) => a + b[1], 0);
-  const nz = real.map(d => d[1]).filter(Boolean).sort((a, b) => a - b);
+  const from = windowStart(real[real.length - 1][0]);
+  const inWindow = ([d]) => d >= from;
+  const visible = real.filter(inWindow);
+  const total = visible.reduce((a, b) => a + b[1], 0);
+  const nz = visible.map(d => d[1]).filter(Boolean).sort((a, b) => a - b);
   const q = p => nz[Math.min(nz.length - 1, Math.floor(nz.length * p))] || 0;
   const cuts = [q(0.25), q(0.5), q(0.75)];
   const level = c => !c ? 0 : c <= cuts[0] ? 1 : c <= cuts[1] ? 2 : c <= cuts[2] ? 3 : 4;
-  const days = withFiller(real);
+  const days = withFiller(real).filter(inWindow);
   const cells = Array(dow(days[0][0])).fill(null).concat(days.map(([date, count]) => ({ date, count, level: level(count), label: `${count} contribution${count === 1 ? '' : 's'} on ${fmtDay(date)}` })));
   const weeks = Math.ceil(cells.length / 7);
   const months = [];
@@ -69,14 +80,16 @@ export function buildCalendar(real) {
     if (!months.length || months[months.length - 1].m !== m) months.push({ m, w });
   }
   // drop a label that would crowd the next one
-  const shown = months.filter((x, i) => !(months[i + 1] && months[i + 1].w - x.w < 3));
+  // and flag one too close to the right edge to fit, so it can align to the end of the grid
+  const shown = months.filter((x, i) => !(months[i + 1] && months[i + 1].w - x.w < 3)).map(x => ({ ...x, end: x.w >= weeks - 2 }));
   const byMonth = {};
-  real.forEach(([d, c]) => { const k = d.slice(0, 7); byMonth[k] = (byMonth[k] || 0) + c; });
+  visible.forEach(([d, c]) => { const k = d.slice(0, 7); byMonth[k] = (byMonth[k] || 0) + c; });
   const busiest = Object.entries(byMonth).sort((a, b) => b[1] - a[1]).slice(0, 2).map(([k]) => monthLong(k + '-01'));
   const n = total.toLocaleString('en-CA');
+  const span = [fmtDay(visible[0][0]), fmtDay(visible[visible.length - 1][0])];
   return {
     weeks, cells, months: shown, total,
-    caption: `${n} contributions, ${fmtDay(real[0][0])} – ${fmtDay(real[real.length - 1][0])}.`,
-    aria: `${n} GitHub contributions in the last year${busiest.length > 1 ? `, busiest in ${busiest[0]} and ${busiest[1]}` : ''}.`,
+    caption: `${n} contributions, ${span[0]} – ${span[1]}.`,
+    aria: `${n} GitHub contributions from ${span[0]} to ${span[1]}${busiest.length > 1 ? `, busiest in ${busiest[0]} and ${busiest[1]}` : ''}.`,
   };
 }

@@ -12,10 +12,10 @@ export default function Contributions({ days }) {
       <div className="contrib-scroll" ref={scroller}>
         <div className="contrib-inner" style={{ '--weeks': cal.weeks }}>
           <div className="contrib-months" aria-hidden="true">
-            {cal.months.map(x => <span key={x.w} style={{ gridColumn: x.w + 1 }}>{x.m}</span>)}
+            {cal.months.map(x => <span key={x.w} className={x.end ? 'end' : undefined} style={{ gridColumn: x.end ? `${x.w + 1} / -1` : x.w + 1 }}>{x.m}</span>)}
           </div>
           <div className="contrib-grid" role="img" aria-label={cal.aria}>
-            {cal.cells.map((d, i) => d ? <i key={d.date} className={`l${d.level}`} title={d.label} /> : <i key={'pad' + i} className="pad" />)}
+            {cal.cells.map((d, i) => d ? <i key={d.date} className={`l${d.level}`} title={d.label} /> : <i key={'blank' + i} className="blank" />)}
           </div>
         </div>
       </div>
