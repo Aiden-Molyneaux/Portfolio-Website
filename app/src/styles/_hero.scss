@@ -16,9 +16,6 @@
 .hero-fig span:first-child { color: var(--ink); }
 .hero-bpm { color: var(--ink); font-size: 12px; margin-bottom: 3px; }
 .hero-bpm b { font: 500 30px/1 var(--mono); letter-spacing: -.03em; font-variant-numeric: tabular-nums; color: var(--accent-text); }
-.note-press { right: -150px; top: 210px; }
-.note-drag { left: -128px; top: 260px; transform: rotate(5deg); text-align: right; }
-.note-drag svg { margin: 2px 0 0 auto; }
 
 .dim { position: absolute; font: 400 11px/1 var(--mono); color: var(--muted); pointer-events: none; }
 .dim-w { left: 0; right: 0; top: 14px; height: 1px; background: var(--line-2); }
